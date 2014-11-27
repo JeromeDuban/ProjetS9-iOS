@@ -391,7 +391,7 @@
 				INFOPLIST_FILE = "Projet S9/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/Jeremie/Dropbox/ENSEIRB/3A/Projet/ProjetS9-iOS/Projet S9/Projet-S9-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Projet S9/Projet-S9-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -402,7 +402,7 @@
 				INFOPLIST_FILE = "Projet S9/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/Jeremie/Dropbox/ENSEIRB/3A/Projet/ProjetS9-iOS/Projet S9/Projet-S9-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Projet S9/Projet-S9-Bridging-Header.h";
 			};
 			name = Release;
 		};
