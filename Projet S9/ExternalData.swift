@@ -25,7 +25,13 @@ class ExternalData{
         var err: NSError
         var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(dataVal, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
         var myData = NSString(data: dataVal, encoding: NSUTF8StringEncoding)
-        println("Synchronous\(myData)")
+        /*let someVar = jsonResult["Conference"]
+        let varr = jsonResult["address"]*/
+        
+        let json = JSON(data: dataVal)
+        let varr = json["Conference"][0]["address"]
+        println("Synchronous \(varr)")
         
     }
+    
 }
