@@ -288,6 +288,8 @@
  */
 @property (nonatomic, strong, readonly) UIPanGestureRecognizer *panGesture;
 
+
+
 /**
  The gesture that triggers the top view to reset. Useful for resetting the top view when in the anchored position.
  */
