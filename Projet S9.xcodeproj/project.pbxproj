@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0317BCB41A27776E0032208E /* ExternalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0317BCB31A27776E0032208E /* ExternalData.swift */; };
 		0317BCB61A277CE50032208E /* SwiftJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0317BCB51A277CE50032208E /* SwiftJSON.swift */; };
+		0317BCBA1A27F2240032208E /* Conference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0317BCB91A27F2240032208E /* Conference.swift */; };
+		0317BCBC1A27F2450032208E /* ConferenceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0317BCBB1A27F2450032208E /* ConferenceTableViewController.swift */; };
 		1E8283601A2534D000889E31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E82835F1A2534D000889E31 /* AppDelegate.swift */; };
 		1E8283621A2534D000889E31 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8283611A2534D000889E31 /* FirstViewController.swift */; };
 		1E8283651A2534D000889E31 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E8283631A2534D000889E31 /* Main.storyboard */; };
@@ -37,6 +39,8 @@
 /* Begin PBXFileReference section */
 		0317BCB31A27776E0032208E /* ExternalData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalData.swift; sourceTree = "<group>"; };
 		0317BCB51A277CE50032208E /* SwiftJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftJSON.swift; sourceTree = "<group>"; };
+		0317BCB91A27F2240032208E /* Conference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conference.swift; sourceTree = "<group>"; };
+		0317BCBB1A27F2450032208E /* ConferenceTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConferenceTableViewController.swift; sourceTree = "<group>"; };
 		1E82835A1A2534D000889E31 /* Projet S9.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Projet S9.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E82835E1A2534D000889E31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E82835F1A2534D000889E31 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -114,6 +118,8 @@
 				1E82835D1A2534D000889E31 /* Supporting Files */,
 				0317BCB31A27776E0032208E /* ExternalData.swift */,
 				0317BCB51A277CE50032208E /* SwiftJSON.swift */,
+				0317BCB91A27F2240032208E /* Conference.swift */,
+				0317BCBB1A27F2450032208E /* ConferenceTableViewController.swift */,
 			);
 			path = "Projet S9";
 			sourceTree = "<group>";
@@ -266,7 +272,9 @@
 				0317BCB41A27776E0032208E /* ExternalData.swift in Sources */,
 				1E82838F1A2535E600889E31 /* ECSlidingInteractiveTransition.m in Sources */,
 				0317BCB61A277CE50032208E /* SwiftJSON.swift in Sources */,
+				0317BCBA1A27F2240032208E /* Conference.swift in Sources */,
 				1E8283621A2534D000889E31 /* FirstViewController.swift in Sources */,
+				0317BCBC1A27F2450032208E /* ConferenceTableViewController.swift in Sources */,
 				1E8283911A2535E600889E31 /* ECSlidingViewController.m in Sources */,
 				1E8283901A2535E600889E31 /* ECSlidingSegue.m in Sources */,
 				1E8283941A2537B000889E31 /* MenuViewController.swift in Sources */,

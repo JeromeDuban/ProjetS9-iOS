@@ -12,7 +12,7 @@ import Foundation
 class ExternalData{
     
     
-    func getData(){
+    func getData() -> String {
         
         let urlPath: String = "https://dl.dropboxusercontent.com/u/95538366/projetS9/conference.json"
         var url: NSURL = NSURL(string: urlPath)!
@@ -31,6 +31,14 @@ class ExternalData{
         let json = JSON(data: dataVal)
         let varr = json["Conference"][0]["address"]
         println("Synchronous \(varr)")
+        
+        return myData!
+        
+    }
+    
+    
+    func parseJson(){
+        
         
     }
     

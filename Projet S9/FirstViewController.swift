@@ -8,8 +8,9 @@
 
 import UIKit
 
-class FirstViewController: UIViewController, UIGestureRecognizerDelegate {
+class FirstViewController: UIViewController, UIGestureRecognizerDelegate, UIBarPositioningDelegate {
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -19,7 +20,11 @@ class FirstViewController: UIViewController, UIGestureRecognizerDelegate {
         
         let data = ExternalData()
         data.getData()
+ 
+        
     }
+    
+
 
     func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer!) -> Bool {
         if (gestureRecognizer.locationInView(gestureRecognizer.view).x < 25.0) {
