@@ -14,8 +14,6 @@ class MenuViewController: UITableViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.slidingViewController().topViewAnchoredGesture = ECSlidingViewControllerAnchoredGesture.Panning | ECSlidingViewControllerAnchoredGesture.Tapping
-        
-
     }
     
     override func didReceiveMemoryWarning() {

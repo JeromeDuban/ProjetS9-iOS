@@ -15,7 +15,7 @@ class FirstViewController: UIViewController, UIGestureRecognizerDelegate {
         // Do any additional setup after loading the view, typically from a nib.
         self.slidingViewController().panGesture.delegate = self
         
-        self.view.addGestureRecognizer(self.slidingViewController().panGesture);
+        self.view.addGestureRecognizer(self.slidingViewController().panGesture)
     }
 
     func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer!) -> Bool {

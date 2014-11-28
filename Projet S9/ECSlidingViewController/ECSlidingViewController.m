@@ -109,6 +109,8 @@
     self.anchorRightRevealAmount = 276;
     _currentTopViewPosition = ECSlidingViewControllerTopViewPositionCentered;
     self.transitionInProgress = NO;
+    self.useShadow = YES;
+    self.shadowColor = [UIColor blackColor];
 }
 
 #pragma mark - UIViewController
@@ -262,6 +264,14 @@
             [_topViewController beginAppearanceTransition:YES animated:NO];
             [self.view addSubview:_topViewController.view];
             [_topViewController endAppearanceTransition];
+        }
+        if ([self useShadow]) {
+            CALayer *layer = _topViewController.view.layer;
+            layer.shadowOffset = CGSizeMake(1, 1);
+            layer.shadowColor = [self.shadowColor CGColor];
+            layer.shadowRadius = 4.0f;
+            layer.shadowOpacity = 0.80f;
+            layer.shadowPath = [[UIBezierPath bezierPathWithRect:layer.bounds] CGPath];
         }
     }
 }
