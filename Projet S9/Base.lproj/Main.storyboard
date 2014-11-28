@@ -15,7 +15,30 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9A3-iC-JeQ">
+                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                                <items>
+                                    <navigationItem id="dFk-7y-Rvs">
+                                        <nil key="title"/>
+                                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ow9-zI-rpJ">
+                                            <rect key="frame" x="276" y="7" width="48" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Search">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <segue destination="ZTs-dk-e3T" kind="show" id="cH8-vh-Rp8"/>
+                                            </connections>
+                                        </button>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="9A3-iC-JeQ" secondAttribute="width" id="vtg-CL-lwH"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="j83-AJ-FIM">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="dHB-U2-Oe7">
@@ -34,7 +57,69 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
                 <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="GJU-0n-zKn"/>
             </objects>
-            <point key="canvasLocation" x="1137" y="400"/>
+            <point key="canvasLocation" x="1021" y="378"/>
+        </scene>
+        <!--Root View Controller-->
+        <scene sceneID="hwU-dG-pGo">
+            <objects>
+                <tableViewController id="ZTs-dk-e3T" customClass="ConferenceTableViewController" customModule="Projet_S9" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="f86-Pf-bfL">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="Gch-jW-8hd">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <scopeButtonTitles>
+                                <string>All</string>
+                                <string>Track</string>
+                                <string>Session</string>
+                                <string>Talk</string>
+                                <string>Room</string>
+                            </scopeButtonTitles>
+                            <connections>
+                                <outlet property="delegate" destination="ZTs-dk-e3T" id="v98-kB-uUv"/>
+                            </connections>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="262-5i-JcJ">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="262-5i-JcJ" id="1E0-em-VFE">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ZTs-dk-e3T" id="fY0-gv-9bO"/>
+                            <outlet property="delegate" destination="ZTs-dk-e3T" id="fuj-gJ-d6g"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="3jO-h0-zNH"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="ak9-fU-ulz" id="udh-Wy-0bK"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mdM-ir-7TF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="mYO-Xy-oV1">
+                    <connections>
+                        <outlet property="delegate" destination="ZTs-dk-e3T" id="cTn-M4-cHM"/>
+                        <outlet property="searchContentsController" destination="ZTs-dk-e3T" id="MM5-DJ-w6s"/>
+                        <outlet property="searchResultsDataSource" destination="ZTs-dk-e3T" id="U5d-45-awG"/>
+                        <outlet property="searchResultsDelegate" destination="ZTs-dk-e3T" id="32X-0c-LBa"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="ak9-fU-ulz">
+                    <connections>
+                        <outlet property="delegate" destination="ZTs-dk-e3T" id="8Xj-4y-ZaW"/>
+                        <outlet property="searchBar" destination="Gch-jW-8hd" id="TO6-2M-olE"/>
+                        <outlet property="searchContentsController" destination="ZTs-dk-e3T" id="Uc8-so-3b8"/>
+                        <outlet property="searchResultsDataSource" destination="ZTs-dk-e3T" id="HzG-6R-IRj"/>
+                        <outlet property="searchResultsDelegate" destination="ZTs-dk-e3T" id="7mn-a0-Hod"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="1872" y="356"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="fSc-28-zfv">
