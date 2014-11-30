@@ -10,55 +10,55 @@ import UIKit
 
 class ConferenceTableViewController : UITableViewController, UISearchBarDelegate, UISearchDisplayDelegate {
     
-    var conferences = [Conference]()
+//    var conferences = [Conferences]()
+//    
+//    var filteredConferences = [Conferences]()
     
-    var filteredConferences = [Conference]()
-    
-    override func viewDidLoad() {
-        // Sample Data for candyArray
-        self.conferences = [Conference(category:"Room", name:"amphi d"),
-            Conference(category:"Room", name:"amphi f"),
-            Conference(category:"Room", name:"td 9"),
-            Conference(category:"Track", name:"telecommunication"),
-            Conference(category:"Track", name:"informatique"),
-            Conference(category:"Session", name:"new tech"),
-            Conference(category:"Session", name:"new technologie"),
-            Conference(category:"Talk", name:"wifi 1"),
-            Conference(category:"Talk", name:"wifi 2")]
-        
-        // Reload the table
-        self.tableView.reloadData()
-    }
-    
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView == self.searchDisplayController!.searchResultsTableView {
-            return self.filteredConferences.count
-        } else {
-            return self.conferences.count
-        }
-    }
-    
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        //ask for a reusable cell from the tableview, the tableview will create a new one if it doesn't have any
-        let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell") as UITableViewCell
-        
-        
-        var candy : Conference
-        // Check to see whether the normal table or search results table is being displayed and set the Candy object from the appropriate array
-        if tableView == self.searchDisplayController!.searchResultsTableView {
-            candy = filteredConferences[indexPath.row]
-        } else {
-            candy = conferences[indexPath.row]
-        }
-        
-        
-        // Configure the cell
-        cell.textLabel.text = candy.name
-        cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-        
-        
-        return cell
-    }
+//    override func viewDidLoad() {
+//        // Sample Data for candyArray
+//        self.conferences = [Conferences(category:"Room", name:"amphi d"),
+//            Conferences(category:"Room", name:"amphi f"),
+//            Conferences(category:"Room", name:"td 9"),
+//            Conferences(category:"Track", name:"telecommunication"),
+//            Conferences(category:"Track", name:"informatique"),
+//            Conferences(category:"Session", name:"new tech"),
+//            Conferences(category:"Session", name:"new technologie"),
+//            Conferences(category:"Talk", name:"wifi 1"),
+//            Conferences(category:"Talk", name:"wifi 2")]
+//        
+//        // Reload the table
+//        self.tableView.reloadData()
+//    }
+//
+//    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        if tableView == self.searchDisplayController!.searchResultsTableView {
+//            return self.filteredConferences.count
+//        } else {
+//            return self.conferences.count
+//        }
+//    }
+//    
+//    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+//        //ask for a reusable cell from the tableview, the tableview will create a new one if it doesn't have any
+//        let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell") as UITableViewCell
+//        
+//        
+//        var candy : Conferences
+//        // Check to see whether the normal table or search results table is being displayed and set the Candy object from the appropriate array
+//        if tableView == self.searchDisplayController!.searchResultsTableView {
+//            candy = filteredConferences[indexPath.row]
+//        } else {
+//            candy = conferences[indexPath.row]
+//        }
+//        
+//        
+//        // Configure the cell
+//        cell.textLabel.text = candy.name
+//        cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+//        
+//        
+//        return cell
+//    }
     
 
     
@@ -75,33 +75,33 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
     label.backgroundColor = UIColor.grayColor()
     label.textColor = UIColor.whiteColor()
     label.text = "Room"
-    return label
-    }*/
+//    return label
+//    }*/
+//    
+//    
+//    
+//    func filterContentForSearchText(searchText: String, scope: String = "All") {
+//        self.filteredConferences = self.conferences.filter({( conferences : Conferences) -> Bool in
+//            var categoryMatch = (scope == "All") || (conferences.category == scope)
+//            var stringMatch = conferences.name.rangeOfString(searchText.lowercaseString)
+//            return categoryMatch && (stringMatch != nil)
+//        })
+//    }
     
-    
-    
-    func filterContentForSearchText(searchText: String, scope: String = "All") {
-        self.filteredConferences = self.conferences.filter({( conferences : Conference) -> Bool in
-            var categoryMatch = (scope == "All") || (conferences.category == scope)
-            var stringMatch = conferences.name.rangeOfString(searchText.lowercaseString)
-            return categoryMatch && (stringMatch != nil)
-        })
-    }
-    
-    func searchDisplayController(controller: UISearchDisplayController!, shouldReloadTableForSearchString searchString: String!) -> Bool {
-        let scopes = self.searchDisplayController!.searchBar.scopeButtonTitles as [String]
-        let selectedScope = scopes[self.searchDisplayController!.searchBar.selectedScopeButtonIndex] as String
-        self.filterContentForSearchText(searchString, scope: selectedScope)
-        return true
-    }
-    
-    func searchDisplayController(controller: UISearchDisplayController!,
-        shouldReloadTableForSearchScope searchOption: Int) -> Bool {
-            let scope = self.searchDisplayController!.searchBar.scopeButtonTitles as [String]
-            self.filterContentForSearchText(self.searchDisplayController!.searchBar.text, scope: scope[searchOption])
-            return true
-    }
-    
+//    func searchDisplayController(controller: UISearchDisplayController!, shouldReloadTableForSearchString searchString: String!) -> Bool {
+//        let scopes = self.searchDisplayController!.searchBar.scopeButtonTitles as [String]
+//        let selectedScope = scopes[self.searchDisplayController!.searchBar.selectedScopeButtonIndex] as String
+//        self.filterContentForSearchText(searchString, scope: selectedScope)
+//        return true
+//    }
+//    
+//    func searchDisplayController(controller: UISearchDisplayController!,
+//        shouldReloadTableForSearchScope searchOption: Int) -> Bool {
+//            let scope = self.searchDisplayController!.searchBar.scopeButtonTitles as [String]
+//            self.filterContentForSearchText(self.searchDisplayController!.searchBar.text, scope: scope[searchOption])
+//            return true
+//    }
+//    
 
     
     
