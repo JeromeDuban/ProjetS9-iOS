@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Projet S9/HomeViewController.swift"
-            timestampString = "439077874.737108"
+            timestampString = "439126324.273886"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "makeConferences(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Projet S9/HomeViewController.swift"
-            timestampString = "439077874.737108"
+            timestampString = "439126324.273886"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
             landmarkName = "makeConferences(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -106,12 +106,88 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Projet S9/HomeViewController.swift"
-            timestampString = "439078144.111033"
+            timestampString = "439138582.737406"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
             landmarkName = "findConferenceWithMajor(_:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Projet_S9.HomeViewController.findConferenceWithMajor (Projet_S9.HomeViewController)(ObjectiveC.NSNumber) -&gt; Projet_S9.Conference"
+                  moduleName = "Projet S9"
+                  urlString = "file:///Users/Jeremie/Dropbox/ENSEIRB/3A/Projet/ProjetS9-iOS/Projet%20S9/HomeViewController.swift"
+                  timestampString = "439138582.749682"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "93"
+                  endingLineNumber = "93"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Projet_S9.HomeViewController.(findConferenceWithMajor (Projet_S9.HomeViewController) -&gt; (ObjectiveC.NSNumber) -&gt; Projet_S9.Conference).(closure #1)"
+                  moduleName = "Projet S9"
+                  urlString = "file:///Users/Jeremie/Dropbox/ENSEIRB/3A/Projet/ProjetS9-iOS/Projet%20S9/HomeViewController.swift"
+                  timestampString = "439138582.749928"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "93"
+                  endingLineNumber = "93"
+                  offsetFromSymbolStart = "60">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "reabstraction thunk helper from @callee_owned (@owned Projet_S9.Conference) -&gt; (@unowned Swift.Bool) to @callee_owned (@in Projet_S9.Conference) -&gt; (@unowned Swift.Bool)"
+                  moduleName = "Projet S9"
+                  urlString = "file:///Users/Jeremie/Dropbox/ENSEIRB/3A/Projet/ProjetS9-iOS/Projet%20S9/HomeViewController.swift"
+                  timestampString = "439138582.750064"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "93"
+                  endingLineNumber = "93"
+                  offsetFromSymbolStart = "0">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Projet S9/HomeViewController.swift"
+            timestampString = "439143971.432451"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "getConferencesFromAPI()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Projet S9/HomeViewController.swift"
+            timestampString = "439143317.337925"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "logConferences(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

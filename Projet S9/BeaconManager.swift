@@ -12,11 +12,11 @@ import CoreLocation
 class BeaconManager: NSObject, CLLocationManagerDelegate {
     
     var locationManager: CLLocationManager?
-    var lastProximity: CLProximity?
+    var lastMajor: NSNumber?
     
     func configure(application: UIApplication) {
         let uuidString = "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0"
-        let beaconIdentifier = "iBeaconModules.us"
+        let beaconIdentifier = "eirBeacon"
         let beaconUUID:NSUUID = NSUUID(UUIDString: uuidString)!
         let beaconRegion:CLBeaconRegion = CLBeaconRegion(proximityUUID: beaconUUID,
             identifier: beaconIdentifier)
