@@ -15,17 +15,25 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate, UIBarPo
     var conferences: [Conference] = []
     var locationManager: CLLocationManager?
     var lastMajor: NSNumber?
-    @IBOutlet weak var myLabel: UILabel!
+
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var startDayLabel: UILabel!
+    @IBOutlet weak var endDayLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
         self.slidingViewController().panGesture.delegate = self
         
         self.view.addGestureRecognizer(self.slidingViewController().panGesture)
 
         self.configureBeacon()
         self.getConferencesFromAPI()
+        
+        navigationItem.title = "Home"
+        
+        
         
     }
     
@@ -142,7 +150,10 @@ extension HomeViewController: CLLocationManagerDelegate {
                 if (self.conferences.count > 0 ){
                     lastMajor = nearestBeacon.major;
                     let myConference : Conference = findConferenceWithMajor(lastMajor!)
-                    myLabel.text = myConference.title
+                    titleLabel.text = myConference.title
+                    addressLabel.text = myConference.address
+                    startDayLabel.text = myConference.start_day
+                    endDayLabel.text = myConference.end_day
                 }
 
                 
