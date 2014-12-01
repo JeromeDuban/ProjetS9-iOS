@@ -13,6 +13,9 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate, UIBarPo
 
     
     var conferences: [Conference] = []
+    var locationManager: CLLocationManager?
+    var lastMajor: NSNumber?
+    @IBOutlet weak var myLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +24,9 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate, UIBarPo
         
         self.view.addGestureRecognizer(self.slidingViewController().panGesture)
 
+        self.configureBeacon()
         self.getConferencesFromAPI()
+        
     }
     
 
@@ -42,10 +47,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate, UIBarPo
         let url = URLFactory.allConferences()
         JSONService
             .GET(url)
-            .success{json in {self.makeConferences(json)} ~> {
-                self.conferences = $0
-                self.logConferences(self.conferences)
-            }}
+            .success{json in {self.makeConferences(json)} ~> { self.conferences = $0 }}
             .failure(onFailure, queue: NSOperationQueue.mainQueue())
     }
     
@@ -59,11 +61,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate, UIBarPo
         return []
     }
     
-    private func logConferences(conferences: [Conference]) {
-        NSLog("Conference id: \(conferences[0].id)\n Title: \(conferences[0].title)")
-        let tmp: NSNumber = 10
-        NSLog("Bla : "+self.findConferenceWithMajor(tmp).title)
-    }
+
     
     private func onFailure(statusCode: Int, error: NSError?)
     {
@@ -92,59 +90,85 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate, UIBarPo
     func findConferenceWithMajor(major: NSNumber) -> Conference {
         return self.conferences.filter({$0.major == major}).first!
     }
+    
+    func configureBeacon() {
+        let uuidString = "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0"
+        let beaconIdentifier = "eirBeacon"
+        let beaconUUID:NSUUID = NSUUID(UUIDString: uuidString)!
+        let beaconRegion:CLBeaconRegion = CLBeaconRegion(proximityUUID: beaconUUID,
+            identifier: beaconIdentifier)
+        
+        locationManager = CLLocationManager()
+        
+        if(locationManager!.respondsToSelector("requestAlwaysAuthorization")) {
+            locationManager!.requestAlwaysAuthorization()
+        }
+        
+        locationManager!.delegate = self
+        locationManager!.pausesLocationUpdatesAutomatically = false
+        
+        locationManager!.startMonitoringForRegion(beaconRegion)
+        locationManager!.startRangingBeaconsInRegion(beaconRegion)
+        locationManager!.startUpdatingLocation()
+    }
 
 }
 
-//extension BeaconManager: CLLocationManagerDelegate {
-//    func sendLocalNotificationWithMessage(message: String!, playSound: Bool) {
-//        let notification:UILocalNotification = UILocalNotification()
-//        notification.alertBody = message
-//        
-//        UIApplication.sharedApplication().scheduleLocalNotification(notification)
-//    }
-//    
-//    func locationManager(manager: CLLocationManager!,
-//        didRangeBeacons beacons: [AnyObject]!,
-//        inRegion region: CLBeaconRegion!) {
-//            //            let viewController:ViewController = window!.rootViewController as ViewController
-//            //            viewController.beacons = beacons as [CLBeacon]?
-//            //            viewController.tableView!.reloadData()
-//            
-//            NSLog("didRangeBeacons")
-//            var message:String = ""
-//            let dataManager = DataManager()
-//            
-//            if(beacons.count > 0) {
-//                let nearestBeacon:CLBeacon = beacons[0] as CLBeacon
-//                
-//                if(nearestBeacon.major == lastMajor ||
-//                    nearestBeacon.proximity == CLProximity.Unknown) {
-//                        return;
-//                }
-//                lastMajor = nearestBeacon.major;
-//                dataManager.getConference(lastMajor!)
-//                
-//            } else {
-//                NSLog("No beacons are nearby")
-//            }
-//            
-//            NSLog("%@", message)
-//    }
-//    
-//    func locationManager(manager: CLLocationManager!,
-//        didEnterRegion region: CLRegion!) {
-//            manager.startRangingBeaconsInRegion(region as CLBeaconRegion)
-//            manager.startUpdatingLocation()
-//            
-//            NSLog("You entered the region")
-//    }
-//    
-//    func locationManager(manager: CLLocationManager!,
-//        didExitRegion region: CLRegion!) {
-//            manager.stopRangingBeaconsInRegion(region as CLBeaconRegion)
-//            manager.stopUpdatingLocation()
-//            
-//            NSLog("You exited the region")
-//    }
-//}
+extension HomeViewController: CLLocationManagerDelegate {
+    func sendLocalNotificationWithMessage(message: String, playSound: Bool) {
+        let notification:UILocalNotification = UILocalNotification()
+        notification.alertBody = message
+        
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+    }
+
+    func locationManager(manager: CLLocationManager!,
+        didRangeBeacons beacons: [AnyObject]!,
+        inRegion region: CLBeaconRegion!) {
+            
+            var message:String = ""
+            let dataManager = DataManager()
+            
+            if(beacons.count > 0) {
+                let nearestBeacon:CLBeacon = beacons[0] as CLBeacon
+                NSLog("Beacons detected, major: \(nearestBeacon.major.intValue)")
+                
+                if(nearestBeacon.major == lastMajor ||
+                    nearestBeacon.proximity == CLProximity.Unknown) {
+                        return;
+                }
+                NSLog("New major detected")
+                
+                if (self.conferences.count > 0 ){
+                    lastMajor = nearestBeacon.major;
+                    let myConference : Conference = findConferenceWithMajor(lastMajor!)
+                    myLabel.text = myConference.title
+                }
+
+                
+            } else {
+                NSLog("No beacons are nearby")
+            }
+            
+            NSLog("%@", message)
+    }
+
+    func locationManager(manager: CLLocationManager!,
+        didEnterRegion region: CLRegion!) {
+            manager.startRangingBeaconsInRegion(region as CLBeaconRegion)
+            manager.startUpdatingLocation()
+            
+            NSLog("You entered the region")
+            sendLocalNotificationWithMessage("You entered the region", playSound: false)
+    }
+
+    func locationManager(manager: CLLocationManager!,
+        didExitRegion region: CLRegion!) {
+            manager.stopRangingBeaconsInRegion(region as CLBeaconRegion)
+            manager.stopUpdatingLocation()
+            
+            NSLog("You exited the region")
+            sendLocalNotificationWithMessage("You exited the region", playSound: false)
+    }
+}
 

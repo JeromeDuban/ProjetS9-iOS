@@ -14,7 +14,7 @@ class BeaconManager: NSObject, CLLocationManagerDelegate {
     var locationManager: CLLocationManager?
     var lastMajor: NSNumber?
     
-    func configure(application: UIApplication) {
+    func configure() {
         let uuidString = "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0"
         let beaconIdentifier = "eirBeacon"
         let beaconUUID:NSUUID = NSUUID(UUIDString: uuidString)!
@@ -34,13 +34,6 @@ class BeaconManager: NSObject, CLLocationManagerDelegate {
         locationManager!.startRangingBeaconsInRegion(beaconRegion)
         locationManager!.startUpdatingLocation()
         
-        if(application.respondsToSelector("registerUserNotificationSettings:")) {
-            application.registerUserNotificationSettings(
-                UIUserNotificationSettings(
-                    forTypes: UIUserNotificationType.Alert | UIUserNotificationType.Sound,
-                    categories: nil
-                )
-            )
-        }
+        
     }
 }
