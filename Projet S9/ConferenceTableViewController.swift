@@ -43,6 +43,16 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
         }
     }
     
+    func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool{
+//        let secondViewController:HomeViewController = HomeViewController()
+//        self.presentViewController(secondViewController, animated: true, completion: nil)
+        return true
+    }
+    
+
+    
+
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         //ask for a reusable cell from the tableview, the tableview will create a new one if it doesn't have any
         let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell") as UITableViewCell
