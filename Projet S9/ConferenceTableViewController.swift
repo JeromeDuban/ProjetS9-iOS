@@ -68,7 +68,7 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
         
         
         // Configure the cell
-        cell.textLabel.text = candy.name
+        cell.textLabel?.text = candy.name
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         
         

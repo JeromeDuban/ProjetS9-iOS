@@ -28,6 +28,7 @@
 		1E8283911A2535E600889E31 /* ECSlidingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E82838A1A2535E600889E31 /* ECSlidingViewController.m */; };
 		1E8283921A2535E600889E31 /* UIViewController+ECSlidingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E82838C1A2535E600889E31 /* UIViewController+ECSlidingViewController.m */; };
 		1E8283941A2537B000889E31 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8283931A2537B000889E31 /* MenuViewController.swift */; };
+		1EBA50391A3CD9AD00894C4D /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBA50381A3CD9AD00894C4D /* MenuItem.swift */; };
 		1EC96AFA1A2B36C4001B1065 /* Conference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC96AF91A2B36C4001B1065 /* Conference.swift */; };
 		1EC96AFC1A2B3B7E001B1065 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC96AFB1A2B3B7E001B1065 /* Track.swift */; };
 		1EC96AFE1A2B4059001B1065 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC96AFD1A2B4059001B1065 /* Session.swift */; };
@@ -80,6 +81,7 @@
 		1E82838C1A2535E600889E31 /* UIViewController+ECSlidingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ECSlidingViewController.m"; sourceTree = "<group>"; };
 		1E8283931A2537B000889E31 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		1E8283951A2648C600889E31 /* Projet-S9-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Projet-S9-Bridging-Header.h"; sourceTree = "<group>"; };
+		1EBA50381A3CD9AD00894C4D /* MenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		1EC96AF91A2B36C4001B1065 /* Conference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conference.swift; sourceTree = "<group>"; };
 		1EC96AFB1A2B3B7E001B1065 /* Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		1EC96AFD1A2B4059001B1065 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				1EC96AF91A2B36C4001B1065 /* Conference.swift */,
+				1EBA50381A3CD9AD00894C4D /* MenuItem.swift */,
 				1EC96AFB1A2B3B7E001B1065 /* Track.swift */,
 				1EC96AFD1A2B4059001B1065 /* Session.swift */,
 				1EC96AFF1A2B415D001B1065 /* Talk.swift */,
@@ -337,6 +340,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EBA50391A3CD9AD00894C4D /* MenuItem.swift in Sources */,
 				0317BCB41A27776E0032208E /* DataManager.swift in Sources */,
 				1E38D7391A2BB3BB00742800 /* Operators.swift in Sources */,
 				1EC96AFE1A2B4059001B1065 /* Session.swift in Sources */,
