@@ -33,10 +33,9 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate, UIBarPo
         
         navigationItem.title = "Home"
         
-
+        
+        
     }
-
-    
     
 
     func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer!) -> Bool {
@@ -97,7 +96,6 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate, UIBarPo
     
     
     func findConferenceWithMajor(major: NSNumber) -> Conference {
-        println(major)
         return self.conferences.filter({$0.major == major}).first!
     }
     

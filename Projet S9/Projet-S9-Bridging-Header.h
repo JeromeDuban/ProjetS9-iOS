@@ -14,4 +14,3 @@
 #import "ECSlidingViewController/ECSlidingViewController.h"
 #import "ECSlidingViewController/UIViewController+ECSlidingViewController.h"
 
-#import "SVGKit.h"
