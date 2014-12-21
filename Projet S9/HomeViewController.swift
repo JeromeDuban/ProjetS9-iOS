@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-class HomeViewController: UIViewController, UIGestureRecognizerDelegate, UIBarPositioningDelegate, CLLocationManagerDelegate {
+class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocationManagerDelegate {
 
     
     var conferences: [Conference] = []
@@ -22,30 +22,18 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate, UIBarPo
     @IBOutlet weak var endDayLabel: UILabel!
     
     override func viewDidLoad() {
+        super.unwindSegueIdentifier = "homeUnwindSegueToMenu"
         super.viewDidLoad()
-
-        self.slidingViewController().panGesture.delegate = self
-        
-        self.view.addGestureRecognizer(self.slidingViewController().panGesture)
 
         self.configureBeacon()
         self.getConferencesFromAPI()
         
         navigationItem.title = "Home"
         
-
+        
     }
 
-    
-    
 
-    func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer!) -> Bool {
-        if (gestureRecognizer.locationInView(gestureRecognizer.view).x < 30.0) {
-            return true
-        }
-        return false
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

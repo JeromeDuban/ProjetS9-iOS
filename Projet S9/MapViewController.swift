@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MapViewController: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate {
+class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate {
     
     
     @IBOutlet weak var svgScrollView: UIScrollView!
@@ -16,11 +16,11 @@ class MapViewController: UIViewController, UIScrollViewDelegate, UIGestureRecogn
     var svgMap: SVGKImageView = SVGKFastImageView(SVGKImage: SVGKImage(named: "RDC.svg"))
     
     override func viewDidLoad() {
+        super.unwindSegueIdentifier = "mapUnwindSegueToMenu"
         super.viewDidLoad()
         
         navigationItem.title = "Map"
         
-        self.slidingViewController().panGesture.delegate = self
         self.svgScrollView.addGestureRecognizer(self.slidingViewController().panGesture)
 
         self.svgScrollView.sizeToFit()
@@ -42,12 +42,6 @@ class MapViewController: UIViewController, UIScrollViewDelegate, UIGestureRecogn
         // Dispose of any resources that can be recreated.
     }
     
-    func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer!) -> Bool {
-        if (gestureRecognizer.locationInView(gestureRecognizer.view).x < 30.0) {
-            return true
-        }
-        return false
-    }
     
     func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return false;

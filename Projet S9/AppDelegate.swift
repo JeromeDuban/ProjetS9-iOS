@@ -18,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
+        
         if(application.respondsToSelector("registerUserNotificationSettings:")) {
             application.registerUserNotificationSettings(
                 UIUserNotificationSettings(

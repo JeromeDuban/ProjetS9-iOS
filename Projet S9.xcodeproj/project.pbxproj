@@ -36,6 +36,7 @@
 		1E8283911A2535E600889E31 /* ECSlidingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E82838A1A2535E600889E31 /* ECSlidingViewController.m */; };
 		1E8283921A2535E600889E31 /* UIViewController+ECSlidingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E82838C1A2535E600889E31 /* UIViewController+ECSlidingViewController.m */; };
 		1E84C1B71A45976100180DF2 /* libSVGKit-iOS.1.2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E84C1B61A45976100180DF2 /* libSVGKit-iOS.1.2.0.a */; };
+		1E84C1BB1A471FD300180DF2 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E84C1BA1A471FD300180DF2 /* BaseViewController.swift */; };
 		1EBA50391A3CD9AD00894C4D /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBA50381A3CD9AD00894C4D /* MenuItem.swift */; };
 		1EC96AFA1A2B36C4001B1065 /* Conference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC96AF91A2B36C4001B1065 /* Conference.swift */; };
 		1EC96AFC1A2B3B7E001B1065 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC96AFB1A2B3B7E001B1065 /* Track.swift */; };
@@ -102,6 +103,7 @@
 		1E82838C1A2535E600889E31 /* UIViewController+ECSlidingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ECSlidingViewController.m"; sourceTree = "<group>"; };
 		1E8283951A2648C600889E31 /* Projet-S9-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Projet-S9-Bridging-Header.h"; sourceTree = "<group>"; };
 		1E84C1B61A45976100180DF2 /* libSVGKit-iOS.1.2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libSVGKit-iOS.1.2.0.a"; sourceTree = "<group>"; };
+		1E84C1BA1A471FD300180DF2 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		1EBA50381A3CD9AD00894C4D /* MenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		1EC96AF91A2B36C4001B1065 /* Conference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conference.swift; sourceTree = "<group>"; };
 		1EC96AFB1A2B3B7E001B1065 /* Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
@@ -384,8 +386,9 @@
 			isa = PBXGroup;
 			children = (
 				1E82837F1A2535E600889E31 /* ECSlidingViewController */,
-				1E3538971A3E3E44003EA851 /* HomeViewController.swift */,
 				1ECA75ED1A45940400FA9D07 /* SVG */,
+				1E84C1BA1A471FD300180DF2 /* BaseViewController.swift */,
+				1E3538971A3E3E44003EA851 /* HomeViewController.swift */,
 				1E3538981A3E3E44003EA851 /* MapViewController.swift */,
 				1E3538991A3E3E44003EA851 /* MenuViewController.swift */,
 				1E8283951A2648C600889E31 /* Projet-S9-Bridging-Header.h */,
@@ -715,6 +718,7 @@
 				1E38D73B1A2BB3D900742800 /* JSON.swift in Sources */,
 				1EC96AFC1A2B3B7E001B1065 /* Track.swift in Sources */,
 				1E38D73E1A2BB4A500742800 /* JSONService.swift in Sources */,
+				1E84C1BB1A471FD300180DF2 /* BaseViewController.swift in Sources */,
 				1E82838D1A2535E600889E31 /* ECPercentDrivenInteractiveTransition.m in Sources */,
 				1EC96AFA1A2B36C4001B1065 /* Conference.swift in Sources */,
 				1E8283921A2535E600889E31 /* UIViewController+ECSlidingViewController.m in Sources */,

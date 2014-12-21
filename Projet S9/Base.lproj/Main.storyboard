@@ -93,7 +93,7 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                                 <state key="normal" title="Menu"/>
                                 <connections>
-                                    <segue destination="drs-bh-kYL" kind="unwind" unwindAction="unwindToMenuViewController:" id="zsL-0w-wcm"/>
+                                    <segue destination="drs-bh-kYL" kind="unwind" identifier="homeUnwindSegueToMenu" unwindAction="unwindToMenuViewController:" id="zsL-0w-wcm"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -219,7 +219,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="drs-bh-kYL" kind="unwind" unwindAction="unwindToMenuViewController:" id="WGD-sJ-JEF"/>
+                                    <segue destination="drs-bh-kYL" kind="unwind" identifier="mapUnwindSegueToMenu" unwindAction="unwindToMenuViewController:" id="WGD-sJ-JEF"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -303,6 +303,11 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Hrh-QF-wCt">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.10980392156862745" green="0.46274509803921571" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -321,6 +326,11 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="f3X-WU-BIP">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.10980392160000001" green="0.46274509800000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
