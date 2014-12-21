@@ -218,10 +218,10 @@
                                 <state key="normal" title="Menu">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="drs-bh-kYL" kind="unwind" unwindAction="unwindToMenuViewController:" id="WGD-sJ-JEF"/>
+                                </connections>
                             </button>
-                            <connections>
-                                <segue destination="drs-bh-kYL" kind="unwind" unwindAction="unwindToMenuViewController:" id="F9V-NY-onA"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>

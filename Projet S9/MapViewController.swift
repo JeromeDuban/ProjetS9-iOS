@@ -21,7 +21,7 @@ class MapViewController: UIViewController, UIScrollViewDelegate, UIGestureRecogn
         navigationItem.title = "Map"
         
         self.slidingViewController().panGesture.delegate = self
-        self.view.addGestureRecognizer(self.slidingViewController().panGesture)
+        self.svgScrollView.addGestureRecognizer(self.slidingViewController().panGesture)
 
         self.svgScrollView.sizeToFit()
         self.svgScrollView.minimumZoomScale = 0.25
@@ -47,6 +47,10 @@ class MapViewController: UIViewController, UIScrollViewDelegate, UIGestureRecogn
             return true
         }
         return false
+    }
+    
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return false;
     }
     
     
