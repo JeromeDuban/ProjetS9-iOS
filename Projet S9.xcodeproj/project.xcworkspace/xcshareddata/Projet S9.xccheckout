@@ -6,15 +6,19 @@
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>9972F303-DBE6-479F-B48F-4A5C9268ECF6</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Projet S9</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>788C3C8846E6085B342AFBF5A0B2A372529C557D</key>
 		<string>https://github.com/jejefcgb/ProjetS9-iOS.git</string>
 	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Projet S9.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>788C3C8846E6085B342AFBF5A0B2A372529C557D</key>
-		<string>projets9-ios/</string>
+		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/jejefcgb/ProjetS9-iOS.git</string>
@@ -30,7 +34,7 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>788C3C8846E6085B342AFBF5A0B2A372529C557D</string>
 			<key>IDESourceControlWCCName</key>
-			<string>projets9-ios</string>
+			<string>ProjetS9-iOS</string>
 		</dict>
 	</array>
 </dict>

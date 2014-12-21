@@ -86,7 +86,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="j83-AJ-FIM">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="dHB-U2-Oe7">
+                        <barButtonItem key="leftBarButtonItem" id="dHB-U2-Oe7">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="QdA-ED-LJ1">
                                 <rect key="frame" x="-23" y="-15" width="133" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -97,7 +97,7 @@
                                 </connections>
                             </button>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="gW4-ui-era">
+                        <barButtonItem key="rightBarButtonItem" id="gW4-ui-era">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ow9-zI-rpJ">
                                 <rect key="frame" x="276" y="7" width="48" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -187,7 +187,7 @@
         <!--Map View Controller-->
         <scene sceneID="cOj-rG-cbQ">
             <objects>
-                <viewController id="ujW-zB-Wwh" customClass="MapViewController" sceneMemberID="viewController">
+                <viewController id="ujW-zB-Wwh" customClass="MapViewController" customModule="Projet_S9" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gKn-cr-zbm"/>
                         <viewControllerLayoutGuide type="bottom" id="knh-eC-tuA"/>
@@ -204,15 +204,28 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="I89-SI-eam" firstAttribute="leading" secondItem="abM-Ae-goD" secondAttribute="leading" id="5Tm-BI-Ld4"/>
-                            <constraint firstItem="I89-SI-eam" firstAttribute="top" secondItem="abM-Ae-goD" secondAttribute="top" id="8Pw-yh-4QF"/>
-                            <constraint firstAttribute="bottom" secondItem="I89-SI-eam" secondAttribute="bottom" id="gVo-2z-IWT"/>
-                            <constraint firstAttribute="trailing" secondItem="I89-SI-eam" secondAttribute="trailing" id="ukX-7t-PwD"/>
+                            <constraint firstAttribute="centerX" secondItem="I89-SI-eam" secondAttribute="centerX" id="6Jc-FK-ShA"/>
+                            <constraint firstItem="I89-SI-eam" firstAttribute="leading" secondItem="abM-Ae-goD" secondAttribute="leading" id="ZhU-lw-4p0"/>
+                            <constraint firstAttribute="centerY" secondItem="I89-SI-eam" secondAttribute="centerY" id="bUk-VL-D7X"/>
+                            <constraint firstItem="I89-SI-eam" firstAttribute="bottom" secondItem="knh-eC-tuA" secondAttribute="top" id="xKK-cc-D11"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="CBM-wf-Wg5"/>
+                    <navigationItem key="navigationItem" id="CBM-wf-Wg5">
+                        <barButtonItem key="leftBarButtonItem" id="2fn-28-m9T">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2Ee-j5-jLt">
+                                <rect key="frame" x="-23" y="-15" width="133" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Menu">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <connections>
+                                <segue destination="drs-bh-kYL" kind="unwind" unwindAction="unwindToMenuViewController:" id="F9V-NY-onA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="svgScroll" destination="I89-SI-eam" id="5EN-hY-W97"/>
+                        <outlet property="svgScrollView" destination="I89-SI-eam" id="alY-i0-SOO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u7G-hG-eMD" userLabel="First Responder" sceneMemberID="firstResponder"/>
