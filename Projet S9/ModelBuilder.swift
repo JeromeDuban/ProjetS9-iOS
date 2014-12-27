@@ -11,35 +11,29 @@ import Foundation
 
 class ModelBuilder {
     
-    class func buildConferencesFromJSON(conferencesJson: JSON) -> NSArray {
-        var conferences: [Conference] = [];
-        var conferencesJson = conferencesJson["Conference"] //TODO: JSON a modifier
+    class func buildConferenceFromJSON(conferenceJson: JSON) {
+        let tracks: [Track]     = self.buildTracksFromJSON(conferenceJson["tracks"])
+        let id: Int             = conferenceJson["id"].intValue
+        let address: String     = conferenceJson["address"].stringValue
+        let title: String       = conferenceJson["title"].stringValue
+        let start_day: String   = conferenceJson["start_day"].stringValue
+        let end_day: String     = conferenceJson["end_day"].stringValue
+        let major: Int          = conferenceJson["major"].intValue
+        let created_at: Int     = conferenceJson["created_at"].intValue
+        let updated_at: Int     = conferenceJson["updated_at"].intValue
         
-        for (index, conferenceJson) in conferencesJson {
-            let tracks: [Track]     = self.buildTracksFromJSON(conferenceJson[index]["tracks"])
-            let id: Int             = conferenceJson["id"].intValue
-            let address: String     = conferenceJson["address"].stringValue
-            let title: String       = conferenceJson["title"].stringValue
-            let start_day: String   = conferenceJson["start_day"].stringValue
-            let end_day: String     = conferenceJson["end_day"].stringValue
-            let major: Int          = conferenceJson["major"].intValue
-            let created_at: Int     = conferenceJson["created_at"].intValue
-            let updated_at: Int     = conferenceJson["updated_at"].intValue
-           
-            conferences.append(Conference(
-                id: id,
-                address: address,
-                title: title,
-                start_day: start_day,
-                end_day: end_day,
-                major: major,
-                created_at: created_at,
-                updated_at: updated_at,
-                tracks: tracks
-            ))
-        }
         
-        return conferences
+        Conference.sharedInstance.setData(
+            id,
+            address: address,
+            title: title,
+            start_day: start_day,
+            end_day: end_day,
+            major: major,
+            created_at: created_at,
+            updated_at: updated_at,
+            tracks: tracks
+        )
     }
     
     class func buildTracksFromJSON(tracksJson: JSON) -> [Track] {
