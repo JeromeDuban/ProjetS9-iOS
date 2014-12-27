@@ -10,10 +10,12 @@ import UIKit
 
 class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate {
     
-    
+    @IBOutlet var doubleTapGestureRecognizer: UITapGestureRecognizer!
+    @IBOutlet var singleTapGestureRecognizer: UITapGestureRecognizer!
     @IBOutlet weak var svgScrollView: UIScrollView!
-    var svgFile: SVGKImage = SVGKImage(named: "RDC.svg")
-    var svgMap: SVGKImageView = SVGKFastImageView(SVGKImage: SVGKImage(named: "RDC.svg"))
+    var svgFile: SVGKImage?
+    var svgMap: SVGKImageView?
+    var isZoomed: Bool = false
     
     override func viewDidLoad() {
         super.unwindSegueIdentifier = "mapUnwindSegueToMenu"
@@ -31,16 +33,47 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
         self.svgScrollView.delegate = self
         
         self.displayFloor(1)
-        svgMap = SVGKFastImageView(SVGKImage: svgFile)
-        self.svgScrollView.addSubview(svgMap)
-        self.svgScrollView.zoomToRect(svgMap.bounds, animated: false)
+        self.svgMap = SVGKFastImageView(SVGKImage: svgFile)
+        self.svgScrollView.addSubview(svgMap!)
+        self.svgScrollView.zoomToRect(svgMap!.bounds, animated: false)
         
+        self.singleTapGestureRecognizer.requireGestureRecognizerToFail(self.doubleTapGestureRecognizer)
+        self.singleTapGestureRecognizer.delaysTouchesBegan = true
+        self.singleTapGestureRecognizer.delaysTouchesBegan = true
+        
+    }
+    
+    @IBAction func singleTap(sender: UITapGestureRecognizer) {
+        if(sender.state == UIGestureRecognizerState.Ended){
+            let location:CGPoint = sender.locationInView(self.svgScrollView)
+            let tree:CALayer = svgFile!.CALayerTree
+            let hitLayer:CALayer = tree.hitTest(svgMap!.convertPoint(location, fromView: self.svgScrollView))
+//            let identifier:String = SVGElement
+            println("DoubleTap")
+        }
+    }
+
+    @IBAction func doubleTap(sender: UITapGestureRecognizer) {
+        if(sender.state == UIGestureRecognizerState.Ended)
+        {
+            if(isZoomed){
+                self.svgScrollView.zoomToRect(svgMap!.bounds, animated: true)
+                isZoomed = false;
+            }
+            else{
+                let location: CGPoint = sender.locationInView(svgMap)
+                let rect: CGRect = CGRectMake(location.x - svgMap!.bounds.size.width/8, location.y - svgMap!.bounds.size.height/8, svgMap!.bounds.size.width/4, svgMap!.bounds.size.height/4)
+                self.svgScrollView.zoomToRect(rect, animated: true)
+                isZoomed = true;
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     
     
     func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
@@ -69,10 +102,7 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
             self.svgFile = SVGKImage(named: "RDC.svg")
             break
         }
-        
-        self.svgMap.image = self.svgFile
         self.svgScrollView.sizeToFit()
-        self.svgScrollView.zoomToRect(self.svgMap.bounds, animated: false)
     }
     
     func viewForZoomingInScrollView(scrollView: UIScrollView!) -> UIView! {

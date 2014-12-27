@@ -200,6 +200,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="7st-K6-KbU" appends="YES" id="atW-4t-RG8"/>
+                                    <outletCollection property="gestureRecognizers" destination="28S-O2-Mly" appends="YES" id="LBo-bW-9ut"/>
+                                </connections>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -225,10 +229,22 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="doubleTapGestureRecognizer" destination="28S-O2-Mly" id="bgi-up-HGh"/>
+                        <outlet property="singleTapGestureRecognizer" destination="7st-K6-KbU" id="CAS-8b-g1O"/>
                         <outlet property="svgScrollView" destination="I89-SI-eam" id="alY-i0-SOO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u7G-hG-eMD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer delaysTouchesBegan="YES" id="7st-K6-KbU">
+                    <connections>
+                        <action selector="singleTap:" destination="ujW-zB-Wwh" id="IIe-7O-wDX"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer delaysTouchesBegan="YES" numberOfTapsRequired="2" id="28S-O2-Mly">
+                    <connections>
+                        <action selector="doubleTap:" destination="ujW-zB-Wwh" id="nFW-Jy-KgP"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1025" y="1134"/>
         </scene>
