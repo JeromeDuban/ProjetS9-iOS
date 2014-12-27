@@ -12,7 +12,7 @@ import Foundation
 class URLFactory {
     
     class func allConferences() -> NSURL {
-        return NSURL(string: "https://dl.dropboxusercontent.com/u/95538366/projetS9/conference.json")!
+        return NSURL(string: "http://jfoucault.rmorpheus.enseirb.fr/Conference_10.json")!
     }
     
     
