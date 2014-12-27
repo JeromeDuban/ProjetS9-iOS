@@ -10,7 +10,7 @@ import UIKit
 
 class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
     
-    var unwindSegueIdentifier = ""
+    var unwindSegueIdentifier: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()

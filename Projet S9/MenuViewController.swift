@@ -11,7 +11,7 @@ import UIKit
 class MenuViewController: UITableViewController {
     
     
-    let menuItems = [MenuItem(title: "Home", identifier: "HomeViewNavigation", image: UIImage(named: "Home")!), MenuItem(title: "Map", identifier: "MapViewNavigation", image: UIImage(named: "Map")!)]
+    var menuItems = [MenuItem(title: "Home", identifier: "HomeViewNavigation", image: UIImage(named: "Home")!), MenuItem(title: "Map", identifier: "MapViewNavigation", image: UIImage(named: "Map")!)]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +40,6 @@ class MenuViewController: UITableViewController {
     }
     
     @IBAction func unwindToMenuViewController(segue: UIStoryboardSegue) {
-        println("Open Menu");
     }
     
     override func tableView(tableView:(UITableView!), numberOfRowsInSection section:Int) -> Int {
