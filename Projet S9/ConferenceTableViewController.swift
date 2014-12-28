@@ -21,15 +21,46 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
     
     override func viewDidLoad() {
         // Sample Data for candyArray
-        self.conferences = [ConferencesSearch(category:"Room", name:"amphi d"),
-            ConferencesSearch(category:"Room", name:"amphi f"),
-            ConferencesSearch(category:"Room", name:"td 9"),
-            ConferencesSearch(category:"Track", name:"telecommunication"),
-            ConferencesSearch(category:"Track", name:"informatique"),
-            ConferencesSearch(category:"Session", name:"new tech"),
-            ConferencesSearch(category:"Session", name:"new technologie"),
-            ConferencesSearch(category:"Talk", name:"wifi 1"),
-            ConferencesSearch(category:"Talk", name:"wifi 2")]
+        
+        let myConference: Conference = Conference.sharedInstance
+        var indexCount: Int = 0;
+        var indexTracks: Int = 0;
+        var indexSessions: Int = 0;
+        var indexTalks: Int = 0;
+        
+        // Load the element in the tableview
+
+        // Loop for tracks
+        while(indexTracks != myConference.tracks?.count){
+
+            // Insert track
+            self.conferences.insert(ConferencesSearch(category:"Track", name:myConference.tracks![indexTracks].title.lowercaseString), atIndex: indexCount);
+            indexCount += 1;
+            
+            
+            // Loop for sessions
+            while(indexSessions != myConference.tracks![indexTracks].sessions.count){
+                // Insert session
+                self.conferences.insert(ConferencesSearch(category:"Session", name: "session n°\(myConference.tracks![indexTracks].sessions[indexSessions].id) ") , atIndex: indexCount);
+                indexCount += 1;
+                
+                
+                // Loop for talks
+                while(indexTalks != myConference.tracks![indexTracks].sessions[indexSessions].talks.count){
+                    // Insert talks
+                    self.conferences.insert(ConferencesSearch(category:"Talk", name:myConference.tracks![indexTracks].sessions[indexSessions].talks[indexTalks].title.lowercaseString) , atIndex: indexCount);
+                    indexCount += 1;
+                    indexTalks += 1;
+                    
+                }
+                indexSessions += 1;
+                
+            }
+            indexTracks += 1;
+            
+        }
+        
+        
         
         // Reload the table
         self.tableView.reloadData()

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0317BCB61A277CE50032208E /* SwiftJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0317BCB51A277CE50032208E /* SwiftJSON.swift */; };
 		0317BCBC1A27F2450032208E /* ConferenceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0317BCBB1A27F2450032208E /* ConferenceTableViewController.swift */; };
+		0384DB4C1A50707C008468F2 /* libSVGKit-iOS.1.2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0384DB4B1A50707C008468F2 /* libSVGKit-iOS.1.2.0.a */; };
 		1E35388A1A3E35B2003EA851 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E3538891A3E35B2003EA851 /* CoreText.framework */; };
 		1E35388C1A3E35CF003EA851 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E35388B1A3E35CF003EA851 /* CoreImage.framework */; };
 		1E35388E1A3E35DD003EA851 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E35388D1A3E35DD003EA851 /* libxml2.dylib */; };
@@ -36,7 +37,6 @@
 		1E84C1BB1A471FD300180DF2 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E84C1BA1A471FD300180DF2 /* BaseViewController.swift */; };
 		1E84C1BE1A4EF3E000180DF2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E8283681A2534D000889E31 /* LaunchScreen.xib */; };
 		1EBA50391A3CD9AD00894C4D /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBA50381A3CD9AD00894C4D /* MenuItem.swift */; };
-		1EC7E5E11A4EFEC100727A2A /* libSVGKit-iOS.1.2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EC7E5E01A4EFEC100727A2A /* libSVGKit-iOS.1.2.0.a */; };
 		1EC96AFA1A2B36C4001B1065 /* Conference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC96AF91A2B36C4001B1065 /* Conference.swift */; };
 		1EC96AFC1A2B3B7E001B1065 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC96AFB1A2B3B7E001B1065 /* Track.swift */; };
 		1EC96AFE1A2B4059001B1065 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC96AFD1A2B4059001B1065 /* Session.swift */; };
@@ -63,6 +63,7 @@
 /* Begin PBXFileReference section */
 		0317BCB51A277CE50032208E /* SwiftJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftJSON.swift; sourceTree = "<group>"; };
 		0317BCBB1A27F2450032208E /* ConferenceTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConferenceTableViewController.swift; sourceTree = "<group>"; };
+		0384DB4B1A50707C008468F2 /* libSVGKit-iOS.1.2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libSVGKit-iOS.1.2.0.a"; sourceTree = "<group>"; };
 		1E3538891A3E35B2003EA851 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		1E35388B1A3E35CF003EA851 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		1E35388D1A3E35DD003EA851 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -102,7 +103,6 @@
 		1E8283951A2648C600889E31 /* Projet-S9-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Projet-S9-Bridging-Header.h"; sourceTree = "<group>"; };
 		1E84C1BA1A471FD300180DF2 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		1EBA50381A3CD9AD00894C4D /* MenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
-		1EC7E5E01A4EFEC100727A2A /* libSVGKit-iOS.1.2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libSVGKit-iOS.1.2.0.a"; sourceTree = "<group>"; };
 		1EC96AF91A2B36C4001B1065 /* Conference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conference.swift; sourceTree = "<group>"; };
 		1EC96AFB1A2B3B7E001B1065 /* Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		1EC96AFD1A2B4059001B1065 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
@@ -253,7 +253,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1EC7E5E11A4EFEC100727A2A /* libSVGKit-iOS.1.2.0.a in Frameworks */,
+				0384DB4C1A50707C008468F2 /* libSVGKit-iOS.1.2.0.a in Frameworks */,
 				1E3538941A3E3614003EA851 /* UIKit.framework in Frameworks */,
 				1E3538921A3E35F1003EA851 /* CoreGraphics.framework in Frameworks */,
 				1E3538901A3E35E6003EA851 /* QuartzCore.framework in Frameworks */,
@@ -412,7 +412,7 @@
 		1ECA75591A44C8DB00FA9D07 /* SVGKit */ = {
 			isa = PBXGroup;
 			children = (
-				1EC7E5E01A4EFEC100727A2A /* libSVGKit-iOS.1.2.0.a */,
+				0384DB4B1A50707C008468F2 /* libSVGKit-iOS.1.2.0.a */,
 				1ECA755B1A44C8DB00FA9D07 /* usr */,
 			);
 			path = SVGKit;
@@ -860,6 +860,10 @@
 					S9/SVGKit,
 					"$(PROJECT_DIR)/Projet",
 					S9/SVGKit,
+					"$(PROJECT_DIR)/Projet",
+					S9/SVGKit,
+					"$(PROJECT_DIR)/Projet",
+					S9/SVGKit,
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -883,6 +887,10 @@
 					"$(PROJECT_DIR)/Projet",
 					S9,
 					"/Users/Jeremie/Dropbox/ENSEIRB/3A/Projet/projets9-ios/Projet",
+					S9/SVGKit,
+					"$(PROJECT_DIR)/Projet",
+					S9/SVGKit,
+					"$(PROJECT_DIR)/Projet",
 					S9/SVGKit,
 					"$(PROJECT_DIR)/Projet",
 					S9/SVGKit,
