@@ -1,5 +1,5 @@
 //
-//  ModelBuilder.swift
+//  ConferenceModelBuilder.swift
 //  Projet S9
 //
 //  Created by Jérémie Foucault on 30/11/2014.
@@ -9,7 +9,7 @@
 import Foundation
 
 
-class ModelBuilder {
+class ConferenceModelBuilder {
     
     class func buildConferenceFromJSON(conferenceJson: JSON) {
         let tracks: [Track]     = self.buildTracksFromJSON(conferenceJson["tracks"])
@@ -58,9 +58,10 @@ class ModelBuilder {
             let id: Int         = sessionJson["id"].intValue
             let start_ts: Int   = sessionJson["start_ts"].intValue
             let end_ts: Int     = sessionJson["end_ts"].intValue
+            let room_id: Int    = sessionJson["room_id"].intValue
             let talks: [Talk]   = self.buildTalksFromJSON(sessionJson["talks"])
             
-            sessions.append(Session(id: id, start_ts: start_ts, end_ts: end_ts, talks: talks))
+            sessions.append(Session(id: id, start_ts: start_ts, end_ts: end_ts, room_id: room_id, talks: talks))
             
         }
         

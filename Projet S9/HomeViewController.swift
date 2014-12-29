@@ -71,7 +71,7 @@ class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocati
     
     private func makeConference(json: AnyObject) {
         let jsonParsed: JSON = JSON(json)
-        ModelBuilder.buildConferenceFromJSON(jsonParsed)
+        ConferenceModelBuilder.buildConferenceFromJSON(jsonParsed)
     }
     
 

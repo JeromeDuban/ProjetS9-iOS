@@ -41,13 +41,6 @@ class Talk : NSObject, Equatable
         self.body       = body
     }
     
-    
-    // Used by Foundation collections, such as NSSet.
-    override func isEqual(object: AnyObject!) -> Bool
-    {
-        return self == object as Talk
-    }
-    
 }
 
 // Required for Equatable protocol conformance

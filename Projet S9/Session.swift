@@ -18,6 +18,7 @@ class Session : NSObject, Equatable
     id:         Int,
     start_ts:   Int,
     end_ts:     Int,
+    room_id:    Int,
     talks:      [Talk]
     
     
@@ -25,19 +26,14 @@ class Session : NSObject, Equatable
         id:         Int,
         start_ts:   Int,
         end_ts:     Int,
+        room_id:    Int,
         talks:      [Talk])
     {
         self.id         = id
         self.start_ts   = start_ts
         self.end_ts     = end_ts
+        self.room_id    = room_id
         self.talks      = talks
-    }
-    
-    
-    // Used by Foundation collections, such as NSSet.
-    override func isEqual(object: AnyObject!) -> Bool
-    {
-        return self == object as Session
     }
 }
 

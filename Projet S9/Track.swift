@@ -29,13 +29,7 @@ class Track : NSObject, Equatable
         self.title      = title
         self.sessions   = sessions
     }
-    
-    
-    // Used by Foundation collections, such as NSSet.
-    override func isEqual(object: AnyObject!) -> Bool
-    {
-        return self == object as Track
-    }
+
 }
 
 // Required for Equatable protocol conformance

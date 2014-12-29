@@ -18,7 +18,7 @@
 		1E35389A1A3E3E44003EA851 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3538971A3E3E44003EA851 /* HomeViewController.swift */; };
 		1E3539291A3F09E3003EA851 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3538981A3E3E44003EA851 /* MapViewController.swift */; };
 		1E35392A1A3F09E9003EA851 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3538991A3E3E44003EA851 /* MenuViewController.swift */; };
-		1E38D7361A2B8D4400742800 /* ModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E38D7351A2B8D4400742800 /* ModelBuilder.swift */; };
+		1E38D7361A2B8D4400742800 /* ConferenceModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E38D7351A2B8D4400742800 /* ConferenceModelBuilder.swift */; };
 		1E38D7391A2BB3BB00742800 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E38D7381A2BB3BB00742800 /* Operators.swift */; };
 		1E38D73B1A2BB3D900742800 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E38D73A1A2BB3D900742800 /* JSON.swift */; };
 		1E38D73E1A2BB4A500742800 /* JSONService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E38D73D1A2BB4A500742800 /* JSONService.swift */; };
@@ -36,7 +36,7 @@
 		1E84C1BB1A471FD300180DF2 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E84C1BA1A471FD300180DF2 /* BaseViewController.swift */; };
 		1E84C1BE1A4EF3E000180DF2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E8283681A2534D000889E31 /* LaunchScreen.xib */; };
 		1EBA50391A3CD9AD00894C4D /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBA50381A3CD9AD00894C4D /* MenuItem.swift */; };
-		1EC7E5E11A4EFEC100727A2A /* libSVGKit-iOS.1.2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EC7E5E01A4EFEC100727A2A /* libSVGKit-iOS.1.2.0.a */; };
+		1EC333A51A5081FF00B1E360 /* libSVGKit-iOS.1.2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EC333A41A5081FF00B1E360 /* libSVGKit-iOS.1.2.0.a */; };
 		1EC96AFA1A2B36C4001B1065 /* Conference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC96AF91A2B36C4001B1065 /* Conference.swift */; };
 		1EC96AFC1A2B3B7E001B1065 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC96AFB1A2B3B7E001B1065 /* Track.swift */; };
 		1EC96AFE1A2B4059001B1065 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC96AFD1A2B4059001B1065 /* Session.swift */; };
@@ -72,7 +72,7 @@
 		1E3538971A3E3E44003EA851 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		1E3538981A3E3E44003EA851 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		1E3538991A3E3E44003EA851 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
-		1E38D7351A2B8D4400742800 /* ModelBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelBuilder.swift; sourceTree = "<group>"; };
+		1E38D7351A2B8D4400742800 /* ConferenceModelBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConferenceModelBuilder.swift; sourceTree = "<group>"; };
 		1E38D7381A2BB3BB00742800 /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
 		1E38D73A1A2BB3D900742800 /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		1E38D73D1A2BB4A500742800 /* JSONService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONService.swift; sourceTree = "<group>"; };
@@ -102,7 +102,7 @@
 		1E8283951A2648C600889E31 /* Projet-S9-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Projet-S9-Bridging-Header.h"; sourceTree = "<group>"; };
 		1E84C1BA1A471FD300180DF2 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		1EBA50381A3CD9AD00894C4D /* MenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
-		1EC7E5E01A4EFEC100727A2A /* libSVGKit-iOS.1.2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libSVGKit-iOS.1.2.0.a"; sourceTree = "<group>"; };
+		1EC333A41A5081FF00B1E360 /* libSVGKit-iOS.1.2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libSVGKit-iOS.1.2.0.a"; sourceTree = "<group>"; };
 		1EC96AF91A2B36C4001B1065 /* Conference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conference.swift; sourceTree = "<group>"; };
 		1EC96AFB1A2B3B7E001B1065 /* Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		1EC96AFD1A2B4059001B1065 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
@@ -253,7 +253,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1EC7E5E11A4EFEC100727A2A /* libSVGKit-iOS.1.2.0.a in Frameworks */,
+				1EC333A51A5081FF00B1E360 /* libSVGKit-iOS.1.2.0.a in Frameworks */,
 				1E3538941A3E3614003EA851 /* UIKit.framework in Frameworks */,
 				1E3538921A3E35F1003EA851 /* CoreGraphics.framework in Frameworks */,
 				1E3538901A3E35E6003EA851 /* QuartzCore.framework in Frameworks */,
@@ -404,7 +404,7 @@
 				1EC96AFB1A2B3B7E001B1065 /* Track.swift */,
 				1EC96AFD1A2B4059001B1065 /* Session.swift */,
 				1EC96AFF1A2B415D001B1065 /* Talk.swift */,
-				1E38D7351A2B8D4400742800 /* ModelBuilder.swift */,
+				1E38D7351A2B8D4400742800 /* ConferenceModelBuilder.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -412,7 +412,7 @@
 		1ECA75591A44C8DB00FA9D07 /* SVGKit */ = {
 			isa = PBXGroup;
 			children = (
-				1EC7E5E01A4EFEC100727A2A /* libSVGKit-iOS.1.2.0.a */,
+				1EC333A41A5081FF00B1E360 /* libSVGKit-iOS.1.2.0.a */,
 				1ECA755B1A44C8DB00FA9D07 /* usr */,
 			);
 			path = SVGKit;
@@ -705,7 +705,7 @@
 				1E35392A1A3F09E9003EA851 /* MenuViewController.swift in Sources */,
 				1E3539291A3F09E3003EA851 /* MapViewController.swift in Sources */,
 				1E35389A1A3E3E44003EA851 /* HomeViewController.swift in Sources */,
-				1E38D7361A2B8D4400742800 /* ModelBuilder.swift in Sources */,
+				1E38D7361A2B8D4400742800 /* ConferenceModelBuilder.swift in Sources */,
 				1EC96B001A2B415D001B1065 /* Talk.swift in Sources */,
 				0317BCBC1A27F2450032208E /* ConferenceTableViewController.swift in Sources */,
 				1E8283911A2535E600889E31 /* ECSlidingViewController.m in Sources */,
@@ -860,6 +860,8 @@
 					S9/SVGKit,
 					"$(PROJECT_DIR)/Projet",
 					S9/SVGKit,
+					"$(PROJECT_DIR)/Projet",
+					S9/SVGKit,
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -883,6 +885,8 @@
 					"$(PROJECT_DIR)/Projet",
 					S9,
 					"/Users/Jeremie/Dropbox/ENSEIRB/3A/Projet/projets9-ios/Projet",
+					S9/SVGKit,
+					"$(PROJECT_DIR)/Projet",
 					S9/SVGKit,
 					"$(PROJECT_DIR)/Projet",
 					S9/SVGKit,
