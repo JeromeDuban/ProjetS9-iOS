@@ -850,18 +850,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Projet",
-					S9,
-					"/Users/Jeremie/Dropbox/ENSEIRB/3A/Projet/projets9-ios/Projet",
-					S9/SVGKit,
-					"$(PROJECT_DIR)/Projet",
-					S9/SVGKit,
-					"$(PROJECT_DIR)/Projet",
-					S9/SVGKit,
-					"$(PROJECT_DIR)/Projet",
-					S9/SVGKit,
-					"$(PROJECT_DIR)/Projet",
-					S9/SVGKit,
+					"$(PROJECT_DIR)/Projet\\ S9/SVGKIT",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -882,18 +871,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Projet",
-					S9,
-					"/Users/Jeremie/Dropbox/ENSEIRB/3A/Projet/projets9-ios/Projet",
-					S9/SVGKit,
-					"$(PROJECT_DIR)/Projet",
-					S9/SVGKit,
-					"$(PROJECT_DIR)/Projet",
-					S9/SVGKit,
-					"$(PROJECT_DIR)/Projet",
-					S9/SVGKit,
-					"$(PROJECT_DIR)/Projet",
-					S9/SVGKit,
+					"$(PROJECT_DIR)/Projet\\ S9/SVGKIT",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
