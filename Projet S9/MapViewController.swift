@@ -14,7 +14,7 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
     @IBOutlet var singleTapGestureRecognizer: UITapGestureRecognizer!
     @IBOutlet weak var svgScrollView: UIScrollView!
     var svgFile: SVGKImage?
-    var svgMap: SVGKImageView?
+    var svgMap: SVGKFastImageView?
     var isZoomed: Bool = false
     
     override func viewDidLoad() {
@@ -46,10 +46,34 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
     @IBAction func singleTap(sender: UITapGestureRecognizer) {
         if(sender.state == UIGestureRecognizerState.Ended){
             let location:CGPoint = sender.locationInView(self.svgScrollView)
+//            let x:CGFloat = self.svgMap!.frame.size.width/2
+//            let y:CGFloat = self.svgMap!.frame.size.height/2
+//            let location:CGPoint = CGPoint(x: x, y: y)
             let tree:CALayer = svgFile!.CALayerTree
-            let hitLayer:CALayer = tree.hitTest(svgMap!.convertPoint(location, fromView: self.svgScrollView))
-//            let identifier:String = SVGElement
-            println("DoubleTap")
+            if let hitLayer:CALayer = tree.hitTest(svgMap!.convertPoint(location, fromView: self.svgScrollView)) {
+                let svgElement:SVGElement? = self.SVGElementFromLayer(hitLayer)?
+                if let identifier:String = svgElement?.getAttribute("id") {
+                    if (!identifier.isEmpty && identifier != "contour") {
+                        let alert:UIAlertView = UIAlertView(title: svgElement!.getAttribute("title"), message: "", delegate: nil, cancelButtonTitle: "Retour", otherButtonTitles: "Détails")
+                        if hitLayer.isKindOfClass(CAShapeLayer) {
+                            let shapeLayer:CAShapeLayer = hitLayer as CAShapeLayer
+                            shapeLayer.fillColor = UIColor.redColor().CGColor
+                        }
+                        alert.show()
+                    }
+                }
+                self.svgMap!.setNeedsDisplay()
+            }
+            
+            
+//            let shapeLayer:CAShapeLayer = CAShapeLayer(layer: hitLayer)
+//            shapeLayer.path = self.makeCircleAtLocation(location, radius: 10.0).CGPath
+//            shapeLayer.strokeColor = UIColor.blackColor().CGColor
+//            shapeLayer.fillColor = nil;
+//            shapeLayer.lineWidth = 3.0;
+//            
+//            // Add CAShapeLayer to our view
+//            self.svgMap!.layer.addSublayer(shapeLayer)
         }
     }
 
@@ -74,12 +98,25 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
         // Dispose of any resources that can be recreated.
     }
     
+    func scrollViewDidEndZooming(scrollView: UIScrollView, withView view: UIView!, atScale scale: CGFloat) {
+        self.svgMap!.disableAutoRedrawAtHighestResolution = false
+       
+    }
     
+    func scrollViewWillBeginZooming(scrollView: UIScrollView, withView view: UIView!) {
+        self.svgMap!.disableAutoRedrawAtHighestResolution = true
+    }
     
     func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return false;
     }
     
+    func makeCircleAtLocation(location: CGPoint, radius:CGFloat) -> UIBezierPath {
+        var path: UIBezierPath = UIBezierPath(arcCenter: location, radius: radius, startAngle: 0.0, endAngle: CGFloat(M_PI*2.0), clockwise: true)
+        return path
+        
+    }
+
     
     func displayFloor(index: Int) {
         switch (index) {
@@ -105,8 +142,29 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
         self.svgScrollView.sizeToFit()
     }
     
+    func SVGElementFromLayer(layer:CALayer) -> SVGElement? {
+        let list:NodeList = self.svgFile!.DOMDocument!.getElementsByTagName("*")
+        for domElement in list {
+            let svgElement:SVGElement? = domElement as? SVGElement
+            if (svgElement?.identifier != nil) {
+                let nodeLayer:CALayer = svgFile!.layerWithIdentifier(svgElement?.identifier?)
+                if nodeLayer == layer {
+                    return svgElement
+                }
+            }
+        }
+        return nil
+    }
+
+    
     func viewForZoomingInScrollView(scrollView: UIScrollView!) -> UIView! {
         return self.svgMap
     }
     
+}
+
+extension NodeList: SequenceType {
+    public func generate() -> NSFastGenerator {
+        return NSFastGenerator(self)
+    }
 }
