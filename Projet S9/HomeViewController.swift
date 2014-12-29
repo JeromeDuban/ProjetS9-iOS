@@ -62,7 +62,7 @@ class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocati
     }
     
     private func getConferencesFromAPI() {
-        let url = URLFactory.allConferences()
+        let url = URLFactory.conferenceWithMajor(10)
         JSONService
             .GET(url)
             .success{json in {self.makeConference(json)} ~> { self.app.jsonGot = true;}}

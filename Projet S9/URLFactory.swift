@@ -11,10 +11,15 @@ import Foundation
 /** Builds the URLs needed to call Web services. */
 class URLFactory {
     
-    class func allConferences() -> NSURL {
-        return NSURL(string: "http://jfoucault.rmorpheus.enseirb.fr/Conference_10.json")!
+    class func conferenceWithMajor(major:NSNumber) -> NSURL {
+        let stringMajor:String = String(Int(major))
+        return NSURL(string: "http://jfoucault.rmorpheus.enseirb.fr/Conference_"+stringMajor+".json")!
     }
     
+    class func buildingWithMajor(major:NSNumber) -> NSURL {
+        let stringMajor:String = String(Int(major))
+        return NSURL(string: "http://jfoucault.rmorpheus.enseirb.fr/Topology_"+stringMajor+".json")!
+    }
     
     private class func urlWithName(name: String, var args: [String: String]) -> NSURL {
         let
