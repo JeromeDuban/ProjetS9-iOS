@@ -16,7 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var locationManager: CLLocationManager?
     var lastBeacons : [CLBeacon]?
     var lastMajor: NSNumber?
-    var jsonGot: Bool = false
+    var conferenceJsonGot: Bool = false
+    var beaconJsonGot: Bool = false
     var mask: CALayer?
     var rootView: UIViewController?
 

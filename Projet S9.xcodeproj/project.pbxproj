@@ -46,8 +46,11 @@
 		1ECA75EA1A45940000FA9D07 /* R+3.svg in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA75E51A45940000FA9D07 /* R+3.svg */; };
 		1ECA75EB1A45940000FA9D07 /* SS.svg in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA75E61A45940000FA9D07 /* SS.svg */; };
 		1ECA75EC1A45940000FA9D07 /* RDC.svg in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA75E71A45940000FA9D07 /* RDC.svg */; };
-		1ECB77EF1A28C8B3007AABB3 /* BeaconManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECB77EE1A28C8B3007AABB3 /* BeaconManager.swift */; };
 		1ECB77F11A28CC80007AABB3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ECB77F01A28CC80007AABB3 /* CoreLocation.framework */; };
+		1ECC94401A56EE8200F2AD88 /* Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECC943F1A56EE8200F2AD88 /* Coordinates.swift */; };
+		1ECC94421A56F01E00F2AD88 /* Beacon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECC94411A56F01E00F2AD88 /* Beacon.swift */; };
+		1ECC94441A56F49900F2AD88 /* Beacons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECC94431A56F49900F2AD88 /* Beacons.swift */; };
+		1ECC94461A56F7DB00F2AD88 /* BeaconsModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECC94451A56F7DB00F2AD88 /* BeaconsModelBuilder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -244,8 +247,11 @@
 		1ECA75E51A45940000FA9D07 /* R+3.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "R+3.svg"; sourceTree = "<group>"; };
 		1ECA75E61A45940000FA9D07 /* SS.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = SS.svg; sourceTree = "<group>"; };
 		1ECA75E71A45940000FA9D07 /* RDC.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = RDC.svg; sourceTree = "<group>"; };
-		1ECB77EE1A28C8B3007AABB3 /* BeaconManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconManager.swift; sourceTree = "<group>"; };
 		1ECB77F01A28CC80007AABB3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		1ECC943F1A56EE8200F2AD88 /* Coordinates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinates.swift; sourceTree = "<group>"; };
+		1ECC94411A56F01E00F2AD88 /* Beacon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Beacon.swift; sourceTree = "<group>"; };
+		1ECC94431A56F49900F2AD88 /* Beacons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Beacons.swift; sourceTree = "<group>"; };
+		1ECC94451A56F7DB00F2AD88 /* BeaconsModelBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconsModelBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -290,7 +296,6 @@
 			children = (
 				1E38D73D1A2BB4A500742800 /* JSONService.swift */,
 				1E38D73F1A2BB60F00742800 /* URLFactory.swift */,
-				1ECB77EE1A28C8B3007AABB3 /* BeaconManager.swift */,
 			);
 			name = Networking;
 			sourceTree = "<group>";
@@ -400,11 +405,15 @@
 			isa = PBXGroup;
 			children = (
 				1EC96AF91A2B36C4001B1065 /* Conference.swift */,
+				1ECC94431A56F49900F2AD88 /* Beacons.swift */,
 				1EBA50381A3CD9AD00894C4D /* MenuItem.swift */,
 				1EC96AFB1A2B3B7E001B1065 /* Track.swift */,
 				1EC96AFD1A2B4059001B1065 /* Session.swift */,
 				1EC96AFF1A2B415D001B1065 /* Talk.swift */,
+				1ECC943F1A56EE8200F2AD88 /* Coordinates.swift */,
+				1ECC94411A56F01E00F2AD88 /* Beacon.swift */,
 				1E38D7351A2B8D4400742800 /* ConferenceModelBuilder.swift */,
+				1ECC94451A56F7DB00F2AD88 /* BeaconsModelBuilder.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -697,9 +706,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1EBA50391A3CD9AD00894C4D /* MenuItem.swift in Sources */,
+				1ECC94441A56F49900F2AD88 /* Beacons.swift in Sources */,
 				1E38D7391A2BB3BB00742800 /* Operators.swift in Sources */,
+				1ECC94421A56F01E00F2AD88 /* Beacon.swift in Sources */,
 				1EC96AFE1A2B4059001B1065 /* Session.swift in Sources */,
-				1ECB77EF1A28C8B3007AABB3 /* BeaconManager.swift in Sources */,
 				1E82838F1A2535E600889E31 /* ECSlidingInteractiveTransition.m in Sources */,
 				0317BCB61A277CE50032208E /* SwiftJSON.swift in Sources */,
 				1E35392A1A3F09E9003EA851 /* MenuViewController.swift in Sources */,
@@ -715,10 +725,12 @@
 				1E38D73B1A2BB3D900742800 /* JSON.swift in Sources */,
 				1EC96AFC1A2B3B7E001B1065 /* Track.swift in Sources */,
 				1E38D73E1A2BB4A500742800 /* JSONService.swift in Sources */,
+				1ECC94401A56EE8200F2AD88 /* Coordinates.swift in Sources */,
 				1E84C1BB1A471FD300180DF2 /* BaseViewController.swift in Sources */,
 				1E82838D1A2535E600889E31 /* ECPercentDrivenInteractiveTransition.m in Sources */,
 				1EC96AFA1A2B36C4001B1065 /* Conference.swift in Sources */,
 				1E8283921A2535E600889E31 /* UIViewController+ECSlidingViewController.m in Sources */,
+				1ECC94461A56F7DB00F2AD88 /* BeaconsModelBuilder.swift in Sources */,
 				1E82838E1A2535E600889E31 /* ECSlidingAnimationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
