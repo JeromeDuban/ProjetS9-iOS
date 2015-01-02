@@ -33,7 +33,6 @@ class Track : NSObject, Equatable
 }
 
 // Required for Equatable protocol conformance
-func == (lhs: Track, rhs: Track) -> Bool
-{
+func == (lhs: Track, rhs: Track) -> Bool {
     return lhs.id == rhs.id
 }

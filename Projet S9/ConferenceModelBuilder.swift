@@ -96,16 +96,4 @@ class ConferenceModelBuilder {
         return talks
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }

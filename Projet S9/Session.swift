@@ -38,7 +38,6 @@ class Session : NSObject, Equatable
 }
 
 // Required for Equatable protocol conformance
-func == (lhs: Session, rhs: Session) -> Bool
-{
+func == (lhs: Session, rhs: Session) -> Bool {
     return lhs.id == rhs.id
 }

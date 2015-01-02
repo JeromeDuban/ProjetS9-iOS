@@ -44,7 +44,6 @@ class Talk : NSObject, Equatable
 }
 
 // Required for Equatable protocol conformance
-func == (lhs: Talk, rhs: Talk) -> Bool
-{
+func == (lhs: Talk, rhs: Talk) -> Bool {
     return lhs.id == rhs.id
 }
