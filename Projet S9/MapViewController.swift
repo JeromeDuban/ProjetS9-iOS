@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate {
     
@@ -16,6 +17,8 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
     var svgFile: SVGKImage?
     var svgMap: SVGKFastImageView?
     var isZoomed: Bool = false
+    var layerSet: Bool = false
+    let app:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     
     override func viewDidLoad() {
         super.unwindSegueIdentifier = "mapUnwindSegueToMenu"
@@ -46,34 +49,37 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
     @IBAction func singleTap(sender: UITapGestureRecognizer) {
         if(sender.state == UIGestureRecognizerState.Ended){
             let location:CGPoint = sender.locationInView(self.svgScrollView)
-//            let x:CGFloat = self.svgMap!.frame.size.width/2
-//            let y:CGFloat = self.svgMap!.frame.size.height/2
-//            let location:CGPoint = CGPoint(x: x, y: y)
             let tree:CALayer = svgFile!.CALayerTree
             if let hitLayer:CALayer = tree.hitTest(svgMap!.convertPoint(location, fromView: self.svgScrollView)) {
                 let svgElement:SVGElement? = self.SVGElementFromLayer(hitLayer)?
                 if let identifier:String = svgElement?.getAttribute("id") {
                     if (!identifier.isEmpty && identifier != "contour") {
                         let alert:UIAlertView = UIAlertView(title: svgElement!.getAttribute("title"), message: "", delegate: nil, cancelButtonTitle: "Retour", otherButtonTitles: "Détails")
-                        if hitLayer.isKindOfClass(CAShapeLayer) {
-                            let shapeLayer:CAShapeLayer = hitLayer as CAShapeLayer
-                            shapeLayer.fillColor = UIColor.redColor().CGColor
-                        }
-                        alert.show()
+//                        if hitLayer.isKindOfClass(CAShapeLayer) {
+//                            let shapeLayer:CAShapeLayer = hitLayer as CAShapeLayer
+//                            shapeLayer.fillColor = UIColor.redColor().CGColor
+//                        }
                     }
                 }
+                let shapeLayer:CAShapeLayer = CAShapeLayer(layer: hitLayer)
+                let convertedLocation:CGPoint = svgMap!.convertPoint(location, fromView: self.svgScrollView)
+                shapeLayer.path = self.makeCircleAtLocation(convertedLocation, radius: 5.0).CGPath
+                shapeLayer.strokeColor = UIColor.blackColor().CGColor
+                shapeLayer.fillColor = nil;
+                shapeLayer.lineWidth = 3.0;
+                
+                if (!layerSet) {
+                    layerSet = true
+                    shapeLayer.strokeColor = UIColor.redColor().CGColor
+                    self.svgMap!.layer.addSublayer(shapeLayer)
+                }
+                
+                
                 self.svgMap!.setNeedsDisplay()
             }
             
             
-//            let shapeLayer:CAShapeLayer = CAShapeLayer(layer: hitLayer)
-//            shapeLayer.path = self.makeCircleAtLocation(location, radius: 10.0).CGPath
-//            shapeLayer.strokeColor = UIColor.blackColor().CGColor
-//            shapeLayer.fillColor = nil;
-//            shapeLayer.lineWidth = 3.0;
-//            
-//            // Add CAShapeLayer to our view
-//            self.svgMap!.layer.addSublayer(shapeLayer)
+            
         }
     }
 
@@ -93,6 +99,10 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
         }
     }
     
+    override func viewDidAppear(animated: Bool) {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleBeaconsUpdate", name: "beaconUpdate", object: nil)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -109,6 +119,24 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
     
     func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return false;
+    }
+    
+    func handleBeaconsUpdate() {
+        var beaconsCoordinates: [Coordinates] = []
+        for nearestBeacon:CLBeacon in app.lastBeacons! {
+            if let beaconFound: Beacon = self.findBeaconWithMajorAndMinor(nearestBeacon.major, minor: nearestBeacon.minor) {
+                beaconsCoordinates.append(beaconFound.coordinates)
+                println("Found beacons")
+            }
+        }
+    }
+
+    private func findBeaconWithMajorAndMinor(major: NSNumber, minor: NSNumber) -> Beacon? {
+        let beacons: Beacons = Beacons.sharedInstance
+        if let beacon:Beacon = beacons.array!.filter({($0.major == major) && ($0.minor == minor)}).first? {
+            return beacon
+        }
+        return nil
     }
     
     func makeCircleAtLocation(location: CGPoint, radius:CGFloat) -> UIBezierPath {

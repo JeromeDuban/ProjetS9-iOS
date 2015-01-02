@@ -23,6 +23,7 @@ class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocati
         super.viewDidLoad()
 
         self.getConferencesFromAPI()
+        self.getBeaconsFromAPI()
         self.updateData()
         navigationItem.title = "Home"
         
@@ -44,7 +45,7 @@ class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocati
         if(nearestBeacon.major == app.lastMajor || nearestBeacon.proximity == CLProximity.Unknown) {
                 return;
         }
-        if (self.app.jsonGot == true) {
+        if (self.app.conferenceJsonGot == true) {
             self.app.lastMajor = nearestBeacon.major
         }
         self.updateData()
@@ -52,7 +53,7 @@ class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocati
     
     func updateData() {
         let myConference: Conference = Conference.sharedInstance
-        if (self.app.jsonGot == true) {
+        if (self.app.conferenceJsonGot == true) {
             titleLabel.text = myConference.title
             addressLabel.text = myConference.address
             startDayLabel.text = myConference.start_day
@@ -62,10 +63,10 @@ class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocati
     }
     
     private func getConferencesFromAPI() {
-        let url = URLFactory.conferenceWithMajor(10)
+        let url = URLFactory.conferenceWithMajorAPI(10)
         JSONService
             .GET(url)
-            .success{json in {self.makeConference(json)} ~> { self.app.jsonGot = true;}}
+            .success{json in {self.makeConference(json)} ~> { self.app.conferenceJsonGot = true;}}
             .failure(onFailure, queue: NSOperationQueue.mainQueue())
     }
     
@@ -73,7 +74,20 @@ class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocati
         let jsonParsed: JSON = JSON(json)
         ConferenceModelBuilder.buildConferenceFromJSON(jsonParsed)
     }
+
     
+    private func getBeaconsFromAPI() {
+        let url = URLFactory.beaconsAPI()
+        JSONService
+            .GET(url)
+            .success{json in {self.makeBeacons(json)} ~> { self.app.beaconJsonGot = true;}}
+            .failure(onFailure, queue: NSOperationQueue.mainQueue())
+    }
+    
+    private func makeBeacons(json: AnyObject) {
+        let jsonParsed: JSON = JSON(json)
+        BeaconsModelBuilder.buildBeaconsFromJSON(jsonParsed)
+    }
 
     
     private func onFailure(statusCode: Int, error: NSError?)
