@@ -61,7 +61,7 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
 //                        }
                     }
                 }
-                let shapeLayer:CAShapeLayer = CAShapeLayer(layer: hitLayer)
+                let shapeLayer:CAShapeLayer = CAShapeLayer(layer: self.svgMap!.layer)
                 let convertedLocation:CGPoint = svgMap!.convertPoint(location, fromView: self.svgScrollView)
                 shapeLayer.path = self.makeCircleAtLocation(convertedLocation, radius: 5.0).CGPath
                 shapeLayer.strokeColor = UIColor.blackColor().CGColor
@@ -122,13 +122,24 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
     }
     
     func handleBeaconsUpdate() {
-        var beaconsCoordinates: [Coordinates] = []
+        var beaconsVectors: [(coordinate:CGPoint, weigth:CGFloat)] = []
         for nearestBeacon:CLBeacon in app.lastBeacons! {
             if let beaconFound: Beacon = self.findBeaconWithMajorAndMinor(nearestBeacon.major, minor: nearestBeacon.minor) {
-                beaconsCoordinates.append(beaconFound.coordinates)
+                let vector:(coordinate:CGPoint, weigth:CGFloat) = (coordinate: beaconFound.coordinates, weigth: self.getVectorWeigth(nearestBeacon))
+                beaconsVectors.append(vector)
                 println("Found beacons")
             }
         }
+        let barycenter = self.computeBarycenter(beaconsVectors)
+        
+        let shapeLayer:CAShapeLayer = CAShapeLayer(layer: self.svgMap!.layer)
+        shapeLayer.path = self.makeCircleAtLocation(barycenter, radius: 5.0).CGPath
+        shapeLayer.strokeColor = UIColor.redColor().CGColor
+        shapeLayer.fillColor = nil;
+        shapeLayer.lineWidth = 3.0;
+        
+        self.svgMap!.layer.addSublayer(shapeLayer)
+        self.svgMap!.setNeedsDisplay()
     }
 
     private func findBeaconWithMajorAndMinor(major: NSNumber, minor: NSNumber) -> Beacon? {
@@ -143,6 +154,35 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
         var path: UIBezierPath = UIBezierPath(arcCenter: location, radius: radius, startAngle: 0.0, endAngle: CGFloat(M_PI*2.0), clockwise: true)
         return path
         
+    }
+    
+    func getVectorWeigth(beacon:CLBeacon) -> CGFloat {
+        switch beacon.proximity {
+        case CLProximity.Far:
+            return CGFloat(1)
+        case CLProximity.Near:
+            return CGFloat(2)
+        case CLProximity.Immediate:
+            return CGFloat(3)
+        case CLProximity.Unknown:
+            return CGFloat(1)
+        }
+    }
+    
+    func computeBarycenter(vectors: [(coordinate:CGPoint, weigth:CGFloat)]) -> CGPoint {
+        var xG:CGFloat = 0.0
+        var xGWeigth: CGFloat = 0.0
+        var yG:CGFloat = 0.0
+        var yGWeigth:CGFloat = 0.0
+        for vector:(coordinate:CGPoint, weigth:CGFloat) in vectors {
+            xG += vector.coordinate.x * CGFloat(vector.weigth)
+            yG += vector.coordinate.y * CGFloat(vector.weigth)
+            xGWeigth += CGFloat(vector.weigth)
+            yGWeigth += CGFloat(vector.weigth)
+        }
+        xG /= xGWeigth
+        yG /= yGWeigth
+        return CGPoint(x: xG, y: yG)
     }
 
     

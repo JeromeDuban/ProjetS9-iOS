@@ -22,7 +22,9 @@ class BeaconsModelBuilder {
             let minor: Int                  = beaconJson["minor"].intValue
             let floor_id: Int               = beaconJson["floor_id"].intValue
             let room_id: Int                = beaconJson["room_id"].intValue
-            let coordinates: Coordinates    = Coordinates(x: beaconJson["coordinates"]["x"].floatValue, y: beaconJson["coordinates"]["y"].floatValue)
+            let x: CGFloat                  = CGFloat(beaconJson["coordinates"]["x"].floatValue)
+            let y: CGFloat                  = CGFloat(beaconJson["coordinates"]["y"].floatValue)
+            let coordinates: CGPoint    = CGPoint(x: x, y: y)
 
             
             beacons.append(Beacon(

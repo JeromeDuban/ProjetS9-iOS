@@ -17,7 +17,7 @@ class Beacon : NSObject, Equatable
     minor:          Int,
     floor_id:       Int,
     room_id:        Int,
-    coordinates:    Coordinates
+    coordinates:    CGPoint
     
     
     init(
@@ -27,7 +27,7 @@ class Beacon : NSObject, Equatable
         minor:          Int,
         floor_id:       Int,
         room_id:        Int,
-        coordinates:    Coordinates)
+        coordinates:    CGPoint)
     {
         self.id             = id
         self.uuid           = uuid
