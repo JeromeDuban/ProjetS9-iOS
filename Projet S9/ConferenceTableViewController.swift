@@ -148,6 +148,50 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
             return true
     }
     
+//    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        self.performSegueWithIdentifier("conferencesDetail", sender: tableView)
+//    }
+    
+    
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+//        if segue.identifier == "conferencesDetail" {
+//            let detailViewController = segue.destinationViewController as UIViewController
+//            
+//            if sender as UITableView == self.searchDisplayController!.searchResultsTableView {
+//                let indexPath = self.searchDisplayController!.searchResultsTableView.indexPathForSelectedRow()!              
+//                let destinationTitle = self.filteredConferences[indexPath.row].name
+//                detailViewController.title = destinationTitle
+//            } else {
+//                let indexPath = self.tableView.indexPathForSelectedRow()!
+//                let destinationTitle = self.conferences[indexPath.row].name
+//                detailViewController.title = destinationTitle
+//                
+//                
+//                
+//            }
+//        }
+//    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        println(indexPath.row)
+        println(self.conferences[indexPath.row].name)
+        let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("MapAfterSearch") as UIViewController
+        self.navigationController?.setViewControllers([viewController], animated: false)
+        
+        
+        var alert = UIAlertController(title: "Alert", message: "Je vais afficher la salle de la recherche " + self.conferences[indexPath.row].name , preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+        
+
+    }
+    
+        
+    
+    
+    
+   
+    
 
     
     

@@ -187,7 +187,7 @@
         <!--Map View Controller-->
         <scene sceneID="cOj-rG-cbQ">
             <objects>
-                <viewController id="ujW-zB-Wwh" customClass="MapViewController" customModule="Projet_S9" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapAfterSearch" id="ujW-zB-Wwh" customClass="MapViewController" customModule="Projet_S9" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gKn-cr-zbm"/>
                         <viewControllerLayoutGuide type="bottom" id="knh-eC-tuA"/>
