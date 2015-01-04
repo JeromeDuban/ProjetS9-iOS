@@ -23,10 +23,13 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
         // Sample Data for candyArray
         
         let myConference: Conference = Conference.sharedInstance
+        let myTopology: Topology = Topology.sharedInstance
         var indexCount: Int = 0;
         var indexTracks: Int = 0;
         var indexSessions: Int = 0;
         var indexTalks: Int = 0;
+        var indexFloors: Int = 0;
+        var indexRooms: Int = 0;
         
         // Load the element in the tableview
 
@@ -58,6 +61,20 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
             }
             indexTracks += 1;
             
+        }
+        
+        //Insert Rooms' name
+        while(indexFloors != myTopology.floors?.count){
+            
+            while(indexRooms != myTopology.floors![indexFloors].rooms.count){
+                // Insert track
+                self.conferences.insert(ConferencesSearch(category:"Room", name:myTopology.floors![indexFloors].rooms[indexRooms].name.lowercaseString), atIndex: indexCount);
+                
+                indexCount += 1;
+                indexRooms += 1;
+            }
+            
+            indexFloors += 1;
         }
         
         
@@ -173,8 +190,7 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
 //    }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        println(indexPath.row)
-        println(self.conferences[indexPath.row].name)
+
         let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("MapAfterSearch") as UIViewController
         self.navigationController?.setViewControllers([viewController], animated: false)
         
