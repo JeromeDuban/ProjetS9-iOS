@@ -124,9 +124,13 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // 1
         // Return the number of sections.
-        return 4
+        if tableView == self.searchDisplayController!.searchResultsTableView {
+            return 1;
+        } else {
+            return 4;
+        }        
+    
     }
     
     func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool{
@@ -143,7 +147,7 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
         
         
         var conferencesRow : ConferencesSearch
-        // Check to see whether the normal table or search results table is being displayed and set the Conferences object from the appropriate array
+        // Check to see whether the normal table or search results table is being displayed and set the Conferencesj object from the appropriate array
         if tableView == self.searchDisplayController!.searchResultsTableView {
             conferencesRow = filteredConferences[indexPath.row]
         } else {
