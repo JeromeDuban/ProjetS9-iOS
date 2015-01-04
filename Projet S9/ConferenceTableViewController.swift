@@ -101,6 +101,7 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
     }
     
     
+    
 
     // Define the number of row
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -143,14 +144,17 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         //ask for a reusable cell from the tableview, the tableview will create a new one if it doesn't have any
-        let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
+        let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell") as UITableViewCell
         
         
         var conferencesRow : ConferencesSearch
         // Check to see whether the normal table or search results table is being displayed and set the Conferencesj object from the appropriate array
         if tableView == self.searchDisplayController!.searchResultsTableView {
+
             conferencesRow = filteredConferences[indexPath.row]
+
         } else {
+
             switch (indexPath.section) {
             case 0:
                 conferencesRow = conferencesInTrack[indexPath.row]
@@ -242,7 +246,6 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as CustomHeaderCell
         headerCell.backgroundColor = UIColor.grayColor()
-        
         
         switch (section) {
         case 0:
