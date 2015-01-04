@@ -82,7 +82,10 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
         // Reload the table
         self.tableView.reloadData()
     }
+    
+    
 
+    // Define the number of row
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == self.searchDisplayController!.searchResultsTableView {
             return self.filteredConferences.count
@@ -91,18 +94,17 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
         }
     }
     
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        // 1
+        // Return the number of sections.
+        return 4
+    }
+    
     func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool{
 //        let secondViewController:HomeViewController = HomeViewController()
 //        self.presentViewController(secondViewController, animated: true, completion: nil)
         return true
     }
-    
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // Return the number of sections.
-        return 1
-    }
-
-
     
 
     
@@ -128,25 +130,7 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
         
         return cell
     }
-    
 
-    
-    /*override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        return newLabelWithTitle("Section \(section)")
-    }
-    
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    
-    
-    let label = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 50))
-    label.textAlignment = NSTextAlignment.Center
-    label.backgroundColor = UIColor.grayColor()
-    label.textColor = UIColor.whiteColor()
-    label.text = "Room"
-    return label
-    }*/
-    
     
     
     func filterContentForSearchText(searchText: String, scope: String = "All") {
@@ -214,19 +198,26 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
         let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as CustomHeaderCell
         headerCell.backgroundColor = UIColor.grayColor()
         
+        
         switch (section) {
         case 0:
             headerCell.headerLabel.text = "Track";
             headerCell.headerLabel.textColor = UIColor.whiteColor();
             //return sectionHeaderView
         case 1:
-            headerCell.headerLabel.text = "Asia";
+            headerCell.headerLabel.text = "Session";
+            headerCell.headerLabel.textColor = UIColor.whiteColor();
             //return sectionHeaderView
         case 2:
-            headerCell.headerLabel.text = "South America";
+            headerCell.headerLabel.text = "Talk";
+            headerCell.headerLabel.textColor = UIColor.whiteColor();
+            //return sectionHeaderView
+        case 3:
+            headerCell.headerLabel.text = "Room";
+            headerCell.headerLabel.textColor = UIColor.whiteColor();
             //return sectionHeaderView
         default:
-            headerCell.headerLabel.text = "Other";
+            headerCell.headerLabel.text = "Error";
         }
         
         return headerCell
