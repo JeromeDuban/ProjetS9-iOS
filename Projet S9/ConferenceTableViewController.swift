@@ -16,6 +16,10 @@ struct ConferencesSearch {
 class ConferenceTableViewController : UITableViewController, UISearchBarDelegate, UISearchDisplayDelegate {
     
     var conferences = [ConferencesSearch]()
+    var conferencesInTrack = [ConferencesSearch]()
+    var conferencesInSection = [ConferencesSearch]()
+    var conferencesInTalk = [ConferencesSearch]()
+    var conferencesInRoom = [ConferencesSearch]()
     
     var filteredConferences = [ConferencesSearch]()
     
@@ -31,6 +35,10 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
         var indexFloors: Int = 0;
         var indexRooms: Int = 0;
         
+        
+        var indexCountSection: Int = 0;
+        var indexCountTalk: Int = 0;
+        var indexCountRoom: Int = 0;
         // Load the element in the tableview
 
         // Loop for tracks
@@ -38,6 +46,7 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
 
             // Insert track
             self.conferences.insert(ConferencesSearch(category:"Track", name:myConference.tracks![indexTracks].title.lowercaseString), atIndex: indexCount);
+            self.conferencesInTrack.insert(ConferencesSearch(category:"Track", name:myConference.tracks![indexTracks].title.lowercaseString), atIndex: indexCount);
             indexCount += 1;
             
             
@@ -45,6 +54,9 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
             while(indexSessions != myConference.tracks![indexTracks].sessions.count){
                 // Insert session
                 self.conferences.insert(ConferencesSearch(category:"Session", name: "session n°\(myConference.tracks![indexTracks].sessions[indexSessions].id) ") , atIndex: indexCount);
+                self.conferencesInSection.insert(ConferencesSearch(category:"Session", name: "session n°\(myConference.tracks![indexTracks].sessions[indexSessions].id) ") , atIndex: indexCountSection);
+                
+                indexCountSection += 1;
                 indexCount += 1;
                 
                 
@@ -52,6 +64,9 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
                 while(indexTalks != myConference.tracks![indexTracks].sessions[indexSessions].talks.count){
                     // Insert talks
                     self.conferences.insert(ConferencesSearch(category:"Talk", name:myConference.tracks![indexTracks].sessions[indexSessions].talks[indexTalks].title.lowercaseString) , atIndex: indexCount);
+                    self.conferencesInTalk.insert(ConferencesSearch(category:"Talk", name:myConference.tracks![indexTracks].sessions[indexSessions].talks[indexTalks].title.lowercaseString) , atIndex: indexCountTalk);
+                    
+                    indexCountTalk += 1;
                     indexCount += 1;
                     indexTalks += 1;
                     
@@ -69,7 +84,9 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
             while(indexRooms != myTopology.floors![indexFloors].rooms.count){
                 // Insert track
                 self.conferences.insert(ConferencesSearch(category:"Room", name:myTopology.floors![indexFloors].rooms[indexRooms].name.lowercaseString), atIndex: indexCount);
+                self.conferencesInRoom.insert(ConferencesSearch(category:"Room", name:myTopology.floors![indexFloors].rooms[indexRooms].name.lowercaseString), atIndex: indexCountRoom);
                 
+                indexCountRoom += 1;
                 indexCount += 1;
                 indexRooms += 1;
             }
@@ -90,7 +107,19 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
         if tableView == self.searchDisplayController!.searchResultsTableView {
             return self.filteredConferences.count
         } else {
-            return self.conferences.count
+            switch (section) {
+            case 0:
+                return conferencesInTrack.count;
+            case 1:
+                return conferencesInSection.count;
+            case 2:
+                return conferencesInTalk.count;
+            case 3:
+                return conferencesInRoom.count;
+            default:
+                return 1
+            }
+            //return self.conferences.count
         }
     }
     
@@ -113,18 +142,30 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
         let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
         
         
-        var candy : ConferencesSearch
-        // Check to see whether the normal table or search results table is being displayed and set the Candy object from the appropriate array
+        var conferencesRow : ConferencesSearch
+        // Check to see whether the normal table or search results table is being displayed and set the Conferences object from the appropriate array
         if tableView == self.searchDisplayController!.searchResultsTableView {
-            candy = filteredConferences[indexPath.row]
+            conferencesRow = filteredConferences[indexPath.row]
         } else {
-            println(indexPath.section)
-            candy = conferences[indexPath.row]
+            switch (indexPath.section) {
+            case 0:
+                conferencesRow = conferencesInTrack[indexPath.row]
+            case 1:
+                conferencesRow = conferencesInSection[indexPath.row]
+            case 2:
+                conferencesRow = conferencesInTalk[indexPath.row]
+            case 3:
+                conferencesRow = conferencesInRoom[indexPath.row]
+            default:
+                conferencesRow = conferences[indexPath.row]
+            }
+            
+            //conferencesRow = conferences[indexPath.row]
         }
         
         
         // Configure the cell
-        cell.textLabel?.text = candy.name
+        cell.textLabel?.text = conferencesRow.name
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         
         
