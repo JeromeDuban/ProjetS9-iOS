@@ -24,6 +24,7 @@ class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocati
 
         self.getConferencesFromAPI()
         self.getBeaconsFromAPI()
+        self.getTopologyFromAPI()
         self.updateData()
         navigationItem.title = "Home"
         
@@ -87,6 +88,21 @@ class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocati
     private func makeBeacons(json: AnyObject) {
         let jsonParsed: JSON = JSON(json)
         BeaconsModelBuilder.buildBeaconsFromJSON(jsonParsed)
+    }
+    
+    
+    
+    private func getTopologyFromAPI() {
+        let url = URLFactory.buildingWithMajorAPI(10)
+        JSONService
+            .GET(url)
+            .success{json in {self.makeTopology(json)} ~> { self.app.topologyJsonGot = true;}}
+            .failure(onFailure, queue: NSOperationQueue.mainQueue())
+    }
+    
+    private func makeTopology(json: AnyObject) {
+        let jsonParsed: JSON = JSON(json)
+        TopologyModelBuilder.buildTopologyFromJSON(jsonParsed)
     }
 
     

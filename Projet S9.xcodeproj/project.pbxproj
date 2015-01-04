@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		0317BCB61A277CE50032208E /* SwiftJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0317BCB51A277CE50032208E /* SwiftJSON.swift */; };
 		0317BCBC1A27F2450032208E /* ConferenceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0317BCBB1A27F2450032208E /* ConferenceTableViewController.swift */; };
+		038D97D81A594D5600F17382 /* TopologyModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038D97D71A594D5600F17382 /* TopologyModelBuilder.swift */; };
+		038D97DA1A594DF900F17382 /* Topology.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038D97D91A594DF900F17382 /* Topology.swift */; };
+		038D97DC1A5952D800F17382 /* Floor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038D97DB1A5952D800F17382 /* Floor.swift */; };
+		038D97DE1A59539700F17382 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038D97DD1A59539700F17382 /* Room.swift */; };
 		1E35388A1A3E35B2003EA851 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E3538891A3E35B2003EA851 /* CoreText.framework */; };
 		1E35388C1A3E35CF003EA851 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E35388B1A3E35CF003EA851 /* CoreImage.framework */; };
 		1E35388E1A3E35DD003EA851 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E35388D1A3E35DD003EA851 /* libxml2.dylib */; };
@@ -65,6 +69,10 @@
 /* Begin PBXFileReference section */
 		0317BCB51A277CE50032208E /* SwiftJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftJSON.swift; sourceTree = "<group>"; };
 		0317BCBB1A27F2450032208E /* ConferenceTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConferenceTableViewController.swift; sourceTree = "<group>"; };
+		038D97D71A594D5600F17382 /* TopologyModelBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopologyModelBuilder.swift; sourceTree = "<group>"; };
+		038D97D91A594DF900F17382 /* Topology.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Topology.swift; sourceTree = "<group>"; };
+		038D97DB1A5952D800F17382 /* Floor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Floor.swift; sourceTree = "<group>"; };
+		038D97DD1A59539700F17382 /* Room.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		1E3538891A3E35B2003EA851 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		1E35388B1A3E35CF003EA851 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		1E35388D1A3E35DD003EA851 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -411,6 +419,10 @@
 				1ECC94411A56F01E00F2AD88 /* Beacon.swift */,
 				1E38D7351A2B8D4400742800 /* ConferenceModelBuilder.swift */,
 				1ECC94451A56F7DB00F2AD88 /* BeaconsModelBuilder.swift */,
+				038D97D71A594D5600F17382 /* TopologyModelBuilder.swift */,
+				038D97D91A594DF900F17382 /* Topology.swift */,
+				038D97DB1A5952D800F17382 /* Floor.swift */,
+				038D97DD1A59539700F17382 /* Room.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -702,18 +714,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				038D97DC1A5952D800F17382 /* Floor.swift in Sources */,
 				1EBA50391A3CD9AD00894C4D /* MenuItem.swift in Sources */,
 				1ECC94441A56F49900F2AD88 /* Beacons.swift in Sources */,
 				1E38D7391A2BB3BB00742800 /* Operators.swift in Sources */,
 				1ECC94421A56F01E00F2AD88 /* Beacon.swift in Sources */,
 				1EC96AFE1A2B4059001B1065 /* Session.swift in Sources */,
 				1E82838F1A2535E600889E31 /* ECSlidingInteractiveTransition.m in Sources */,
+				038D97DA1A594DF900F17382 /* Topology.swift in Sources */,
 				0317BCB61A277CE50032208E /* SwiftJSON.swift in Sources */,
 				1E35392A1A3F09E9003EA851 /* MenuViewController.swift in Sources */,
 				1E3539291A3F09E3003EA851 /* MapViewController.swift in Sources */,
 				1E35389A1A3E3E44003EA851 /* HomeViewController.swift in Sources */,
 				1E38D7361A2B8D4400742800 /* ConferenceModelBuilder.swift in Sources */,
 				1EC96B001A2B415D001B1065 /* Talk.swift in Sources */,
+				038D97DE1A59539700F17382 /* Room.swift in Sources */,
 				0317BCBC1A27F2450032208E /* ConferenceTableViewController.swift in Sources */,
 				1E8283911A2535E600889E31 /* ECSlidingViewController.m in Sources */,
 				1E38D7401A2BB60F00742800 /* URLFactory.swift in Sources */,
@@ -722,6 +737,7 @@
 				1E38D73B1A2BB3D900742800 /* JSON.swift in Sources */,
 				1EC96AFC1A2B3B7E001B1065 /* Track.swift in Sources */,
 				1E38D73E1A2BB4A500742800 /* JSONService.swift in Sources */,
+				038D97D81A594D5600F17382 /* TopologyModelBuilder.swift in Sources */,
 				1E84C1BB1A471FD300180DF2 /* BaseViewController.swift in Sources */,
 				1E82838D1A2535E600889E31 /* ECPercentDrivenInteractiveTransition.m in Sources */,
 				1EC96AFA1A2B36C4001B1065 /* Conference.swift in Sources */,
