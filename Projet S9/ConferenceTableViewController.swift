@@ -20,7 +20,7 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
     var filteredConferences = [ConferencesSearch]()
     
     override func viewDidLoad() {
-        // Sample Data for candyArray
+        // Data
         
         let myConference: Conference = Conference.sharedInstance
         let myTopology: Topology = Topology.sharedInstance
@@ -97,13 +97,18 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
         return true
     }
     
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        // Return the number of sections.
+        return 1
+    }
+
 
     
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         //ask for a reusable cell from the tableview, the tableview will create a new one if it doesn't have any
-        let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell") as UITableViewCell
+        let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
         
         
         var candy : ConferencesSearch
@@ -111,6 +116,7 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
         if tableView == self.searchDisplayController!.searchResultsTableView {
             candy = filteredConferences[indexPath.row]
         } else {
+            println(indexPath.section)
             candy = conferences[indexPath.row]
         }
         
@@ -199,18 +205,50 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
         alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
         
+        
+        
 
     }
     
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as CustomHeaderCell
+        headerCell.backgroundColor = UIColor.grayColor()
         
-    
-    
-    
+        switch (section) {
+        case 0:
+            headerCell.headerLabel.text = "Track";
+            headerCell.headerLabel.textColor = UIColor.whiteColor();
+            //return sectionHeaderView
+        case 1:
+            headerCell.headerLabel.text = "Asia";
+            //return sectionHeaderView
+        case 2:
+            headerCell.headerLabel.text = "South America";
+            //return sectionHeaderView
+        default:
+            headerCell.headerLabel.text = "Other";
+        }
+        
+        return headerCell
+    }
    
     
+    
+}
 
+class CustomHeaderCell: UITableViewCell {
     
+    @IBOutlet var headerLabel: UILabel!
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
     
+    override func setSelected(selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        
+        // Configure the view for the selected state
+    }
     
 }
