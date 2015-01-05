@@ -230,7 +230,7 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
-        let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("MapAfterSearch") as UIViewController
+        let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("MapViewNavigation") as UIViewController
         self.navigationController?.setViewControllers([viewController], animated: false)
         
         
