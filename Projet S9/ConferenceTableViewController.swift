@@ -74,10 +74,12 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
                     
                 }
                 indexSessions += 1;
+                indexTalks = 0;
                 
             }
             
             indexTracks += 1;
+            indexSessions = 0;
             
         }
         
