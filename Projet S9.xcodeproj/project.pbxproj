@@ -10,6 +10,7 @@
 		0317BCB61A277CE50032208E /* SwiftJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0317BCB51A277CE50032208E /* SwiftJSON.swift */; };
 		0317BCBC1A27F2450032208E /* ConferenceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0317BCBB1A27F2450032208E /* ConferenceTableViewController.swift */; };
 		038B223A1A5B195A003095F8 /* CalendarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038B22391A5B195A003095F8 /* CalendarTableViewController.swift */; };
+		038B223C1A5B28C8003095F8 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038B223B1A5B28C8003095F8 /* CustomCell.swift */; };
 		038D97D81A594D5600F17382 /* TopologyModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038D97D71A594D5600F17382 /* TopologyModelBuilder.swift */; };
 		038D97DA1A594DF900F17382 /* Topology.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038D97D91A594DF900F17382 /* Topology.swift */; };
 		038D97DC1A5952D800F17382 /* Floor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038D97DB1A5952D800F17382 /* Floor.swift */; };
@@ -71,6 +72,7 @@
 		0317BCB51A277CE50032208E /* SwiftJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftJSON.swift; sourceTree = "<group>"; };
 		0317BCBB1A27F2450032208E /* ConferenceTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConferenceTableViewController.swift; sourceTree = "<group>"; };
 		038B22391A5B195A003095F8 /* CalendarTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarTableViewController.swift; sourceTree = "<group>"; };
+		038B223B1A5B28C8003095F8 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		038D97D71A594D5600F17382 /* TopologyModelBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopologyModelBuilder.swift; sourceTree = "<group>"; };
 		038D97D91A594DF900F17382 /* Topology.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Topology.swift; sourceTree = "<group>"; };
 		038D97DB1A5952D800F17382 /* Floor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Floor.swift; sourceTree = "<group>"; };
@@ -406,6 +408,7 @@
 				1E8283681A2534D000889E31 /* LaunchScreen.xib */,
 				0317BCBB1A27F2450032208E /* ConferenceTableViewController.swift */,
 				038B22391A5B195A003095F8 /* CalendarTableViewController.swift */,
+				038B223B1A5B28C8003095F8 /* CustomCell.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -724,6 +727,7 @@
 				1E38D7391A2BB3BB00742800 /* Operators.swift in Sources */,
 				1ECC94421A56F01E00F2AD88 /* Beacon.swift in Sources */,
 				1EC96AFE1A2B4059001B1065 /* Session.swift in Sources */,
+				038B223C1A5B28C8003095F8 /* CustomCell.swift in Sources */,
 				1E82838F1A2535E600889E31 /* ECSlidingInteractiveTransition.m in Sources */,
 				038D97DA1A594DF900F17382 /* Topology.swift in Sources */,
 				0317BCB61A277CE50032208E /* SwiftJSON.swift in Sources */,

@@ -274,16 +274,54 @@
         <scene sceneID="4o0-tS-TSn">
             <objects>
                 <tableViewController storyboardIdentifier="CalendarViewController" id="XIx-4c-4HW" userLabel="Calendar View Controller" customClass="CalendarTableViewController" customModule="Projet_S9" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="zyT-Lr-p2F">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="94" sectionHeaderHeight="22" sectionFooterHeight="22" id="zyT-Lr-p2F">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CellCalendar" id="avh-pw-Iqv">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CellCalendar" rowHeight="94" id="avh-pw-Iqv" customClass="CustomCell" customModule="Projet_S9" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="avh-pw-Iqv" id="0Hd-vj-Tbu">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="subject" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yc3-4Y-8QC">
+                                            <rect key="frame" x="119" y="8" width="481" height="58"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="room" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3fv-7J-hoH">
+                                            <rect key="frame" x="119" y="65" width="481" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="start_ts" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QXp-7N-1YO">
+                                            <rect key="frame" x="8" y="26" width="85" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="end_ts" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HUo-PV-D32">
+                                            <rect key="frame" x="8" y="64" width="85" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="centerX" secondItem="3fv-7J-hoH" secondAttribute="centerX" constant="-59.5" id="2v4-sl-AuQ"/>
+                                        <constraint firstAttribute="centerY" secondItem="3fv-7J-hoH" secondAttribute="centerY" constant="-28.5" id="QOf-xv-fXH"/>
+                                        <constraint firstAttribute="centerX" secondItem="Yc3-4Y-8QC" secondAttribute="centerX" constant="-59.5" id="mVJ-AR-b4Q"/>
+                                        <constraint firstAttribute="centerY" secondItem="Yc3-4Y-8QC" secondAttribute="centerY" constant="10" id="xnQ-aW-CGp"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="end_ts" destination="HUo-PV-D32" id="LtM-KE-Ufj"/>
+                                    <outlet property="room" destination="3fv-7J-hoH" id="ZT7-in-XGF"/>
+                                    <outlet property="start_ts" destination="QXp-7N-1YO" id="CTd-tO-02D"/>
+                                    <outlet property="subject" destination="Yc3-4Y-8QC" id="opb-2p-cmg"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -292,6 +330,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Calendar" id="LZw-7G-LHm"/>
+                    <connections>
+                        <outlet property="tracksTableView" destination="zyT-Lr-p2F" id="AB1-Ev-rcd"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qt6-Bp-tjL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
