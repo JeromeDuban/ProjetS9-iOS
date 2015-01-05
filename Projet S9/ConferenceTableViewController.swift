@@ -39,15 +39,17 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
         var indexCountSection: Int = 0;
         var indexCountTalk: Int = 0;
         var indexCountRoom: Int = 0;
+        var indexCountTrack: Int = 0;
         // Load the element in the tableview
 
         // Loop for tracks
-        while(indexTracks != myConference.tracks?.count){
+        while(indexTracks  != myConference.tracks?.count){
 
             // Insert track
             self.conferences.insert(ConferencesSearch(category:"Track", name:myConference.tracks![indexTracks].title.lowercaseString), atIndex: indexCount);
-            self.conferencesInTrack.insert(ConferencesSearch(category:"Track", name:myConference.tracks![indexTracks].title.lowercaseString), atIndex: indexCount);
+            self.conferencesInTrack.insert(ConferencesSearch(category:"Track", name:myConference.tracks![indexTracks].title.lowercaseString), atIndex: indexCountTrack);
             indexCount += 1;
+            indexCountTrack += 1;
             
             
             // Loop for sessions
@@ -74,6 +76,7 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
                 indexSessions += 1;
                 
             }
+            
             indexTracks += 1;
             
         }
