@@ -304,6 +304,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="QMC-ty-Jpz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.094117647060000004" green="0.35686274509999999" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="XIx-4c-4HW" kind="relationship" relationship="rootViewController" id="TTe-7E-a8d"/>
