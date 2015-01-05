@@ -115,9 +115,31 @@ class CalendarTableViewController : UITableViewController {
         
         // Configure the cell
         cell.setCell(calendar.title , room: "Room n°" + calendar.room , start_ts: String(calendar.start_ts), end_ts: String(calendar.end_ts))
+        cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         
         return cell;
     }
+    
+    
+    
+        override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+            self.performSegueWithIdentifier("calendarDetail", sender: tableView)
+        }
+    
+    @IBOutlet var titleSegue: NSLayoutConstraint!
+    
+        override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+            if segue.identifier == "calendarDetail" {
+                let calendarDetailViewController = segue.destinationViewController as UIViewController
+                let indexPath = self.tableView.indexPathForSelectedRow()!
+                let destinationTitle = self.calendar[indexPath.row].title
+                calendarDetailViewController.title = destinationTitle
+                
+
+                
+                
+            }
+        }
 
 
 
