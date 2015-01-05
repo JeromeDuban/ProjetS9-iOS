@@ -55,7 +55,7 @@ class CalendarTableViewController : UITableViewController {
         
         
         // Loop for tracks
-        while(indexTracks  != myConference.tracks?.count){  
+        while(indexTracks  != myConference.tracks?.count){
             // Loop for sessions
             while(indexSessions != myConference.tracks![indexTracks].sessions.count){
                 // Loop for talks
@@ -88,6 +88,9 @@ class CalendarTableViewController : UITableViewController {
             
         }
         
+        
+
+        
         // Reload the table
         self.tableView.reloadData()
     }
@@ -104,10 +107,14 @@ class CalendarTableViewController : UITableViewController {
 
         let cell: CustomCell = tableView.dequeueReusableCellWithIdentifier("CellCalendar") as CustomCell
         // Get the corresponding candy from our candies array
+        
         let calendar = self.calendar[indexPath.row]
         
+        
+        
+        
         // Configure the cell
-        cell.setCell(calendar.title , room: calendar.room , start_ts: "A", end_ts: "A")
+        cell.setCell(calendar.title , room: "Room n°" + calendar.room , start_ts: String(calendar.start_ts), end_ts: String(calendar.end_ts))
         
         return cell;
     }
