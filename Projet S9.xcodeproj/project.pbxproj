@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0317BCB61A277CE50032208E /* SwiftJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0317BCB51A277CE50032208E /* SwiftJSON.swift */; };
 		0317BCBC1A27F2450032208E /* ConferenceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0317BCBB1A27F2450032208E /* ConferenceTableViewController.swift */; };
+		038B223A1A5B195A003095F8 /* CalendarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038B22391A5B195A003095F8 /* CalendarTableViewController.swift */; };
 		038D97D81A594D5600F17382 /* TopologyModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038D97D71A594D5600F17382 /* TopologyModelBuilder.swift */; };
 		038D97DA1A594DF900F17382 /* Topology.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038D97D91A594DF900F17382 /* Topology.swift */; };
 		038D97DC1A5952D800F17382 /* Floor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038D97DB1A5952D800F17382 /* Floor.swift */; };
@@ -69,6 +70,7 @@
 /* Begin PBXFileReference section */
 		0317BCB51A277CE50032208E /* SwiftJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftJSON.swift; sourceTree = "<group>"; };
 		0317BCBB1A27F2450032208E /* ConferenceTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConferenceTableViewController.swift; sourceTree = "<group>"; };
+		038B22391A5B195A003095F8 /* CalendarTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarTableViewController.swift; sourceTree = "<group>"; };
 		038D97D71A594D5600F17382 /* TopologyModelBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopologyModelBuilder.swift; sourceTree = "<group>"; };
 		038D97D91A594DF900F17382 /* Topology.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Topology.swift; sourceTree = "<group>"; };
 		038D97DB1A5952D800F17382 /* Floor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Floor.swift; sourceTree = "<group>"; };
@@ -403,6 +405,7 @@
 				1E8283631A2534D000889E31 /* Main.storyboard */,
 				1E8283681A2534D000889E31 /* LaunchScreen.xib */,
 				0317BCBB1A27F2450032208E /* ConferenceTableViewController.swift */,
+				038B22391A5B195A003095F8 /* CalendarTableViewController.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -726,6 +729,7 @@
 				0317BCB61A277CE50032208E /* SwiftJSON.swift in Sources */,
 				1E35392A1A3F09E9003EA851 /* MenuViewController.swift in Sources */,
 				1E3539291A3F09E3003EA851 /* MapViewController.swift in Sources */,
+				038B223A1A5B195A003095F8 /* CalendarTableViewController.swift in Sources */,
 				1E35389A1A3E3E44003EA851 /* HomeViewController.swift in Sources */,
 				1E38D7361A2B8D4400742800 /* ConferenceModelBuilder.swift in Sources */,
 				1EC96B001A2B415D001B1065 /* Talk.swift in Sources */,
