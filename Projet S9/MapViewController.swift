@@ -20,6 +20,7 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
     var isLocationCentered: Bool = false
     var layerSet: Bool = false
     var lastPosition: CGPoint = CGPoint(x: 0.0, y: 0.0)
+    var dotLayer: CAShapeLayer?
     let app:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     
     override func viewDidLoad() {
@@ -117,24 +118,29 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
                 beaconsVectors.append(vector)
             }
         }
+        if beaconsVectors.count <= 0 {
+            return
+        }
+        
         let barycenter = self.computeBarycenter(beaconsVectors)
         
-        let shapeLayer:CAShapeLayer = CAShapeLayer(layer: self.svgMap!.layer)
         
         if !isLocationCentered {
             let rect: CGRect = CGRectMake(barycenter.x - 150, barycenter.y - 150, 300, 300)
             self.svgScrollView.zoomToRect(rect, animated: true)
             
+            self.dotLayer = CAShapeLayer(layer: self.svgMap!.layer)
             self.lastPosition = barycenter
-            self.makeCircleAtLocation(barycenter, radius: 10.0, layer: shapeLayer)
-            self.svgMap!.layer.addSublayer(shapeLayer)
+            self.makeCircleAtLocation(barycenter, radius: 10.0, layer: self.dotLayer!)
+            self.svgMap!.layer.addSublayer(self.dotLayer)
             self.svgMap!.setNeedsDisplay()
             
             self.isLocationCentered = true
         }
         let newPosition: CGPoint = CGPoint(x: barycenter.x - self.lastPosition.x, y: barycenter.y - self.lastPosition.y)
-        shapeLayer.position = newPosition
-//        self.moveLayer(shapeLayer, point: barycenter)
+        
+        self.dotLayer!.position = newPosition
+//        self.moveLayer(self.dotLayer!, point: barycenter)
         self.lastPosition = barycenter
         self.svgMap!.setNeedsDisplay()
     }
@@ -151,26 +157,30 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
         let outerCirclePath: UIBezierPath = UIBezierPath(arcCenter: location, radius: radius, startAngle: 0.0, endAngle: CGFloat(M_PI*2.0), clockwise: true)
         let innerCirclePath: UIBezierPath = UIBezierPath(arcCenter: location, radius: 1, startAngle: 0.0, endAngle: CGFloat(M_PI*2.0), clockwise: true)
         outerCirclePath.appendPath(innerCirclePath)
-        outerCirclePath.usesEvenOddFillRule = true
+//        outerCirclePath.usesEvenOddFillRule = false
         
         layer.path = outerCirclePath.CGPath
-        layer.strokeColor = UIColor.redColor().CGColor
-        layer.fillRule = kCAFillRuleEvenOdd
-        layer.fillColor = UIColor.grayColor().CGColor
-        layer.opacity = 0.5
-        layer.lineWidth = 1.0
+        layer.strokeColor = UIColor.blueColor().CGColor
+//        layer.fillRule = kCAFillRuleEvenOdd
+        layer.fillColor = UIColor.blueColor().CGColor
+        layer.opacity = 0.2
+        layer.lineWidth = 5.0
     }
     
     func getVectorWeigth(beacon:CLBeacon) -> CGFloat {
+        var distance:CGFloat = 1.0
+        if beacon.accuracy > 0 {
+            distance = CGFloat(beacon.accuracy)
+        }
         switch beacon.proximity {
         case CLProximity.Far:
-            return CGFloat(1)
+            return CGFloat(1)/distance
         case CLProximity.Near:
-            return CGFloat(2)
+            return CGFloat(2)/distance
         case CLProximity.Immediate:
-            return CGFloat(3)
+            return CGFloat(3)/distance
         case CLProximity.Unknown:
-            return CGFloat(1)
+            return CGFloat(1)/distance
         }
     }
     
@@ -179,7 +189,6 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
         let newPosition: CGPoint = CGPoint(x: point.x - self.lastPosition.x, y: point.y - self.lastPosition.y)
         animation.fromValue = layer.valueForKey("position")
         animation.toValue = NSValue(CGPoint: newPosition)
-        animation.duration = 2
         layer.position = newPosition
         layer.addAnimation(animation, forKey: "position")
     }

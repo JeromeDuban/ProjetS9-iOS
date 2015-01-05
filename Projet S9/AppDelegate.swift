@@ -92,7 +92,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
     
     func configureBeacon() {
-        let uuidString = "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0"
+        let uuidString = "3D4F13B4-D1FD-4049-80E5-D3EDCC840B6A"
         let beaconIdentifier = "eirBeacon"
         let beaconUUID:NSUUID = NSUUID(UUIDString: uuidString)!
         let beaconRegion:CLBeaconRegion = CLBeaconRegion(proximityUUID: beaconUUID,
