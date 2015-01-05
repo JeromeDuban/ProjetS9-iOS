@@ -11,7 +11,7 @@ import UIKit
 class MenuViewController: UITableViewController {
     
     
-    var menuItems = [MenuItem(title: "Home", identifier: "HomeViewNavigation", image: UIImage(named: "Home")!), MenuItem(title: "Map", identifier: "MapViewNavigation", image: UIImage(named: "Map")!)]
+    var menuItems = [MenuItem(title: "Home", identifier: "HomeViewNavigation", image: UIImage(named: "Home")!), MenuItem(title: "Map", identifier: "MapViewNavigation", image: UIImage(named: "Map")!),MenuItem(title: "Calendar", identifier: "MapViewNavigation", image: UIImage(named: "Calendar")!)]
     
     override func viewDidLoad() {
         super.viewDidLoad()
