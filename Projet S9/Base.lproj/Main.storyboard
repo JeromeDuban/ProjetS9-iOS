@@ -291,23 +291,32 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="room" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3fv-7J-hoH">
-                                            <rect key="frame" x="119" y="61" width="481" height="21"/>
+                                            <rect key="frame" x="119" y="59" width="481" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="end_ts" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HUo-PV-D32">
-                                            <rect key="frame" x="8" y="61" width="85" height="21"/>
+                                            <rect key="frame" x="8" y="59" width="85" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="start_ts" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QXp-7N-1YO">
-                                            <rect key="frame" x="8" y="18" width="85" height="21"/>
+                                            <rect key="frame" x="8" y="12" width="85" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lfz-k0-hCp">
+                                            <rect key="frame" x="80" y="12" width="7" height="64.5"/>
+                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="sx4-iZ-RXL">
+                                                <rect key="frame" x="0.0" y="0.0" width="7" height="64.5"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            </view>
+                                            <blurEffect style="light"/>
+                                        </visualEffectView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="centerX" secondItem="3fv-7J-hoH" secondAttribute="centerX" constant="-59.5" id="2v4-sl-AuQ"/>
@@ -337,7 +346,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qt6-Bp-tjL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1086" y="1840"/>
+            <point key="canvasLocation" x="1086" y="1836"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="eh0-Gt-ZKX">
