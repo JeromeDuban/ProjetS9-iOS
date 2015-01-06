@@ -110,14 +110,27 @@ class CalendarTableViewController : UITableViewController {
         
         let calendar = self.calendar[indexPath.row]
         
+
         
         
         
         // Configure the cell
-        cell.setCell(calendar.title , room: "Room n°" + calendar.room , start_ts: String(calendar.start_ts), end_ts: String(calendar.end_ts))
+        cell.setCell(calendar.title , room: "Room n°" + calendar.room , start_ts: getTime(calendar.start_ts), end_ts: getTime(calendar.end_ts))
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         
         return cell;
+    }
+    
+    func getTime(var date: Int)-> String{
+        var respondedDate = Double(date);
+        var date = NSDate(timeIntervalSince1970: respondedDate);
+        let calendarBis = NSCalendar.currentCalendar()
+        let comp = calendarBis.components((.HourCalendarUnit | .MinuteCalendarUnit), fromDate: date)
+        let hour = comp.hour
+        let minute = comp.minute
+        
+
+        return String(hour) + "h" + String(minute);
     }
     
     
