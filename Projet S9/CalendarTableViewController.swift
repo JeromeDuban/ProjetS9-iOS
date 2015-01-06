@@ -115,7 +115,7 @@ class CalendarTableViewController : UITableViewController {
         
         
         // Configure the cell
-        cell.setCell(calendar.title , room: "Room n°" + calendar.room , start_ts: getTime(calendar.start_ts), end_ts: getTime(calendar.end_ts))
+        cell.setCell(calendar.title , room: "Room n°" + calendar.room , start_ts: getTime(calendar.start_ts), end_ts: getTime(calendar.end_ts), color: UIColor.greenColor())
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         
         return cell;

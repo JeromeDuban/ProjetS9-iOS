@@ -15,6 +15,7 @@ class CustomCell: UITableViewCell {
     @IBOutlet var room: UILabel!
     @IBOutlet var start_ts: UILabel!
     @IBOutlet var end_ts: UILabel!
+    @IBOutlet var verticalBar: UIVisualEffectView!
     
     
     override func awakeFromNib() {
@@ -29,11 +30,12 @@ class CustomCell: UITableViewCell {
     }
     
     
-    func setCell(subject: String, room: String, start_ts: String, end_ts: String){
+    func setCell(subject: String, room: String, start_ts: String, end_ts: String, color: UIColor){
         self.subject.text   = subject;
         self.room.text      = room;
         self.start_ts.text  = start_ts;
         self.end_ts.text    = end_ts;
+        self.verticalBar.backgroundColor = color;
     }
     
 

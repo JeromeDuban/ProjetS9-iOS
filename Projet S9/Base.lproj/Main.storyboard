@@ -309,11 +309,10 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lfz-k0-hCp">
-                                            <rect key="frame" x="80" y="12" width="7" height="64.5"/>
+                                            <rect key="frame" x="80" y="12" width="4" height="64.5"/>
                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="sx4-iZ-RXL">
-                                                <rect key="frame" x="0.0" y="0.0" width="7" height="64.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="4" height="64.5"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                             </view>
                                             <blurEffect style="light"/>
                                         </visualEffectView>
@@ -330,6 +329,7 @@
                                     <outlet property="room" destination="3fv-7J-hoH" id="ZT7-in-XGF"/>
                                     <outlet property="start_ts" destination="QXp-7N-1YO" id="CTd-tO-02D"/>
                                     <outlet property="subject" destination="Yc3-4Y-8QC" id="opb-2p-cmg"/>
+                                    <outlet property="verticalBar" destination="Lfz-k0-hCp" id="K1y-xE-AnL"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
