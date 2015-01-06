@@ -36,6 +36,8 @@ class CustomCell: UITableViewCell {
         self.start_ts.text  = start_ts;
         self.end_ts.text    = end_ts;
         self.verticalBar.backgroundColor = color;
+        self.end_ts.textColor = UIColor.grayColor()
+        self.room.textColor = UIColor.grayColor()
     }
     
 
