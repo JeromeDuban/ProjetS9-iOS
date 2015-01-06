@@ -658,7 +658,6 @@
 				TargetAttributes = {
 					1E8283591A2534D000889E31 = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = 2HJ8264T2G;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -667,7 +666,6 @@
 					};
 					1E82836E1A2534D000889E31 = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = 2HJ8264T2G;
 						TestTargetID = 1E8283591A2534D000889E31;
 					};
 				};
