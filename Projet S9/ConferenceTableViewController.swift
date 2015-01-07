@@ -42,6 +42,8 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
         var indexCountTrack: Int = 0;
         // Load the element in the tableview
 
+        
+        if(myConference.tracks?.count != nil){
         // Loop for tracks
         while(indexTracks  != myConference.tracks?.count){
 
@@ -82,7 +84,9 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
             indexSessions = 0;
             
         }
+        }
         
+        if(myTopology.floors?.count != nil){
         //Insert Rooms' name
         while(indexFloors != myTopology.floors?.count){
             
@@ -97,6 +101,7 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
             }
             
             indexFloors += 1;
+        }
         }
         
         

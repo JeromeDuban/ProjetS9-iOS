@@ -47,13 +47,14 @@ class CalendarTableViewController : UITableViewController {
         var indexTracks: Int = 0;
         var indexSessions: Int = 0;
         var indexTalks: Int = 0;
-        
+        //calendar = [];
         
         
 //        // Sample Data for candyArray
 //        self.calendar = [Calendar(session: "Telecommunication", start_ts: 1421829000, end_ts: 1421830800, speaker: "Hello My name is", abstract: "Quelques challenges en imagerie" , body: "BlablablablaBlablablabla" , title: "Sujet n°1", room: "I002")]
         
-        
+        println(myConference.tracks?.count)
+        if(myConference.tracks?.count != nil){
         // Loop for tracks
         while(indexTracks  != myConference.tracks?.count){
             // Loop for sessions
@@ -86,6 +87,7 @@ class CalendarTableViewController : UITableViewController {
             indexSessions = 0;
             indexTracks += 1;
             
+        }
         }
         
         
