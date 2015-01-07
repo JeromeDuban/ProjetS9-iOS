@@ -390,6 +390,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="lhr-ss-ThX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.10980392160000001" green="0.46274509800000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="MtF-yN-pqn" kind="relationship" relationship="rootViewController" id="RPN-I3-8ma"/>
@@ -399,10 +400,10 @@
             </objects>
             <point key="canvasLocation" x="266" y="2598"/>
         </scene>
-        <!--View Controller-->
+        <!--Calendar Table View Controller Bis-->
         <scene sceneID="LOV-2n-g4Q">
             <objects>
-                <viewController id="MtF-yN-pqn" sceneMemberID="viewController">
+                <viewController id="MtF-yN-pqn" customClass="CalendarTableViewControllerBis" customModule="Projet_S9" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gJk-7Q-0iG"/>
                         <viewControllerLayoutGuide type="bottom" id="pxA-Ii-vk2"/>
@@ -413,10 +414,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="AdH-rA-uWg"/>
+                    <connections>
+                        <segue destination="cw9-3G-bQW" kind="unwind" identifier="calendarUnwindSegueToMenu" unwindAction="unwindToMenuViewController:" id="rCx-MJ-IKW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BgC-aY-Ml6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="cw9-3G-bQW" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="992" y="2598"/>
+            <point key="canvasLocation" x="1016" y="2598"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="fSc-28-zfv">
