@@ -412,33 +412,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="88" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gG0-zS-4bb">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="52" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gG0-zS-4bb">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CellCalendar" rowHeight="88" id="AK6-Hs-Mv9" customClass="CustomCell" customModule="Projet_S9" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CellCalendarBis" rowHeight="52" id="AK6-Hs-Mv9" customClass="CustomCell" customModule="Projet_S9" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AK6-Hs-Mv9" id="cNW-aD-WSC">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="start_ts" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Smw-cf-kP8">
-                                                    <rect key="frame" x="15" y="8" width="92" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lRl-OM-Df6">
+                                                    <rect key="frame" x="96" y="16" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="toto" destination="lRl-OM-Df6" id="LRR-7E-87a"/>
+                                            <segue destination="OOR-a5-igh" kind="show" identifier="calendarDetail" id="kIh-dv-qDH"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="MtF-yN-pqn" id="lzh-VO-89H"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="AdH-rA-uWg"/>
                     <connections>
-                        <outlet property="tableView" destination="gG0-zS-4bb" id="ceN-aA-GES"/>
+                        <outlet property="tableView" destination="gG0-zS-4bb" id="N7X-rY-IHi"/>
                         <segue destination="cw9-3G-bQW" kind="unwind" identifier="calendarUnwindSegueToMenu" unwindAction="unwindToMenuViewController:" id="rCx-MJ-IKW"/>
                     </connections>
                 </viewController>
@@ -446,6 +453,24 @@
                 <exit id="cw9-3G-bQW" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1016" y="2598"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="hCN-Bb-XKW">
+            <objects>
+                <viewController id="OOR-a5-igh" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ogv-wB-xec"/>
+                        <viewControllerLayoutGuide type="bottom" id="4BU-Bw-U9i"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bmc-Os-kfW">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hXG-hj-hlI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1680" y="2598"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="fSc-28-zfv">

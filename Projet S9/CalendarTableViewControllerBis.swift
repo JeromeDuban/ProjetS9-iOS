@@ -11,7 +11,8 @@ import Foundation
 
 class CalendarTableViewControllerBis : BaseViewController, UITableViewDelegate,UITableViewDataSource   {
 
-    @IBOutlet var tableView: UITableView!
+
+    @IBOutlet weak var tableView: UITableView!
 
     var items: [String] = ["We", "Heart", "Swift"]
     
@@ -21,8 +22,12 @@ class CalendarTableViewControllerBis : BaseViewController, UITableViewDelegate,U
         super.viewDidLoad()
  
         navigationItem.title = "Calendar"
-        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "CellCalendar")
+       // self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        //self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        //var nib = UINib(nibName: "CustomCell", bundle: nil);
+
         
+        //self.tableView.registerClass(CustomCell.self, forCellReuseIdentifier: "CellCalendarBis")
     }
     
     
@@ -30,23 +35,51 @@ class CalendarTableViewControllerBis : BaseViewController, UITableViewDelegate,U
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
+
+    
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.items.count;
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-        var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("CellCalendar") as UITableViewCell
-        
-        cell.textLabel?.text = self.items[indexPath.row]
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        //var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
+
+        var cell: CustomCell = tableView.dequeueReusableCellWithIdentifier("CellCalendarBis", forIndexPath: indexPath) as CustomCell
+        //cell.textLabel?.text = self.items[indexPath.row]
+
+
+        println(self.items[indexPath.row])
+        cell.setCell( self.items[indexPath.row], room: "Room n°"  , start_ts: "", end_ts: "", color: UIColor.greenColor())
+        cell.setCellBis(self.items[indexPath.row])
+        cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator;
         
         return cell
-        
-        //return UITableViewCell()
     }
     
+//    func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+//        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+//        println("You selected cell #\(indexPath.row)!")
+//    }
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        self.performSegueWithIdentifier("calendarDetail", sender: tableView)
+    }
+    
+    @IBOutlet var titleSegue: NSLayoutConstraint!
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if segue.identifier == "calendarDetail" {
+            let calendarDetailViewController = segue.destinationViewController as UIViewController
+            let indexPath = self.tableView.indexPathForSelectedRow()!
+            let destinationTitle = self.items[Ca]
+            calendarDetailViewController.title = destinationTitle
+            
+            
+            
+            
+        }
     }
     
 
