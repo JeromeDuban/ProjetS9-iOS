@@ -73,7 +73,7 @@ class CalendarTableViewControllerBis : BaseViewController, UITableViewDelegate,U
         if segue.identifier == "calendarDetail" {
             let calendarDetailViewController = segue.destinationViewController as UIViewController
             let indexPath = self.tableView.indexPathForSelectedRow()!
-            let destinationTitle = self.items[Ca]
+            let destinationTitle = self.items[indexPath.row];
             calendarDetailViewController.title = destinationTitle
             
             
