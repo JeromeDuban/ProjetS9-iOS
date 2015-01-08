@@ -17,9 +17,10 @@ struct Calendar {
     let body: String
     let title : String
     let room: String
+    let colorBar: UIColor
     
     
-    init(session: String, start_ts: Int, end_ts:Int, speaker: String, abstract: String, body: String, title: String, room: String){
+    init(session: String, start_ts: Int, end_ts:Int, speaker: String, abstract: String, body: String, title: String, room: String, colorBar: UIColor){
         self.session    = session;
         self.start_ts   = start_ts;
         self.end_ts     = end_ts;
@@ -28,6 +29,7 @@ struct Calendar {
         self.body       = body;
         self.title      = title;
         self.room       = room;
+        self.colorBar   = colorBar;
     }
 }
 
@@ -73,7 +75,7 @@ class CalendarTableViewController : UITableViewController {
                     let title : String = myConference.tracks![indexTracks].sessions[indexSessions].talks[indexTalks].title
                     let room: String = String(myConference.tracks![indexTracks].sessions[indexSessions].room_id)
                     
-                    self.calendar.insert(Calendar(session: String(session), start_ts: start_ts, end_ts: end_ts, speaker: speaker, abstract: abstract, body: body, title: title, room: room) , atIndex: indexCount);
+                    self.calendar.insert(Calendar(session: String(session), start_ts: start_ts, end_ts: end_ts, speaker: speaker, abstract: abstract, body: body, title: title, room: room, colorBar: UIColor.whiteColor()) , atIndex: indexCount);
                     
                     indexCount += 1;
                     indexTalks += 1;

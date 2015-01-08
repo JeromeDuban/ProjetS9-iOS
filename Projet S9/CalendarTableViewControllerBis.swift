@@ -47,7 +47,7 @@ class CalendarTableViewControllerBis : BaseViewController, UITableViewDelegate,U
             // Loop for tracks
             while(indexTracks  != myConference.tracks?.count){
                 // Loop for sessions
-
+                var myColorTrack: UIColor = getRandomColor();
                 while(indexSessions != myConference.tracks![indexTracks].sessions.count){
                     // Loop for talks
                     
@@ -63,7 +63,7 @@ class CalendarTableViewControllerBis : BaseViewController, UITableViewDelegate,U
                         let title : String = myConference.tracks![indexTracks].sessions[indexSessions].talks[indexTalks].title
                         let room: String = String(myConference.tracks![indexTracks].sessions[indexSessions].room_id)
                         
-                        self.calendar.insert(Calendar(session: String(session), start_ts: start_ts, end_ts: end_ts, speaker: speaker, abstract: abstract, body: body, title: title, room: room) , atIndex: indexCount);
+                        self.calendar.insert(Calendar(session: String(session), start_ts: start_ts, end_ts: end_ts, speaker: speaker, abstract: abstract, body: body, title: title, room: room, colorBar: myColorTrack) , atIndex: indexCount);
                         
                         indexCount += 1;
                         indexTalks += 1;
@@ -105,7 +105,7 @@ class CalendarTableViewControllerBis : BaseViewController, UITableViewDelegate,U
         let calendar = self.calendarOrder[indexPath.row]
 
         //cell.setCell( calendar.title, room: "Room n°"  , start_ts: "", end_ts: "", color: UIColor.greenColor())
-        cell.setCell(calendar.title , room: "Room n°" + calendar.room , start_ts: getTime(calendar.start_ts), end_ts: getTime(calendar.end_ts), color: UIColor.greenColor())
+        cell.setCell(calendar.title , room: "Room n°" + calendar.room , start_ts: getTime(calendar.start_ts), end_ts: getTime(calendar.end_ts), color: calendar.colorBar)
         //cell.setCellBis(self.items[indexPath.row])
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator;
         
