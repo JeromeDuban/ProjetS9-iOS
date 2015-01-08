@@ -13,17 +13,17 @@ class URLFactory {
     
     class func conferenceWithMajorAPI(major:NSNumber) -> NSURL {
         let stringMajor:String = String(Int(major))
-        return NSURL(string: "http://jfoucault.vvv.enseirb-matmeca.fr/Conference_"+stringMajor+".json")!
+        return NSURL(string: "https://gist.githubusercontent.com/frco9/95a6ef89c7d4d4e72c82/raw/7e42130fd1051dcfb29f989a6f1cac1fcb7f3046/Conference_"+stringMajor+".json")!
     }
     
     class func buildingWithMajorAPI(major:NSNumber) -> NSURL {
         let stringMajor:String = String(Int(major))
-        return NSURL(string: "http://jfoucault.vvv.enseirb-matmeca.fr/Topology_"+stringMajor+".json")!
+        return NSURL(string: "https://gist.githubusercontent.com/frco9/3670e5e353aadea2c417/raw/7ae27e0ac33388cfbc35107e802feeaf51535c18/Topology_"+stringMajor+".json")!
     }
     
     
     class func beaconsAPI() -> NSURL {
-        return NSURL(string: "http://jfoucault.vvv.enseirb-matmeca.fr/Beacons.json")!
+        return NSURL(string: "https://gist.githubusercontent.com/frco9/2004da788773a4aa7e04/raw/d0617a83eb45b65e08f5f48bf5e4e3696eaec0f1/Beacons.json")!
     }
     
     
