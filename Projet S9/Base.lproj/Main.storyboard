@@ -466,6 +466,10 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Sw-gU-5Bp">
+                                                    <rect key="frame" x="82" y="4" width="3" height="44"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                </view>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
@@ -473,6 +477,7 @@
                                             <outlet property="room" destination="Pa1-sC-H92" id="J0A-k6-QqD"/>
                                             <outlet property="start_ts" destination="NEQ-IU-JYW" id="Y1l-xj-s3Q"/>
                                             <outlet property="subject" destination="ypf-M6-fTB" id="LXn-Sl-2SG"/>
+                                            <outlet property="verticalBar" destination="1Sw-gU-5Bp" id="LMm-nu-lWJ"/>
                                             <segue destination="OOR-a5-igh" kind="show" identifier="calendarDetail" id="kIh-dv-qDH"/>
                                         </connections>
                                     </tableViewCell>
