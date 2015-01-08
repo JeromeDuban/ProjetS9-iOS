@@ -15,6 +15,8 @@ class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocati
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var startDayLabel: UILabel!
     @IBOutlet weak var endDayLabel: UILabel!
+    @IBOutlet weak var conferenceSubView: UIView!
+    @IBOutlet weak var noConferenceSubView: UIView!
     
     let app:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     
@@ -25,7 +27,12 @@ class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocati
         self.getConferencesFromAPI()
         self.getBeaconsFromAPI()
         self.getTopologyFromAPI()
-        self.updateData()
+        self.conferenceSubView.hidden = true
+        if app.lastBeacons?.count > 0 {
+            self.updateData()
+            self.conferenceSubView.hidden = false
+            self.noConferenceSubView.hidden = true
+        }
         navigationItem.title = "Home"
         
         
@@ -50,6 +57,8 @@ class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocati
             self.app.lastMajor = nearestBeacon.major
         }
         self.updateData()
+        self.conferenceSubView.hidden = false
+        self.noConferenceSubView.hidden = true
     }
     
     func updateData() {
