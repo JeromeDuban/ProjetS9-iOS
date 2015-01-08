@@ -186,12 +186,7 @@ class CalendarTableViewControllerBis : BaseViewController, UITableViewDelegate,U
 
 class CalendarAfterSegueViewController: UIViewController {
     
-    @IBOutlet weak var date_day: UILabel!
-    
-    @IBOutlet weak var date_hour: UILabel!
-    @IBOutlet weak var room: UILabel!
-    @IBOutlet weak var abstractText: UILabel!
-    @IBOutlet weak var speaker: UILabel!
+   
 
 
     var receiveDateDay: String = "";
@@ -204,11 +199,11 @@ class CalendarAfterSegueViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
-        date_day.text = receiveDateDay;
-        date_hour.text = receiveDateHour;
-        abstractText.text = receiveAbstract;
-        speaker.text = receiveSpeaker;
-        room.text = "Room n°" + receiveRoom;
+//        date_day.text = receiveDateDay;
+//        date_hour.text = receiveDateHour;
+//        abstractText.text = receiveAbstract;
+//        speaker.text = receiveSpeaker;
+//        room.text = "Room n°" + receiveRoom;
 
         
     }
