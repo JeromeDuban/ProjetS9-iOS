@@ -19,6 +19,8 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
         self.view.addGestureRecognizer(self.slidingViewController().panGesture)
         
         var menuIcon: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "MenuIcon"), style:UIBarButtonItemStyle.Plain, target:self, action:"menuButtonAction")
+        menuIcon.tintColor = UIColor.whiteColor();
+        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor();
         
         navigationItem.leftBarButtonItem = menuIcon;
     }
