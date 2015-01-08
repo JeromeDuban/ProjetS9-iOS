@@ -140,7 +140,6 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
         let newPosition: CGPoint = CGPoint(x: barycenter.x - self.lastPosition.x, y: barycenter.y - self.lastPosition.y)
         
         self.dotLayer!.position = newPosition
-//        self.moveLayer(self.dotLayer!, point: barycenter)
         self.lastPosition = barycenter
         self.svgMap!.setNeedsDisplay()
     }
@@ -157,11 +156,9 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
         let outerCirclePath: UIBezierPath = UIBezierPath(arcCenter: location, radius: radius, startAngle: 0.0, endAngle: CGFloat(M_PI*2.0), clockwise: true)
         let innerCirclePath: UIBezierPath = UIBezierPath(arcCenter: location, radius: 1, startAngle: 0.0, endAngle: CGFloat(M_PI*2.0), clockwise: true)
         outerCirclePath.appendPath(innerCirclePath)
-//        outerCirclePath.usesEvenOddFillRule = false
         
         layer.path = outerCirclePath.CGPath
         layer.strokeColor = UIColor.blueColor().CGColor
-//        layer.fillRule = kCAFillRuleEvenOdd
         layer.fillColor = UIColor.blueColor().CGColor
         layer.opacity = 0.2
         layer.lineWidth = 5.0
@@ -184,15 +181,6 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
         }
     }
     
-    func moveLayer(layer:CAShapeLayer, point:CGPoint) {
-        let animation: CABasicAnimation = CABasicAnimation(keyPath: "position")
-        let newPosition: CGPoint = CGPoint(x: point.x - self.lastPosition.x, y: point.y - self.lastPosition.y)
-        animation.fromValue = layer.valueForKey("position")
-        animation.toValue = NSValue(CGPoint: newPosition)
-        layer.position = newPosition
-        layer.addAnimation(animation, forKey: "position")
-    }
-    
     func computeBarycenter(vectors: [(coordinate:CGPoint, weigth:CGFloat)]) -> CGPoint {
         var xG:CGFloat = 0.0
         var xGWeigth: CGFloat = 0.0
@@ -206,6 +194,16 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
         }
         xG /= xGWeigth
         yG /= yGWeigth
+        
+        // Check if this center is realistic
+//        if abs(xG - self.lastPosition.x) > 50 && abs(yG - self.lastPosition.y) > 50 {
+//            return self.lastPosition
+//        }
+        
+        // Avarage with the last barycenter
+        xG = (xG + self.lastPosition.x) / 2
+        yG = (yG + self.lastPosition.y) / 2
+        
         return CGPoint(x: xG, y: yG)
     }
 
