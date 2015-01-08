@@ -126,6 +126,19 @@ class CalendarTableViewControllerBis : BaseViewController, UITableViewDelegate,U
         return String(hour) + "h" + String(minute);
     }
     
+    func getDay(var date: Int)-> String{
+        var respondedDate = Double(date);
+        var date = NSDate(timeIntervalSince1970: respondedDate);
+        let calendarBis = NSCalendar.currentCalendar()
+        let comp = calendarBis.components((.HourCalendarUnit | .MinuteCalendarUnit), fromDate: date)
+        let hour = comp.hour
+        let minute = comp.minute
+        let day = comp.day
+        
+        
+        return String(day);
+    }
+    
     func getRandomColor() -> UIColor{
         
         var randomRed:CGFloat = CGFloat(drand48())
@@ -147,17 +160,57 @@ class CalendarTableViewControllerBis : BaseViewController, UITableViewDelegate,U
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if segue.identifier == "calendarDetail" {
-            let calendarDetailViewController = segue.destinationViewController as UIViewController
+//            let calendarDetailViewController = segue.destinationViewController as UIViewController
+//            let indexPath = self.tableView.indexPathForSelectedRow()!
+//            let destinationTitle = self.calendarOrder[indexPath.row].title;
+//            calendarDetailViewController.title = destinationTitle
+            
+            let calendarDetailViewController: CalendarAfterSegueViewController = segue.destinationViewController as CalendarAfterSegueViewController
             let indexPath = self.tableView.indexPathForSelectedRow()!
             let destinationTitle = self.calendarOrder[indexPath.row].title;
             calendarDetailViewController.title = destinationTitle
+            calendarDetailViewController.receiveDateDay = getDay(self.calendarOrder[indexPath.row].start_ts);
             
             
-            
-            
+            calendarDetailViewController.receiveDateHour = getTime(self.calendarOrder[indexPath.row].start_ts) + " - " + getTime(self.calendarOrder[indexPath.row].end_ts);
+            calendarDetailViewController.receiveAbstract = self.calendarOrder[indexPath.row].abstract;
+            calendarDetailViewController.receiveSpeaker = self.calendarOrder[indexPath.row].speaker;
+            calendarDetailViewController.receiveRoom = self.calendarOrder[indexPath.row].room;
         }
     }
     
 
 
+}
+
+
+class CalendarAfterSegueViewController: UIViewController {
+    
+    @IBOutlet weak var date_day: UILabel!
+    
+    @IBOutlet weak var date_hour: UILabel!
+    @IBOutlet weak var room: UILabel!
+    @IBOutlet weak var abstractText: UILabel!
+    @IBOutlet weak var speaker: UILabel!
+
+
+    var receiveDateDay: String = "";
+    var receiveDateHour: String = "";
+    var receiveAbstract: String = "";
+    var receiveSpeaker: String = "";
+    var receiveRoom: String = "";
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do view setup here.
+        date_day.text = receiveDateDay;
+        date_hour.text = receiveDateHour;
+        abstractText.text = receiveAbstract;
+        speaker.text = receiveSpeaker;
+        room.text = "Room n°" + receiveRoom;
+
+        
+    }
+    
 }
