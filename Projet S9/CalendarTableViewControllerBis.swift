@@ -14,8 +14,9 @@ class CalendarTableViewControllerBis : BaseViewController, UITableViewDelegate,U
 
     @IBOutlet weak var tableView: UITableView!
 
-    var items: [String] = ["We", "Heart", "Swift"]
     var calendar = [Calendar]()
+    var calendarOrder = [Calendar]()
+
     
     
     override func viewDidLoad() {
@@ -41,10 +42,7 @@ class CalendarTableViewControllerBis : BaseViewController, UITableViewDelegate,U
         //calendar = [];
         
         
-        //        // Sample Data for candyArray
-        //        self.calendar = [Calendar(session: "Telecommunication", start_ts: 1421829000, end_ts: 1421830800, speaker: "Hello My name is", abstract: "Quelques challenges en imagerie" , body: "BlablablablaBlablablabla" , title: "Sujet n°1", room: "I002")]
-        
-        println(myConference.tracks?.count)
+
         if(myConference.tracks?.count != nil){
             // Loop for tracks
             while(indexTracks  != myConference.tracks?.count){
@@ -80,6 +78,8 @@ class CalendarTableViewControllerBis : BaseViewController, UITableViewDelegate,U
                 
             }
         }
+        calendarOrder = calendar.sorted({ $0.start_ts < $1.start_ts})
+        
     }
     
     
@@ -100,8 +100,9 @@ class CalendarTableViewControllerBis : BaseViewController, UITableViewDelegate,U
 
         var cell: CustomCell = tableView.dequeueReusableCellWithIdentifier("CellCalendarBis", forIndexPath: indexPath) as CustomCell
         //cell.textLabel?.text = self.items[indexPath.row]
-        let calendar = self.calendar[indexPath.row]
-
+        println(calendarOrder)
+        let calendar = self.calendarOrder[indexPath.row]
+        println(calendar.title)
         //cell.setCell( calendar.title, room: "Room n°"  , start_ts: "", end_ts: "", color: UIColor.greenColor())
         cell.setCell(calendar.title , room: "Room n°" + calendar.room , start_ts: getTime(calendar.start_ts), end_ts: getTime(calendar.end_ts), color: UIColor.greenColor())
         //cell.setCellBis(self.items[indexPath.row])
@@ -109,6 +110,8 @@ class CalendarTableViewControllerBis : BaseViewController, UITableViewDelegate,U
         
         return cell
     }
+    
+
     
     func getTime(var date: Int)-> String{
         var respondedDate = Double(date);
@@ -137,7 +140,7 @@ class CalendarTableViewControllerBis : BaseViewController, UITableViewDelegate,U
         if segue.identifier == "calendarDetail" {
             let calendarDetailViewController = segue.destinationViewController as UIViewController
             let indexPath = self.tableView.indexPathForSelectedRow()!
-            let destinationTitle = self.calendar[indexPath.row].title;
+            let destinationTitle = self.calendarOrder[indexPath.row].title;
             calendarDetailViewController.title = destinationTitle
             
             
