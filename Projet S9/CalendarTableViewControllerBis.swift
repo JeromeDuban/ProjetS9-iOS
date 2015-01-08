@@ -47,6 +47,7 @@ class CalendarTableViewControllerBis : BaseViewController, UITableViewDelegate,U
             // Loop for tracks
             while(indexTracks  != myConference.tracks?.count){
                 // Loop for sessions
+
                 while(indexSessions != myConference.tracks![indexTracks].sessions.count){
                     // Loop for talks
                     
@@ -100,9 +101,9 @@ class CalendarTableViewControllerBis : BaseViewController, UITableViewDelegate,U
 
         var cell: CustomCell = tableView.dequeueReusableCellWithIdentifier("CellCalendarBis", forIndexPath: indexPath) as CustomCell
         //cell.textLabel?.text = self.items[indexPath.row]
-        println(calendarOrder)
+
         let calendar = self.calendarOrder[indexPath.row]
-        println(calendar.title)
+
         //cell.setCell( calendar.title, room: "Room n°"  , start_ts: "", end_ts: "", color: UIColor.greenColor())
         cell.setCell(calendar.title , room: "Room n°" + calendar.room , start_ts: getTime(calendar.start_ts), end_ts: getTime(calendar.end_ts), color: UIColor.greenColor())
         //cell.setCellBis(self.items[indexPath.row])
@@ -125,10 +126,18 @@ class CalendarTableViewControllerBis : BaseViewController, UITableViewDelegate,U
         return String(hour) + "h" + String(minute);
     }
     
-//    func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
-//        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-//        println("You selected cell #\(indexPath.row)!")
-//    }
+    func getRandomColor() -> UIColor{
+        
+        var randomRed:CGFloat = CGFloat(drand48())
+        
+        var randomGreen:CGFloat = CGFloat(drand48())
+        
+        var randomBlue:CGFloat = CGFloat(drand48())
+        
+        return UIColor(red: randomRed, green: randomGreen, blue: randomBlue, alpha: 1.0)
+        
+    }
+    
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.performSegueWithIdentifier("calendarDetail", sender: tableView)
