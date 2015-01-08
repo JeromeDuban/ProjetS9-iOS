@@ -1,0 +1,18 @@
+{
+ "major": "10",
+ "name" : "ENSEIRB-MATMECA",
+ "link" : "RDC.svg",
+ "floors" : 
+  [{  "id" : "0",
+      "name" : "RDC",
+      "rooms" :[{
+        "id" : "0",
+        "dom_id" : "i002",
+        "name": "I002"
+      },{
+        "id" : "1",
+        "dom_id" : "i003",
+        "name" : "I003"
+      }]
+  }]
+}

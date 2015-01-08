@@ -1,0 +1,45 @@
+[{
+  "id": "0",
+  "uuid": "3D4F13B4-D1FD-4049-80E5-D3EDCC840B6A",
+  "major": "61298",
+  "minor": "11",
+  "floor_id": "0",
+  "room_id": "0",
+  "coordinates": {
+    "x": "330",
+    "y": "660"
+  }
+},{
+  "id": "1",
+  "uuid": "3D4F13B4-D1FD-4049-80E5-D3EDCC840B6A",
+  "major": "61298",
+  "minor": "12",
+  "floor_id": "0",
+  "room_id": "0",
+  "coordinates": {
+    "x": "530",
+    "y": "660"
+  }
+},{
+  "id": "2",
+  "uuid": "3D4F13B4-D1FD-4049-80E5-D3EDCC840B6A",
+  "major": "61298",
+  "minor": "17938",
+  "floor_id": "0",
+  "room_id": "0",
+  "coordinates": {
+    "x": "430",
+    "y": "560"
+  }
+},{
+  "id": "3",
+  "uuid": "3D4F13B4-D1FD-4049-80E5-D3EDCC840B6A",
+  "major": "61298",
+  "minor": "8975",
+  "floor_id": "0",
+  "room_id": "0",
+  "coordinates": {
+    "x": "430",
+    "y": "760"
+  }
+}]

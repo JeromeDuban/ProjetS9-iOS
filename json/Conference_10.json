@@ -1,0 +1,120 @@
+{
+  "id": "0",
+  "address": "1 Avenue Dr Albert Schweitzer, 33400 Talence",
+  "title": "Soutenances Projet S9",
+  "start_day": "21/01/2015",
+  "end_day": "21/01/2015",
+  "major": "10",
+  "created_at": "1416148311",
+  "updated_at": "1416148410",
+  "tracks": [
+    {
+      "id": "0",
+      "title": "Telecommunications",
+      "sessions": [
+        {
+          "id":"0",
+          "start_ts": "1416148311",
+          "end_ts": "1416148311",
+          "room_id": "0",
+          "talks": [
+            {
+              "id": "0",
+              "title": "Sujet n°1",
+              "end_ts": "1421829000",
+              "start_ts": "1421830800",
+              "speaker": "YAN Quentin, BELLINGER Marc, GARRIDO Hugo, JULLIEN Sébastien, BERTRAND Gaël, BERNOUSSI Seif, EL KESRI Amine",
+              "abstract": "Quelques challenges en imagerie médicale Filtrage – détection – classification",
+              "body": "BlablablablaBlablablabla"	
+            }, 
+            {
+              "id": "1",
+              "title": "Sujet n°2",
+              "end_ts": "1421830800",
+              "start_ts": "1421832600",
+              "speaker": "LETURC Xavier, DE CACQUERAY VALMENIER Mathias, BOUCHAIN Antoine, RAMBAUD Benjamin, PRATS ESCRIBANO Marc, TOUFIQUE Karim, GOZLAN Melinda",
+              "abstract": "SMART ECO-BOX",
+              "body": "BlablablablaBlablablabla"  
+            }, 
+            {
+              "id": "2",
+              "title": "Sujet n°3",
+              "end_ts": "1421832600",
+              "start_ts": "1421834400",
+              "speaker": "SCIMIA Romain, POCREAU Aymeric, KERMORGANT Guillaume, DIOP Cheikh, SBAY Moncef, BOUAZZAOUI Mehdi, IBRAHIM AMADOU Mariama",
+              "abstract": "Vers une plateforme mobile générique, sécurisée et économe en énergie pour la surveillance de l'état de santé d'une personne",
+              "body": "BlablablablaBlablablabla"  
+            }, 
+            {
+              "id": "3",
+              "title": "Sujet n°4",
+              "end_ts": "1421834400",
+              "start_ts": "1421836200",
+              "speaker": "DEMICHEL Julia, ZOGBO Eddy, LAMBERTE Robin, STITOU Hamza, BERRADA Amjad, ABDELMOULA Mehdi",
+              "abstract": "Développement d’un interacteur multi-modal sur Android",
+              "body": "BlablablablaBlablablabla"  
+            }, 
+            {
+              "id": "4",
+              "title": "Sujet n°5",
+              "end_ts": "1421836200",
+              "start_ts": "1421838000",
+              "speaker": "FOUCAULT Jeremie, DUBAN Jerome, ABADIE Alice, SCHAHL Guillaume, SOUB NGUEMTCHUENG Sandrine, CHAUVALON Célia",
+              "abstract": "Application mobile pour objets connectés",
+              "body": "BlablablablaBlablablabla"  
+            }, 
+            {
+              "id": "5",
+              "title": "Sujet n°6",
+              "end_ts": "1421838000",
+              "start_ts": "1421830800",
+              "speaker": "LADURE Martin, BERRADA Ismaïl, COLOMBO Pierre, ZINELABIDINE Zied, RAHMOUNI Achraf, EL HADDAJ Amine",
+              "abstract": "Evaluation expérimentale des performances de répertoires distribués",
+              "body": "BlablablablaBlablablabla"  
+            }, 
+            {
+              "id": "6",
+              "title": "Sujet n°7",
+              "end_ts": "1421839800",
+              "start_ts": "1421841600",
+              "speaker": "PAPOT Charles-Damien, BOURASSEAU David, MAJDOULI Marouane, CLEMENT Rosane, OUALDOU Anas, KAKCHA NTICHI Fabrice",
+              "abstract": "MEDIA@HOME, the Private Home-Media Social Network",
+              "body": "BlablablablaBlablablabla"  
+            }
+          ]
+        }
+      ]
+    },{
+      "id": "0",
+      "title": "Informatique",
+      "sessions": [
+        {
+          "id":"0",
+          "start_ts": "1416148311",
+          "end_ts": "1416148311",
+          "room_id": "2",
+          "talks": [
+            {
+              "id": "0",
+              "title": "Sujet Info n°1",
+              "end_ts": "1421829000",
+              "start_ts": "1421830800",
+              "speaker": "YAN Quentin, BELLINGER Marc, GARRIDO Hugo, JULLIEN Sébastien, BERTRAND Gaël, BERNOUSSI Seif, EL KESRI Amine",
+              "abstract": "Quelques challenges en imagerie médicale Filtrage – détection – classification",
+              "body": "BlablablablaBlablablabla"  
+            }, 
+            {
+              "id": "1",
+              "title": "Sujet Info n°2",
+              "end_ts": "1421830800",
+              "start_ts": "1421832600",
+              "speaker": "LETURC Xavier, DE CACQUERAY VALMENIER Mathias, BOUCHAIN Antoine, RAMBAUD Benjamin, PRATS ESCRIBANO Marc, TOUFIQUE Karim, GOZLAN Melinda",
+              "abstract": "SMART ECO-BOX",
+              "body": "BlablablablaBlablablabla"  
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
