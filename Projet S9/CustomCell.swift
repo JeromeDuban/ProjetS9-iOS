@@ -17,9 +17,20 @@ class CustomCell: UITableViewCell {
 //    @IBOutlet var end_ts: UILabel!
 //    @IBOutlet var verticalBar: UIVisualEffectView!
     
-    @IBOutlet var toto: UILabel!
-    
 
+//    @IBOutlet weak var start_ts: UILabel!
+//    @IBOutlet weak var end_ts: UILabel!
+//    @IBOutlet weak var verticalBar: UIVisualEffectView!
+//    
+//    @IBOutlet weak var subject: UILabel!
+//    @IBOutlet weak var room: UILabel!
+
+    @IBOutlet weak var end_ts: UILabel!
+    @IBOutlet weak var start_ts: UILabel!
+    
+    @IBOutlet weak var subject: UILabel!
+    
+    @IBOutlet weak var room: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -34,18 +45,18 @@ class CustomCell: UITableViewCell {
     
     
     func setCell(subject: String, room: String, start_ts: String, end_ts: String, color: UIColor){
-//        self.subject.text   = subject;
-//        self.room.text      = room;
-//        self.start_ts.text  = start_ts;
-//        self.end_ts.text    = end_ts;
-//        self.verticalBar.backgroundColor = color;
-//        self.end_ts.textColor = UIColor.grayColor()
-//        self.room.textColor = UIColor.grayColor()
+        self.subject.text   = subject;
+        self.room.text      = room;
+        self.start_ts.text  = start_ts;
+        self.end_ts.text    = end_ts;
+        //self.verticalBar.backgroundColor = color;
+        self.end_ts.textColor = UIColor.grayColor()
+        self.room.textColor = UIColor.grayColor()
 
     }
     
     func setCellBis(subject: String){
-        self.toto.text = subject
+        self.subject.text = subject
         
     }
     
