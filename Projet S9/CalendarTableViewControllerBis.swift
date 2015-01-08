@@ -169,13 +169,13 @@ class CalendarTableViewControllerBis : BaseViewController, UITableViewDelegate,U
             let indexPath = self.tableView.indexPathForSelectedRow()!
             let destinationTitle = self.calendarOrder[indexPath.row].title;
             calendarDetailViewController.title = destinationTitle
-            calendarDetailViewController.receiveDateDay = getDay(self.calendarOrder[indexPath.row].start_ts);
-            
-            
-            calendarDetailViewController.receiveDateHour = getTime(self.calendarOrder[indexPath.row].start_ts) + " - " + getTime(self.calendarOrder[indexPath.row].end_ts);
-            calendarDetailViewController.receiveAbstract = self.calendarOrder[indexPath.row].abstract;
-            calendarDetailViewController.receiveSpeaker = self.calendarOrder[indexPath.row].speaker;
-            calendarDetailViewController.receiveRoom = self.calendarOrder[indexPath.row].room;
+//            calendarDetailViewController.receiveDateDay = getDay(self.calendarOrder[indexPath.row].start_ts);
+//            
+//            
+//            calendarDetailViewController.receiveDateHour = getTime(self.calendarOrder[indexPath.row].start_ts) + " - " + getTime(self.calendarOrder[indexPath.row].end_ts);
+//            calendarDetailViewController.receiveAbstract = self.calendarOrder[indexPath.row].abstract;
+//            calendarDetailViewController.receiveSpeaker = self.calendarOrder[indexPath.row].speaker;
+//            calendarDetailViewController.receiveRoom = self.calendarOrder[indexPath.row].room;
         }
     }
     
