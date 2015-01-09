@@ -240,15 +240,12 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
-        let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("MapViewNavigation") as UIViewController
+        let viewController: UINavigationController = self.storyboard?.instantiateViewControllerWithIdentifier("MapViewNavigation") as UINavigationController
         self.navigationController?.setViewControllers([viewController], animated: false)
+        let mapViewController: MapViewController = viewController.viewControllers.first as MapViewController
         
-        
-        var alert = UIAlertController(title: "Alert", message: "Je vais afficher la salle de la recherche " + self.conferences[indexPath.row].name , preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
-        
-        
+        mapViewController.fillRoomWithColor("i003", color: UIColor.redColor())
+        println(self.conferences[indexPath.row].name)
         
 
     }

@@ -14,8 +14,8 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
     @IBOutlet var doubleTapGestureRecognizer: UITapGestureRecognizer!
     @IBOutlet var singleTapGestureRecognizer: UITapGestureRecognizer!
     @IBOutlet weak var svgScrollView: UIScrollView!
-    var svgFile: SVGKImage?
-    var svgMap: SVGKFastImageView?
+    var svgFile: SVGKImage = SVGKImage(named: "RDC.svg")
+    var svgMap: SVGKFastImageView = SVGKFastImageView(SVGKImage: SVGKImage(named: "RDC.svg"))
     var isZoomed: Bool = false
     var isLocationCentered: Bool = false
     var layerSet: Bool = false
@@ -38,30 +38,30 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
         self.svgScrollView.showsVerticalScrollIndicator = false
         self.svgScrollView.delegate = self
         
-        self.displayFloor(1)
-        self.svgMap = SVGKFastImageView(SVGKImage: svgFile)
-        self.svgScrollView.addSubview(svgMap!)
-        self.svgScrollView.zoomToRect(svgMap!.bounds, animated: false)
+        self.svgScrollView.addSubview(svgMap)
+        self.svgScrollView.zoomToRect(svgMap.bounds, animated: false)
         
         self.singleTapGestureRecognizer.requireGestureRecognizerToFail(self.doubleTapGestureRecognizer)
         self.singleTapGestureRecognizer.delaysTouchesBegan = true
         self.singleTapGestureRecognizer.delaysTouchesBegan = true
         
-        let beaconLayer: CAShapeLayer = CAShapeLayer(layer: self.svgMap!.layer)
+        let beaconLayer: CAShapeLayer = CAShapeLayer(layer: self.svgMap.layer)
         self.makeCircleAtLocation(CGPoint(x: 330, y: 660), radius: 5, layer: beaconLayer, color: UIColor.redColor().CGColor)
         self.makeCircleAtLocation(CGPoint(x: 530, y: 660), radius: 5, layer: beaconLayer, color: UIColor.redColor().CGColor)
         self.makeCircleAtLocation(CGPoint(x: 430, y: 560), radius: 5, layer: beaconLayer, color: UIColor.redColor().CGColor)
         self.makeCircleAtLocation(CGPoint(x: 430, y: 760), radius: 5, layer: beaconLayer, color: UIColor.redColor().CGColor)
-        self.svgMap!.layer.addSublayer(self.dotLayer)
-        self.svgMap!.setNeedsDisplay()
+        self.svgMap.layer.addSublayer(self.dotLayer)
+        self.svgMap.setNeedsDisplay()
+        
+
         
     }
     
     @IBAction func singleTap(sender: UITapGestureRecognizer) {
         if(sender.state == UIGestureRecognizerState.Ended){
             let location:CGPoint = sender.locationInView(self.svgScrollView)
-            let tree:CALayer = svgFile!.CALayerTree
-            if let hitLayer:CALayer = tree.hitTest(svgMap!.convertPoint(location, fromView: self.svgScrollView)) {
+            let tree:CALayer = svgFile.CALayerTree
+            if let hitLayer:CALayer = tree.hitTest(svgMap.convertPoint(location, fromView: self.svgScrollView)) {
                 let svgElement:SVGElement? = self.SVGElementFromLayer(hitLayer)?
                 if let identifier:String = svgElement?.getAttribute("id") {
                     if (!identifier.isEmpty && identifier != "contour") {
@@ -72,11 +72,8 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
                         }
                     }
                 }
-                self.svgMap!.setNeedsDisplay()
+                self.svgMap.setNeedsDisplay()
             }
-            
-            
-            
         }
     }
 
@@ -84,12 +81,12 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
         if(sender.state == UIGestureRecognizerState.Ended)
         {
             if(isZoomed){
-                self.svgScrollView.zoomToRect(svgMap!.bounds, animated: true)
+                self.svgScrollView.zoomToRect(svgMap.bounds, animated: true)
                 isZoomed = false;
             }
             else{
                 let location: CGPoint = sender.locationInView(svgMap)
-                let rect: CGRect = CGRectMake(location.x - svgMap!.bounds.size.width/8, location.y - svgMap!.bounds.size.height/8, svgMap!.bounds.size.width/4, svgMap!.bounds.size.height/4)
+                let rect: CGRect = CGRectMake(location.x - svgMap.bounds.size.width/8, location.y - svgMap.bounds.size.height/8, svgMap.bounds.size.width/4, svgMap.bounds.size.height/4)
                 self.svgScrollView.zoomToRect(rect, animated: true)
                 isZoomed = true;
             }
@@ -106,12 +103,12 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
     }
     
     func scrollViewDidEndZooming(scrollView: UIScrollView, withView view: UIView!, atScale scale: CGFloat) {
-        self.svgMap!.disableAutoRedrawAtHighestResolution = false
+        self.svgMap.disableAutoRedrawAtHighestResolution = false
        
     }
     
     func scrollViewWillBeginZooming(scrollView: UIScrollView, withView view: UIView!) {
-        self.svgMap!.disableAutoRedrawAtHighestResolution = true
+        self.svgMap.disableAutoRedrawAtHighestResolution = true
     }
     
     func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
@@ -137,11 +134,11 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
             let rect: CGRect = CGRectMake(barycenter.x - 150, barycenter.y - 150, 300, 300)
             self.svgScrollView.zoomToRect(rect, animated: true)
             
-            self.dotLayer = CAShapeLayer(layer: self.svgMap!.layer)
+            self.dotLayer = CAShapeLayer(layer: self.svgMap.layer)
             self.lastPosition = barycenter
             self.makeCircleAtLocation(barycenter, radius: 10.0, layer: self.dotLayer!, color: UIColor.blueColor().CGColor)
-            self.svgMap!.layer.addSublayer(self.dotLayer)
-            self.svgMap!.setNeedsDisplay()
+            self.svgMap.layer.addSublayer(self.dotLayer)
+            self.svgMap.setNeedsDisplay()
             
             self.isLocationCentered = true
         }
@@ -149,9 +146,11 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
         
         self.dotLayer!.position = newPosition
         self.lastPosition = barycenter
-        self.svgMap!.setNeedsDisplay()
+        self.svgMap.setNeedsDisplay()
     }
 
+    
+    
     private func findBeaconWithMajorAndMinor(major: NSNumber, minor: NSNumber) -> Beacon? {
         let beacons: Beacons = Beacons.sharedInstance
         if let beacon:Beacon = beacons.array!.filter({($0.major == major) && ($0.minor == minor)}).first? {
@@ -159,6 +158,8 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
         }
         return nil
     }
+    
+    
     
     func makeCircleAtLocation(location: CGPoint, radius:CGFloat, layer:CAShapeLayer, color: CGColor) {
         let outerCirclePath: UIBezierPath = UIBezierPath(arcCenter: location, radius: radius, startAngle: 0.0, endAngle: CGFloat(M_PI*2.0), clockwise: true)
@@ -171,6 +172,9 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
         layer.opacity = 0.2
         layer.lineWidth = 5.0
     }
+    
+    
+    
     
     func getVectorWeigth(beacon:CLBeacon) -> CGFloat {
         var distance:CGFloat = 1.0
@@ -188,6 +192,9 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
             return CGFloat(1)/distance
         }
     }
+    
+    
+    
     
     func computeBarycenter(vectors: [(coordinate:CGPoint, weigth:CGFloat)]) -> CGPoint {
         var xG:CGFloat = 0.0
@@ -216,36 +223,24 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
     }
 
     
-    func displayFloor(index: Int) {
-        switch (index) {
-        case 0:
-            self.svgFile = SVGKImage(named: "SS.svg")
-            break
-        case 1:
-            self.svgFile = SVGKImage(named: "RDC.svg")
-            break
-        case 2:
-            self.svgFile = SVGKImage(named: "RDC+1.svg")
-            break
-        case 3:
-            self.svgFile = SVGKImage(named: "RDC+2.svg")
-            break
-        case 4:
-            self.svgFile = SVGKImage(named: "RDC+3.svg")
-            break
-        default:
-            self.svgFile = SVGKImage(named: "RDC.svg")
-            break
+    
+    
+    func fillRoomWithColor(dom_id:String, color:UIColor) {
+        if let domElement:SVGElement = self.svgFile.DOMDocument!.getElementById(dom_id) as? SVGElement {
+            if let elementLayer:CAShapeLayer = svgFile.layerWithIdentifier(domElement.identifier?) as? CAShapeLayer {
+                elementLayer.fillColor = color.CGColor
+            }
         }
-        self.svgScrollView.sizeToFit()
+        self.svgMap.setNeedsDisplay()
     }
     
-    func SVGElementFromLayer(layer:CALayer) -> SVGElement? {
-        let list:NodeList = self.svgFile!.DOMDocument!.getElementsByTagName("*")
+    
+    private func SVGElementFromLayer(layer:CALayer) -> SVGElement? {
+        let list:NodeList = self.svgFile.DOMDocument!.getElementsByTagName("*")
         for domElement in list {
             let svgElement:SVGElement? = domElement as? SVGElement
             if (svgElement?.identifier != nil) {
-                let nodeLayer:CALayer = svgFile!.layerWithIdentifier(svgElement?.identifier?)
+                let nodeLayer:CALayer = svgFile.layerWithIdentifier(svgElement?.identifier?)
                 if nodeLayer == layer {
                     return svgElement
                 }
