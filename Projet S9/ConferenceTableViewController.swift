@@ -11,7 +11,10 @@ import UIKit
 struct ConferencesSearch {
     let category : String
     let name : String
+    let room_id: Int
 }
+
+
 
 class ConferenceTableViewController : UITableViewController, UISearchBarDelegate, UISearchDisplayDelegate {
     
@@ -25,9 +28,9 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
     
     override func viewDidLoad() {
         // Data
-        
+
         let myConference: Conference = Conference.sharedInstance
-        let myTopology: Topology = Topology.sharedInstance
+        var myTopology: Topology = Topology.sharedInstance
         var indexCount: Int = 0;
         var indexTracks: Int = 0;
         var indexSessions: Int = 0;
@@ -48,8 +51,8 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
         while(indexTracks  != myConference.tracks?.count){
 
             // Insert track
-            self.conferences.insert(ConferencesSearch(category:"Track", name:myConference.tracks![indexTracks].title.lowercaseString), atIndex: indexCount);
-            self.conferencesInTrack.insert(ConferencesSearch(category:"Track", name:myConference.tracks![indexTracks].title.lowercaseString), atIndex: indexCountTrack);
+            self.conferences.insert(ConferencesSearch(category:"Track", name:myConference.tracks![indexTracks].title.lowercaseString, room_id: -2), atIndex: indexCount);
+            self.conferencesInTrack.insert(ConferencesSearch(category:"Track", name:myConference.tracks![indexTracks].title.lowercaseString, room_id: -2), atIndex: indexCountTrack);
             indexCount += 1;
             indexCountTrack += 1;
             
@@ -57,8 +60,8 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
             // Loop for sessions
             while(indexSessions != myConference.tracks![indexTracks].sessions.count){
                 // Insert session
-                self.conferences.insert(ConferencesSearch(category:"Session", name: "session n°\(myConference.tracks![indexTracks].sessions[indexSessions].id) ") , atIndex: indexCount);
-                self.conferencesInSection.insert(ConferencesSearch(category:"Session", name: "session n°\(myConference.tracks![indexTracks].sessions[indexSessions].id) ") , atIndex: indexCountSection);
+                self.conferences.insert(ConferencesSearch(category:"Session", name: "session n°\(myConference.tracks![indexTracks].sessions[indexSessions].id) ", room_id:myConference.tracks![indexTracks].sessions[indexSessions].room_id ) , atIndex: indexCount);
+                self.conferencesInSection.insert(ConferencesSearch(category:"Session", name: "session n°\(myConference.tracks![indexTracks].sessions[indexSessions].id) ", room_id:myConference.tracks![indexTracks].sessions[indexSessions].room_id) , atIndex: indexCountSection);
                 
                 indexCountSection += 1;
                 indexCount += 1;
@@ -67,8 +70,8 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
                 // Loop for talks
                 while(indexTalks != myConference.tracks![indexTracks].sessions[indexSessions].talks.count){
                     // Insert talks
-                    self.conferences.insert(ConferencesSearch(category:"Talk", name:myConference.tracks![indexTracks].sessions[indexSessions].talks[indexTalks].title.lowercaseString) , atIndex: indexCount);
-                    self.conferencesInTalk.insert(ConferencesSearch(category:"Talk", name:myConference.tracks![indexTracks].sessions[indexSessions].talks[indexTalks].title.lowercaseString) , atIndex: indexCountTalk);
+                    self.conferences.insert(ConferencesSearch(category:"Talk", name:myConference.tracks![indexTracks].sessions[indexSessions].talks[indexTalks].title.lowercaseString, room_id:myConference.tracks![indexTracks].sessions[indexSessions].room_id) , atIndex: indexCount);
+                    self.conferencesInTalk.insert(ConferencesSearch(category:"Talk", name:myConference.tracks![indexTracks].sessions[indexSessions].talks[indexTalks].title.lowercaseString, room_id:myConference.tracks![indexTracks].sessions[indexSessions].room_id) , atIndex: indexCountTalk);
                     
                     indexCountTalk += 1;
                     indexCount += 1;
@@ -89,16 +92,17 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
         if(myTopology.floors?.count != nil){
         //Insert Rooms' name
         while(indexFloors != myTopology.floors?.count){
-            
+            myTopology.floors![indexFloors].rooms[indexRooms].dom_id
             while(indexRooms != myTopology.floors![indexFloors].rooms.count){
                 // Insert track
-                self.conferences.insert(ConferencesSearch(category:"Room", name:myTopology.floors![indexFloors].rooms[indexRooms].name.lowercaseString), atIndex: indexCount);
-                self.conferencesInRoom.insert(ConferencesSearch(category:"Room", name:myTopology.floors![indexFloors].rooms[indexRooms].name.lowercaseString), atIndex: indexCountRoom);
-                
+                self.conferences.insert(ConferencesSearch(category:"Room", name:myTopology.floors![indexFloors].rooms[indexRooms].name.lowercaseString, room_id: -1), atIndex: indexCount);
+                //self.conferencesInRoom.insert(ConferencesSearch(category:"Room", name:myTopology.floors![indexFloors].rooms[indexRooms].name.lowercaseString), atIndex: indexCountRoom);
+                self.conferencesInRoom.insert(ConferencesSearch(category:"Room", name:myTopology.floors![indexFloors].rooms[indexRooms].name.lowercaseString, room_id: -1), atIndex: indexCountRoom);
                 indexCountRoom += 1;
                 indexCount += 1;
                 indexRooms += 1;
             }
+            
             
             indexFloors += 1;
         }
@@ -214,6 +218,33 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
             return true
     }
     
+    
+    func getDoomId(room_id: Int) ->String{
+        var myTopology: Topology = Topology.sharedInstance
+        
+        var indexRooms: Int = 0;
+        var indexFloors: Int = 0;
+        var result: String = "";
+        if(myTopology.floors?.count != nil){
+            //Insert Rooms' name
+            while(indexFloors != myTopology.floors?.count){
+                
+                while(indexRooms != myTopology.floors![indexFloors].rooms.count){
+                    if(room_id == myTopology.floors![indexFloors].rooms[indexRooms].id){
+                        result = myTopology.floors![indexFloors].rooms[indexRooms].dom_id;
+                    }
+                    
+                    indexRooms += 1 ;
+                }
+              indexFloors += 1 ;
+            }
+            
+        }
+        return result
+    }
+    
+    
+    
 //    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 //        self.performSegueWithIdentifier("conferencesDetail", sender: tableView)
 //    }
@@ -239,28 +270,45 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
 //    }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-
-        //let viewController: UINavigationController = self.storyboard?.instantiateViewControllerWithIdentifier("MapViewNavigation") as UINavigationController
-        //self.navigationController?.setViewControllers([viewController], animated: false)
-        //let mapViewController: MapViewController = viewController.viewControllers.first as MapViewController
+        var myRoom: String = ""
         
-        //mapViewController.fillRoomWithColor("i003", color: UIColor.redColor())
         if tableView == self.searchDisplayController!.searchResultsTableView {
-            println(filteredConferences[indexPath.row].name)
+            println(filteredConferences[indexPath.row].room_id)
+            if(filteredConferences[indexPath.row].room_id == -1){
+                myRoom = filteredConferences[indexPath.row].name;
+            }else if(filteredConferences[indexPath.row].room_id == -2){
+                myRoom = "";
+            }else{
+                myRoom = getDoomId(filteredConferences[indexPath.row].room_id);
+            }
         }else{
             switch(indexPath.section){
             case 0:
                 println(self.conferencesInTrack[indexPath.row].name)
             case 1:
                 println(self.conferencesInSection[indexPath.row].name)
+                println(getDoomId(self.conferencesInSection[indexPath.row].room_id))
+                myRoom = getDoomId(self.conferencesInSection[indexPath.row].room_id)
+                //println(self.conferencesInSection[indexPath.row].room_id)
+                
             case 2:
                 println(self.conferencesInTalk[indexPath.row].name)
+                println(getDoomId(self.conferencesInTalk[indexPath.row].room_id))
+                myRoom = getDoomId(self.conferencesInTalk[indexPath.row].room_id)
             case 3:
                 println(self.conferencesInRoom[indexPath.row].name)
+                myRoom = self.conferencesInRoom[indexPath.row].name;
+                
             default:
                 println("Error")
             }
         }
+        
+        let viewController: UINavigationController = self.storyboard?.instantiateViewControllerWithIdentifier("MapViewNavigation") as UINavigationController
+        self.navigationController?.setViewControllers([viewController], animated: false)
+        let mapViewController: MapViewController = viewController.viewControllers.first as MapViewController
+        
+        mapViewController.fillRoomWithColor(myRoom, color: UIColor.redColor())
 
     }
     

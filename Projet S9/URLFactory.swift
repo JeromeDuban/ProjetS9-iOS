@@ -13,7 +13,7 @@ class URLFactory {
     
     class func conferenceWithMajorAPI(major:NSNumber) -> NSURL {
         let stringMajor:String = String(Int(major))
-        return NSURL(string: "https://gist.githubusercontent.com/frco9/95a6ef89c7d4d4e72c82/raw/278ce708177f15cb7076e3c35a51c447c89246f6/Conference_"+stringMajor+".json")!
+        return NSURL(string: "https://gist.githubusercontent.com/frco9/95a6ef89c7d4d4e72c82/raw/cc1684e795566c08103ce87b7841715a45aa5679/Conference_"+stringMajor+".json")!
     }
     
     class func buildingWithMajorAPI(major:NSNumber) -> NSURL {
