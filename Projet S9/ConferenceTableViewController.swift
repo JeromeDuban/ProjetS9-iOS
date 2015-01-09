@@ -245,18 +245,21 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
         //let mapViewController: MapViewController = viewController.viewControllers.first as MapViewController
         
         //mapViewController.fillRoomWithColor("i003", color: UIColor.redColor())
-
-        switch(indexPath.section){
-        case 0:
-            println(self.conferencesInTrack[indexPath.row].name)
-        case 1:
-            println(self.conferencesInSection[indexPath.row].name)
-        case 2:
-            println(self.conferencesInTalk[indexPath.row].name)
-        case 3:
-            println(self.conferencesInRoom[indexPath.row].name)
-        default:
-            println("Error")
+        if tableView == self.searchDisplayController!.searchResultsTableView {
+            println(filteredConferences[indexPath.row].name)
+        }else{
+            switch(indexPath.section){
+            case 0:
+                println(self.conferencesInTrack[indexPath.row].name)
+            case 1:
+                println(self.conferencesInSection[indexPath.row].name)
+            case 2:
+                println(self.conferencesInTalk[indexPath.row].name)
+            case 3:
+                println(self.conferencesInRoom[indexPath.row].name)
+            default:
+                println("Error")
+            }
         }
 
     }
