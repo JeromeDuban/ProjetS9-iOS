@@ -20,6 +20,7 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
     var isLocationCentered: Bool = false
     var layerSet: Bool = false
     var lastPosition: CGPoint = CGPoint(x: 0.0, y: 0.0)
+    var previousPosition: CGPoint = CGPoint(x: 0.0, y: 0.0)
     var dotLayer: CAShapeLayer?
     let app:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     
@@ -45,12 +46,13 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
         self.singleTapGestureRecognizer.delaysTouchesBegan = true
         self.singleTapGestureRecognizer.delaysTouchesBegan = true
         
+        // Debug : Display beacons on map
         let beaconLayer: CAShapeLayer = CAShapeLayer(layer: self.svgMap.layer)
-        self.makeCircleAtLocation(CGPoint(x: 330, y: 660), radius: 5, layer: beaconLayer, color: UIColor.redColor().CGColor)
-        self.makeCircleAtLocation(CGPoint(x: 530, y: 660), radius: 5, layer: beaconLayer, color: UIColor.redColor().CGColor)
-        self.makeCircleAtLocation(CGPoint(x: 430, y: 560), radius: 5, layer: beaconLayer, color: UIColor.redColor().CGColor)
-        self.makeCircleAtLocation(CGPoint(x: 430, y: 760), radius: 5, layer: beaconLayer, color: UIColor.redColor().CGColor)
-        self.svgMap.layer.addSublayer(self.dotLayer)
+        self.makeCircleAtLocation(CGPoint(x: 330, y: 660), radius: 5, layer: beaconLayer, color: UIColor.redColor())
+        self.makeCircleAtLocation(CGPoint(x: 530, y: 660), radius: 5, layer: beaconLayer, color: UIColor.redColor())
+        self.makeCircleAtLocation(CGPoint(x: 430, y: 560), radius: 5, layer: beaconLayer, color: UIColor.redColor())
+        self.makeCircleAtLocation(CGPoint(x: 430, y: 760), radius: 5, layer: beaconLayer, color: UIColor.redColor())
+        self.svgMap.layer.addSublayer(beaconLayer)
         self.svgMap.setNeedsDisplay()
         
 
@@ -136,15 +138,21 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
             
             self.dotLayer = CAShapeLayer(layer: self.svgMap.layer)
             self.lastPosition = barycenter
-            self.makeCircleAtLocation(barycenter, radius: 10.0, layer: self.dotLayer!, color: UIColor.blueColor().CGColor)
+            self.makeCircleAtLocation(barycenter, radius: 10.0, layer: self.dotLayer!, color: UIColor.blueColor())
             self.svgMap.layer.addSublayer(self.dotLayer)
             self.svgMap.setNeedsDisplay()
             
             self.isLocationCentered = true
         }
-        let newPosition: CGPoint = CGPoint(x: barycenter.x - self.lastPosition.x, y: barycenter.y - self.lastPosition.y)
-        
-        self.dotLayer!.position = newPosition
+        self.dotLayer!.sublayers = nil
+        self.makeCircleAtLocation(barycenter, radius: 10.0, layer: self.dotLayer!, color: UIColor.blueColor())
+//        let newPosition: CGPoint = CGPoint(x: barycenter.x - self.lastPosition.x, y: barycenter.y - self.lastPosition.y)
+//        println("/* Debug */")
+//        println(barycenter)
+//        println(self.lastPosition)
+//        println(newPosition)
+//        println("\n\n")
+//        self.dotLayer!.position = newPosition
         self.lastPosition = barycenter
         self.svgMap.setNeedsDisplay()
     }
@@ -161,16 +169,20 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
     
     
     
-    func makeCircleAtLocation(location: CGPoint, radius:CGFloat, layer:CAShapeLayer, color: CGColor) {
-        let outerCirclePath: UIBezierPath = UIBezierPath(arcCenter: location, radius: radius, startAngle: 0.0, endAngle: CGFloat(M_PI*2.0), clockwise: true)
-        let innerCirclePath: UIBezierPath = UIBezierPath(arcCenter: location, radius: 1, startAngle: 0.0, endAngle: CGFloat(M_PI*2.0), clockwise: true)
-        outerCirclePath.appendPath(innerCirclePath)
+    func makeCircleAtLocation(location: CGPoint, radius:CGFloat, layer:CAShapeLayer, color: UIColor) {
+        let innerCirclePath: UIBezierPath = UIBezierPath(arcCenter: location, radius: 2, startAngle: 0.0, endAngle: CGFloat(M_PI*2.0), clockwise: true)
+        let centerCircle: CAShapeLayer = CAShapeLayer()
+        centerCircle.path = innerCirclePath.CGPath
+        centerCircle.fillColor = color.CGColor
+        layer.addSublayer(centerCircle)
         
+        
+        let outerCirclePath: UIBezierPath = UIBezierPath(arcCenter: location, radius: radius, startAngle: 0.0, endAngle: CGFloat(M_PI*2.0), clockwise: true)
         layer.path = outerCirclePath.CGPath
-        layer.strokeColor = color
-        layer.fillColor = color
-        layer.opacity = 0.2
-        layer.lineWidth = 5.0
+        layer.strokeColor = color.CGColor
+        layer.fillColor = color.colorWithAlphaComponent(0.2).CGColor
+        layer.opacity = 1
+        layer.lineWidth = 0.1
     }
     
     
@@ -210,15 +222,17 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
         xG /= xGWeigth
         yG /= yGWeigth
         
-        // Check if this center is realistic
-//        if abs(xG - self.lastPosition.x) > 50 && abs(yG - self.lastPosition.y) > 50 {
-//            return self.lastPosition
-//        }
+        if self.lastPosition.x > 0 && self.lastPosition.y > 0 {
+            // Check if this center is realistic
+            if abs(xG - self.lastPosition.x) > 40 && abs(yG - self.lastPosition.y) > 40 {
+                return self.lastPosition
+            }
+            
+            // Avarage with the last barycenter
+            xG = (xG + self.lastPosition.x) / 2
+            yG = (yG + self.lastPosition.y) / 2
+        }
         
-//        // Avarage with the last barycenter
-//        xG = (xG + self.lastPosition.x) / 2
-//        yG = (yG + self.lastPosition.y) / 2
-//        
         return CGPoint(x: xG, y: yG)
     }
 

@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var lastMajor: NSNumber?
     var conferenceJsonGot: Bool = false
     var beaconJsonGot: Bool = false
+    var sentNotification: [NSNumber] = []
     var topologyJsonGot: Bool = false
     var mask: CALayer?
     var rootView: UIViewController?
@@ -49,6 +50,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         self.window!.backgroundColor = UIColor(red: 28/255, green: 98/255, blue: 255/255, alpha: 1)
         
         return true
+    }
+    
+    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController: CalendarAfterSegueViewController = storyboard.instantiateViewControllerWithIdentifier("CalendarAfterSegueViewController") as CalendarAfterSegueViewController
+        let talk : String = notification.userInfo!["talk"] as String
+
+        viewController.title = talk
+        
+        self.window!.rootViewController?.presentViewController(viewController, animated: true, completion: nil)
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -115,22 +126,69 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 }
 
 extension AppDelegate: CLLocationManagerDelegate {
-    func sendLocalNotificationWithMessage(message: String, playSound: Bool) {
+    func sendLocalNotificationWithMessage(message: String, playSound: Bool, talk:Talk) {
         let notification:UILocalNotification = UILocalNotification()
         notification.alertBody = message
+        var userInfo = [String:String]()
+        userInfo["talk"] = talk.title
+        notification.userInfo = userInfo
         
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
     
+    func timerHandler(sender:NSTimer) {
+                let beacon:CLBeacon = sender.userInfo as CLBeacon
+                for currentBeacon in self.lastBeacons! {
+                    if beacon.major == currentBeacon.major && beacon.minor == currentBeacon.minor && beacon.proximity == CLProximity.Immediate {
+                        if let roomId: Int = findRoomIdWithMinor(beacon.minor) {
+                            if let talk: Talk = findFirstTalkWithRoomId(roomId) {
+                                var userInfo = [String:Talk]()
+                                userInfo["talk"] = talk
+                                sendLocalNotificationWithMessage(talk.title + " - " + talk.abstract, playSound: true, talk: talk)
+                            }
+                        }
+                    }
+                }
+    }
+    
+    func findRoomIdWithMinor(minor: NSNumber) -> Int? {
+        let beacons: Beacons = Beacons.sharedInstance
+        if let beacon:Beacon = beacons.array!.filter({ $0.minor == minor }).first? {
+            return beacon.room_id
+        }
+        return nil
+    }
+    
+    func findFirstTalkWithRoomId(room_id: Int) -> Talk? {
+        if let tracks: [Track] = Conference.sharedInstance.tracks {
+            for track in tracks {
+                let sessions: [Session] = track.sessions
+                if let session: Session = sessions.filter({ $0.room_id == room_id }).first? {
+                    return session.talks.first
+                }
+            }
+        }
+        return nil
+    }
+    
     func locationManager(manager: CLLocationManager!, didRangeBeacons beacons: [CLBeacon]!, inRegion region: CLBeaconRegion!) {
-        
         if(beacons.count > 0) {
+            if let lastBeacons = self.lastBeacons {
+                for beacon in beacons {
+                    for prevBeacon in lastBeacons {
+                        if beacon.major == prevBeacon.major && beacon.minor == prevBeacon.minor && beacon.proximity == CLProximity.Immediate && !contains(self.sentNotification, beacon.minor) {
+                            NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: "timerHandler:", userInfo: beacon, repeats: false)
+                            self.sentNotification.append(beacon.minor)
+                        }
+                    }
+                }
+            }
             self.lastBeacons = beacons
             NSNotificationCenter.defaultCenter().postNotificationName("beaconUpdate", object: nil, userInfo: nil)
-        } else {
-            println("No beacons are nearby")
         }
     }
+    
+    
     
     func locationManager(manager: CLLocationManager!, didEnterRegion region: CLRegion!) {
             manager.startRangingBeaconsInRegion(region as CLBeaconRegion)

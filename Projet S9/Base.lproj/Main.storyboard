@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Omh-jG-kKs">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6246"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -503,7 +503,7 @@
         <!--Calendar After Segue View Controller-->
         <scene sceneID="hCN-Bb-XKW">
             <objects>
-                <viewController id="OOR-a5-igh" customClass="CalendarAfterSegueViewController" customModule="Projet_S9" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CalendarAfterSegueViewController" id="OOR-a5-igh" customClass="CalendarAfterSegueViewController" customModule="Projet_S9" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ogv-wB-xec"/>
                         <viewControllerLayoutGuide type="bottom" id="4BU-Bw-U9i"/>
