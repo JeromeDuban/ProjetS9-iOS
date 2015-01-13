@@ -54,21 +54,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let viewController: CalendarAfterSegueViewController = storyboard.instantiateViewControllerWithIdentifier("CalendarAfterSegueViewController") as CalendarAfterSegueViewController
+        let viewController: TalkViewController = storyboard.instantiateViewControllerWithIdentifier("TalkViewController") as TalkViewController
         let navigationViewController: UINavigationController = UINavigationController(rootViewController: viewController)
         
         navigationViewController.navigationBar.barTintColor = UIColor(red: 28/255, green: 118/255, blue: 255/255, alpha: 1)
         navigationViewController.navigationBar.tintColor = UIColor.whiteColor()
         navigationViewController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
-        let talk : String = notification.userInfo!["talk"] as String
+        let title : String = notification.userInfo!["title"] as String
+        let speaker : String = notification.userInfo!["speaker"] as String
+        let body : String = notification.userInfo!["body"] as String
         
+        let myTalk:Calendar = Calendar(session: "", start_ts: 00, end_ts: 000, speaker: speaker, abstract: "", body: body, title: title, room: "1", colorBar: UIColor.brownColor())
+        viewController.talk = myTalk
         viewController.isNotification = true
-        viewController.title = talk
-
+        
         self.window!.makeKeyAndVisible()
         self.window!.rootViewController?.presentViewController(navigationViewController, animated: true, completion: nil)
-//        self.window!.rootViewController?.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -140,7 +142,10 @@ extension AppDelegate: CLLocationManagerDelegate {
         let notification:UILocalNotification = UILocalNotification()
         notification.alertBody = message
         var userInfo = [String:String]()
-        userInfo["talk"] = talk.title
+        userInfo["title"] = talk.title
+        userInfo["body"] = talk.body
+        userInfo["speaker"] = talk.speaker
+
         notification.userInfo = userInfo
         
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
@@ -152,8 +157,6 @@ extension AppDelegate: CLLocationManagerDelegate {
                     if beacon.major == currentBeacon.major && beacon.minor == currentBeacon.minor && beacon.proximity == CLProximity.Immediate {
                         if let roomId: Int = findRoomIdWithMinor(beacon.minor) {
                             if let talk: Talk = findFirstTalkWithRoomId(roomId) {
-                                var userInfo = [String:Talk]()
-                                userInfo["talk"] = talk
                                 sendLocalNotificationWithMessage(talk.title + " - " + talk.abstract, playSound: true, talk: talk)
                             }
                         }

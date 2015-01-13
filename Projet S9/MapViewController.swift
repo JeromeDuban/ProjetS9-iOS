@@ -70,7 +70,7 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
                         let alert:UIAlertView = UIAlertView(title: svgElement!.getAttribute("title"), message: "", delegate: nil, cancelButtonTitle: "Retour", otherButtonTitles: "Détails")
                         if hitLayer.isKindOfClass(CAShapeLayer) {
                             let shapeLayer:CAShapeLayer = hitLayer as CAShapeLayer
-                            shapeLayer.fillColor = UIColor.redColor().CGColor
+//                            shapeLayer.fillColor = UIColor.redColor().CGColor
                         }
                     }
                 }
