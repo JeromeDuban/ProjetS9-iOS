@@ -194,10 +194,19 @@ class CalendarAfterSegueViewController: UIViewController {
     var receiveAbstract: String = "";
     var receiveSpeaker: String = "";
     var receiveRoom: String = "";
+    var isNotification: Bool = false;
     
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if self.isNotification {
+            let dismissIcon: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Stop, target: self, action: "dismissNotification")
+            navigationItem.rightBarButtonItem  = dismissIcon
+        }
+        
+        
         // Do view setup here.
 //        date_day.text = receiveDateDay;
 //        date_hour.text = receiveDateHour;
@@ -207,5 +216,10 @@ class CalendarAfterSegueViewController: UIViewController {
 
         
     }
+    
+    func dismissNotification() {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+
     
 }

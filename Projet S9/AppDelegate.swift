@@ -55,11 +55,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController: CalendarAfterSegueViewController = storyboard.instantiateViewControllerWithIdentifier("CalendarAfterSegueViewController") as CalendarAfterSegueViewController
-        let talk : String = notification.userInfo!["talk"] as String
-
-        viewController.title = talk
+        let navigationViewController: UINavigationController = UINavigationController(rootViewController: viewController)
         
-        self.window!.rootViewController?.presentViewController(viewController, animated: true, completion: nil)
+        navigationViewController.navigationBar.barTintColor = UIColor(red: 28/255, green: 118/255, blue: 255/255, alpha: 1)
+        navigationViewController.navigationBar.tintColor = UIColor.whiteColor()
+        navigationViewController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        
+        let talk : String = notification.userInfo!["talk"] as String
+        
+        viewController.isNotification = true
+        viewController.title = talk
+
+        self.window!.makeKeyAndVisible()
+        self.window!.rootViewController?.presentViewController(navigationViewController, animated: true, completion: nil)
+//        self.window!.rootViewController?.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -83,6 +92,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
     
     func animateMask() {
         let keyFrameAnimation = CAKeyframeAnimation(keyPath: "bounds")
