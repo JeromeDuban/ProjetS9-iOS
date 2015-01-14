@@ -120,14 +120,14 @@
                             </button>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" id="gW4-ui-era">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ow9-zI-rpJ">
-                                <rect key="frame" x="276" y="7" width="48" height="30"/>
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ow9-zI-rpJ">
+                                <rect key="frame" x="536" y="7" width="79" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Search">
+                                <state key="normal" image="Search">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="ZTs-dk-e3T" kind="show" id="cH8-vh-Rp8"/>
+                                    <segue destination="ZTs-dk-e3T" kind="show" id="SHH-Eq-0GW"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -270,6 +270,16 @@
                                 </state>
                                 <connections>
                                     <segue destination="drs-bh-kYL" kind="unwind" identifier="mapUnwindSegueToMenu" unwindAction="unwindToMenuViewController:" id="WGD-sJ-JEF"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="Search" style="plain" id="1aV-Vj-TN4">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="kes-WK-PzK">
+                                <rect key="frame" x="451" y="7" width="77" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="Search"/>
+                                <connections>
+                                    <segue destination="ZTs-dk-e3T" kind="show" id="pXM-yq-pfQ"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -617,4 +627,10 @@
             <point key="canvasLocation" x="279" y="1134"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Search" width="22" height="22"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="SHH-Eq-0GW"/>
+    </inferredMetricsTieBreakers>
 </document>
