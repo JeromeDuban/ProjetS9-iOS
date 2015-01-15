@@ -140,13 +140,11 @@ class CalendarTableViewController : BaseViewController, UITableViewDelegate,UITa
     func getTime(var date: Int)-> String{
         var respondedDate = Double(date);
         var date = NSDate(timeIntervalSince1970: respondedDate);
-        let calendarBis = NSCalendar.currentCalendar()
-        let comp = calendarBis.components((.HourCalendarUnit | .MinuteCalendarUnit), fromDate: date)
-        let hour = comp.hour
-        let minute = comp.minute
-        
-        
-        return String(hour) + "h" + String(minute);
+        let formater: NSDateFormatter = NSDateFormatter()
+        formater.dateFormat = "h:mm"
+        let startTime = formater.stringFromDate(date)
+
+        return startTime;
     }
     
     

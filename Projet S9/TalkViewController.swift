@@ -33,20 +33,23 @@ class TalkViewController: UIViewController {
         scrollView.contentInset = UIEdgeInsetsMake(0, 0, 220.0, 0)
         
         speakerLabel.text = talk?.speaker
-        roomLabel.text = "Amphi B"//talk?.room
-        let _intervalStart:NSTimeInterval = 1421830800
+        roomLabel.text = getDomId(self.talk!.room.toInt()!)//"Amphi B"//talk?.room
+       
+        let timeStart = talk?.start_ts
+        let _intervalStart:NSTimeInterval = Double(timeStart!) //1421830800
+
         let dateStart: NSDate = NSDate(timeIntervalSince1970: _intervalStart)
+        
+        let timeEnd = talk?.end_ts
+        let _intervalEnd:NSTimeInterval = Double(timeEnd!)
+        let dateEnd: NSDate = NSDate(timeIntervalSince1970: Double(timeEnd!))
         let formater: NSDateFormatter = NSDateFormatter()
-        formater.locale = NSLocale.currentLocale()
-        formater.dateFromString("HH:mm")
-        let startTime: String = formater.stringFromDate(dateStart)
-//
-//        let _intervalEnd:NSTimeInterval = Double(talk!.end_ts)
-//        let dateEnd: NSDate = NSDate(timeIntervalSince1970: _intervalEnd)
-//        
-//        let endTime: String = formater.stringFromDate(dateEnd)
-//  
-        timeLabel.text = "10:00 - 10:30"
+        formater.dateFormat = "h:mm"
+        let startTime = formater.stringFromDate(dateStart)
+        let endTime = formater.stringFromDate(dateEnd)
+        
+
+        timeLabel.text = startTime + " - " + endTime
         navigationItem.title = talk?.title
         var goToIcon: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Arrow"), style:UIBarButtonItemStyle.Plain, target:self, action:"goToMapAction")
         navigationItem.rightBarButtonItem  = goToIcon
