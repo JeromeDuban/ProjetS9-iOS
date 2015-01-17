@@ -23,12 +23,10 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
     var conferencesInSection = [ConferencesSearch]()
     var conferencesInTalk = [ConferencesSearch]()
     var conferencesInRoom = [ConferencesSearch]()
-    
     var filteredConferences = [ConferencesSearch]()
     
     override func viewDidLoad() {
         // Data
-
         let myConference: Conference = Conference.sharedInstance
         var myTopology: Topology = Topology.sharedInstance
         var indexCount: Int = 0;
@@ -37,7 +35,6 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
         var indexTalks: Int = 0;
         var indexFloors: Int = 0;
         var indexRooms: Int = 0;
-        
         
         var indexCountSection: Int = 0;
         var indexCountTalk: Int = 0;
@@ -49,40 +46,32 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
         if(myConference.tracks?.count != nil){
         // Loop for tracks
         while(indexTracks  != myConference.tracks?.count){
-
             // Insert track
             self.conferences.insert(ConferencesSearch(category:"Track", name:myConference.tracks![indexTracks].title.lowercaseString, room_id: -2), atIndex: indexCount);
             self.conferencesInTrack.insert(ConferencesSearch(category:"Track", name:myConference.tracks![indexTracks].title.lowercaseString, room_id: -2), atIndex: indexCountTrack);
             indexCount += 1;
             indexCountTrack += 1;
             
-            
             // Loop for sessions
             while(indexSessions != myConference.tracks![indexTracks].sessions.count){
                 // Insert session
                 self.conferences.insert(ConferencesSearch(category:"Session", name: "session n°\(myConference.tracks![indexTracks].sessions[indexSessions].id) ", room_id:myConference.tracks![indexTracks].sessions[indexSessions].room_id ) , atIndex: indexCount);
                 self.conferencesInSection.insert(ConferencesSearch(category:"Session", name: "session n°\(myConference.tracks![indexTracks].sessions[indexSessions].id) ", room_id:myConference.tracks![indexTracks].sessions[indexSessions].room_id) , atIndex: indexCountSection);
-                
                 indexCountSection += 1;
                 indexCount += 1;
-                
                 
                 // Loop for talks
                 while(indexTalks != myConference.tracks![indexTracks].sessions[indexSessions].talks.count){
                     // Insert talks
                     self.conferences.insert(ConferencesSearch(category:"Talk", name:myConference.tracks![indexTracks].sessions[indexSessions].talks[indexTalks].title.lowercaseString, room_id:myConference.tracks![indexTracks].sessions[indexSessions].room_id) , atIndex: indexCount);
                     self.conferencesInTalk.insert(ConferencesSearch(category:"Talk", name:myConference.tracks![indexTracks].sessions[indexSessions].talks[indexTalks].title.lowercaseString, room_id:myConference.tracks![indexTracks].sessions[indexSessions].room_id) , atIndex: indexCountTalk);
-                    
                     indexCountTalk += 1;
                     indexCount += 1;
                     indexTalks += 1;
-                    
                 }
                 indexSessions += 1;
                 indexTalks = 0;
-                
             }
-            
             indexTracks += 1;
             indexSessions = 0;
             
@@ -96,7 +85,6 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
             while(indexRooms != myTopology.floors![indexFloors].rooms.count){
                 // Insert track
                 self.conferences.insert(ConferencesSearch(category:"Room", name:myTopology.floors![indexFloors].rooms[indexRooms].name.lowercaseString, room_id: -1), atIndex: indexCount);
-                //self.conferencesInRoom.insert(ConferencesSearch(category:"Room", name:myTopology.floors![indexFloors].rooms[indexRooms].name.lowercaseString), atIndex: indexCountRoom);
                 self.conferencesInRoom.insert(ConferencesSearch(category:"Room", name:myTopology.floors![indexFloors].rooms[indexRooms].name.lowercaseString, room_id: -1), atIndex: indexCountRoom);
                 indexCountRoom += 1;
                 indexCount += 1;
@@ -148,13 +136,6 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
     
     }
     
-    func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool{
-//        let secondViewController:HomeViewController = HomeViewController()
-//        self.presentViewController(secondViewController, animated: true, completion: nil)
-        return true
-    }
-    
-
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         //ask for a reusable cell from the tableview, the tableview will create a new one if it doesn't have any
@@ -244,30 +225,6 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
     }
     
     
-    
-//    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        self.performSegueWithIdentifier("conferencesDetail", sender: tableView)
-//    }
-    
-    
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-//        if segue.identifier == "conferencesDetail" {
-//            let detailViewController = segue.destinationViewController as UIViewController
-//            
-//            if sender as UITableView == self.searchDisplayController!.searchResultsTableView {
-//                let indexPath = self.searchDisplayController!.searchResultsTableView.indexPathForSelectedRow()!              
-//                let destinationTitle = self.filteredConferences[indexPath.row].name
-//                detailViewController.title = destinationTitle
-//            } else {
-//                let indexPath = self.tableView.indexPathForSelectedRow()!
-//                let destinationTitle = self.conferences[indexPath.row].name
-//                detailViewController.title = destinationTitle
-//                
-//                
-//                
-//            }
-//        }
-//    }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         var myRoom: String = ""

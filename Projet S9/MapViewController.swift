@@ -14,8 +14,8 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
     @IBOutlet var doubleTapGestureRecognizer: UITapGestureRecognizer!
     @IBOutlet var singleTapGestureRecognizer: UITapGestureRecognizer!
     @IBOutlet weak var svgScrollView: UIScrollView!
-    var svgFile: SVGKImage = SVGKImage(named: "RDC.svg")
-    var svgMap: SVGKFastImageView = SVGKFastImageView(SVGKImage: SVGKImage(named: "RDC.svg"))
+    var svgFile: SVGKImage = SVGKImage(named: "SS.svg")
+    var svgMap: SVGKFastImageView = SVGKFastImageView(SVGKImage: SVGKImage(named: "SS.svg"))
     var isZoomed: Bool = false
     var isLocationCentered: Bool = false
     var layerSet: Bool = false

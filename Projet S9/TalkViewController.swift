@@ -30,7 +30,7 @@ class TalkViewController: UIViewController {
         bodyLabel.sizeToFit()
         
         scrollView.contentSize = CGSizeMake(self.view.frame.size.width,  self.bodyLabel.frame.size.height)
-        scrollView.contentInset = UIEdgeInsetsMake(0, 0, 220.0, 0)
+        scrollView.contentInset = UIEdgeInsetsMake(-50, 0, 220.0, 0)
         
         speakerLabel.text = talk?.speaker
         roomLabel.text = getDomId(self.talk!.room.toInt()!)//"Amphi B"//talk?.room

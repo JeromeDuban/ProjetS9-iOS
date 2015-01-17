@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import Foundation
 import CoreLocation
 
-class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocationManagerDelegate {
+class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocationManagerDelegate, UITableViewDelegate,UITableViewDataSource {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
@@ -135,6 +136,14 @@ class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocati
         }))
         
         presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        return UITableViewCell()
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
     }
     
     
