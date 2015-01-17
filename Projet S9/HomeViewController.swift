@@ -19,6 +19,7 @@ class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocati
     @IBOutlet weak var noConferenceSubView: UIView!
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var calendarSubView: UIView!
     var items: [String] = ["We", "Heart", "Swift"]
     
     let app:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
@@ -31,11 +32,14 @@ class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocati
         self.getBeaconsFromAPI()
         self.getTopologyFromAPI()
         self.conferenceSubView.hidden = true
+        self.calendarSubView.hidden = true
         if app.lastBeacons?.count > 0 {
             self.updateData()
             self.conferenceSubView.hidden = false
             self.noConferenceSubView.hidden = true
+            self.calendarSubView.hidden = false
         }
+        
         
         //self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         navigationItem.title = "Home"
