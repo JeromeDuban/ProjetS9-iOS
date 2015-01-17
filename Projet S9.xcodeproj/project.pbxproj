@@ -44,6 +44,7 @@
 		1EAD3C0F1A6557D900FF6143 /* TalkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAD3C0E1A6557D900FF6143 /* TalkViewController.swift */; };
 		1EBA50391A3CD9AD00894C4D /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBA50381A3CD9AD00894C4D /* MenuItem.swift */; };
 		1EC333A51A5081FF00B1E360 /* libSVGKit-iOS.1.2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EC333A41A5081FF00B1E360 /* libSVGKit-iOS.1.2.0.a */; };
+		1EC57DC11A67B8E300716393 /* COSTouchVisualizerWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EC57DC01A67B8E300716393 /* COSTouchVisualizerWindow.m */; };
 		1EC96AFA1A2B36C4001B1065 /* Conference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC96AF91A2B36C4001B1065 /* Conference.swift */; };
 		1EC96AFC1A2B3B7E001B1065 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC96AFB1A2B3B7E001B1065 /* Track.swift */; };
 		1EC96AFE1A2B4059001B1065 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC96AFD1A2B4059001B1065 /* Session.swift */; };
@@ -119,6 +120,8 @@
 		1EAD3C0E1A6557D900FF6143 /* TalkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TalkViewController.swift; sourceTree = "<group>"; };
 		1EBA50381A3CD9AD00894C4D /* MenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		1EC333A41A5081FF00B1E360 /* libSVGKit-iOS.1.2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libSVGKit-iOS.1.2.0.a"; sourceTree = "<group>"; };
+		1EC57DBF1A67B8E300716393 /* COSTouchVisualizerWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COSTouchVisualizerWindow.h; sourceTree = "<group>"; };
+		1EC57DC01A67B8E300716393 /* COSTouchVisualizerWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = COSTouchVisualizerWindow.m; sourceTree = "<group>"; };
 		1EC96AF91A2B36C4001B1065 /* Conference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conference.swift; sourceTree = "<group>"; };
 		1EC96AFB1A2B3B7E001B1065 /* Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		1EC96AFD1A2B4059001B1065 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
@@ -295,6 +298,7 @@
 		1E38D7371A2BAE1B00742800 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				1EC57DBE1A67B8E300716393 /* COSTouch */,
 				1ECA75591A44C8DB00FA9D07 /* SVGKit */,
 				0317BCB51A277CE50032208E /* SwiftJSON.swift */,
 				1E38D73A1A2BB3D900742800 /* JSON.swift */,
@@ -394,6 +398,15 @@
 				1E82838C1A2535E600889E31 /* UIViewController+ECSlidingViewController.m */,
 			);
 			path = ECSlidingViewController;
+			sourceTree = "<group>";
+		};
+		1EC57DBE1A67B8E300716393 /* COSTouch */ = {
+			isa = PBXGroup;
+			children = (
+				1EC57DBF1A67B8E300716393 /* COSTouchVisualizerWindow.h */,
+				1EC57DC01A67B8E300716393 /* COSTouchVisualizerWindow.m */,
+			);
+			path = COSTouch;
 			sourceTree = "<group>";
 		};
 		1EC96AF71A2B3273001B1065 /* UI */ = {
@@ -755,6 +768,7 @@
 				1E8283921A2535E600889E31 /* UIViewController+ECSlidingViewController.m in Sources */,
 				1ECC94461A56F7DB00F2AD88 /* BeaconsModelBuilder.swift in Sources */,
 				1E82838E1A2535E600889E31 /* ECSlidingAnimationController.m in Sources */,
+				1EC57DC11A67B8E300716393 /* COSTouchVisualizerWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

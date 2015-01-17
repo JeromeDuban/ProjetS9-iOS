@@ -11,8 +11,10 @@ import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
-
-    var window: UIWindow?
+    lazy var window: COSTouchVisualizerWindow? = {
+        COSTouchVisualizerWindow(frame: UIScreen.mainScreen().bounds)
+        }()
+//    var window: UIWindow?
     var locationManager: CLLocationManager?
     var lastBeacons : [CLBeacon]?
     var lastMajor: NSNumber?

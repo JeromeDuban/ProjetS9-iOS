@@ -15,3 +15,5 @@
 #import "ECSlidingViewController/UIViewController+ECSlidingViewController.h"
 
 #import "SVGKit.h"
+
+#import "COSTouchVisualizerWindow.h"
