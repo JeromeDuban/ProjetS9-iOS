@@ -65,3 +65,40 @@ class CustomCell: UITableViewCell {
 }
 
 
+class CustomCellHomeView: UITableViewCell {
+    
+    
+    
+    
+    @IBOutlet weak var subject: UILabel!
+    
+    @IBOutlet weak var end_ts: UILabel!
+    @IBOutlet weak var abstract: UILabel!
+    @IBOutlet weak var start_ts: UILabel!
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
+    
+    
+    override func setSelected(selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        
+        // Configure the view for the selected state
+    }
+    
+    
+    func setCell(subject: String,start_ts: String, end_ts: String, abstract: String){
+        self.subject.text   = subject;
+        self.start_ts.text  = start_ts;
+        self.abstract.text   = abstract;
+        self.end_ts.text  = end_ts;
+        
+        
+    }
+    
+    
+    
+}
+
+

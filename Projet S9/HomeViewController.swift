@@ -160,7 +160,7 @@ class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocati
         var cell: CustomCellHomeView = self.tableView.dequeueReusableCellWithIdentifier("cellHomeView") as CustomCellHomeView
         //cell.textLabel?.text = self.items[indexPath.row]
                 //cell.setCell( calendar.title, room: "Room n°"  , start_ts: "", end_ts: "", color: UIColor.greenColor())
-        cell.setCell("Hellooo", start_ts: "TOTO")
+        cell.setCell("HELLO", start_ts: "START", end_ts: "END", abstract: "MY SUBJECT IS")
         //cell.setCellBis(self.items[indexPath.row])
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator;
         
@@ -178,35 +178,5 @@ class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocati
 }
 
 
-class CustomCellHomeView: UITableViewCell {
-    
-    
-    
-    
-    @IBOutlet weak var subject: UILabel!
-    
-    @IBOutlet weak var start_ts: UILabel!
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
-    
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
-    }
-    
-    
-    func setCell(subject: String,start_ts: String){
-        self.subject.text   = subject;
-        self.start_ts.text  = start_ts;
-        
-        
-    }
-    
-    
-    
-}
+
 
