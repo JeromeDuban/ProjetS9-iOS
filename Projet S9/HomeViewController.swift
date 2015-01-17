@@ -37,7 +37,7 @@ class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocati
             self.noConferenceSubView.hidden = true
         }
         
-        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        //self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         navigationItem.title = "Home"
         
         
@@ -149,9 +149,20 @@ class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocati
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
+//        var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
+//        
+//        cell.textLabel?.text = self.items[indexPath.row]
+//        
+//        return cell
         
-        cell.textLabel?.text = self.items[indexPath.row]
+        
+        
+        var cell: CustomCellHomeView = self.tableView.dequeueReusableCellWithIdentifier("cellHomeView") as CustomCellHomeView
+        //cell.textLabel?.text = self.items[indexPath.row]
+                //cell.setCell( calendar.title, room: "Room n°"  , start_ts: "", end_ts: "", color: UIColor.greenColor())
+        cell.setCell("Hellooo", start_ts: "TOTO")
+        //cell.setCellBis(self.items[indexPath.row])
+        cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator;
         
         return cell
     }
@@ -161,6 +172,39 @@ class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocati
    
     
     
+    
+    
+    
+}
+
+
+class CustomCellHomeView: UITableViewCell {
+    
+    
+    
+    
+    @IBOutlet weak var subject: UILabel!
+    
+    @IBOutlet weak var start_ts: UILabel!
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
+    
+    
+    override func setSelected(selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        
+        // Configure the view for the selected state
+    }
+    
+    
+    func setCell(subject: String,start_ts: String){
+        self.subject.text   = subject;
+        self.start_ts.text  = start_ts;
+        
+        
+    }
     
     
     
