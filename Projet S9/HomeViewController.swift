@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocationManagerDelegate {
+class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
@@ -17,6 +17,9 @@ class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocati
     @IBOutlet weak var endDayLabel: UILabel!
     @IBOutlet weak var conferenceSubView: UIView!
     @IBOutlet weak var noConferenceSubView: UIView!
+    @IBOutlet weak var tableView: UITableView!
+    
+    var items: [String] = ["We", "Heart", "Swift"]
     
     let app:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     
@@ -33,6 +36,8 @@ class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocati
             self.conferenceSubView.hidden = false
             self.noConferenceSubView.hidden = true
         }
+        
+        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         navigationItem.title = "Home"
         
         
@@ -137,5 +142,27 @@ class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocati
         presentViewController(alert, animated: true, completion: nil)
     }
     
+    //TableView
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+         return self.items.count;
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
+        
+        cell.textLabel?.text = self.items[indexPath.row]
+        
+        return cell
+    }
+    
+  
+    
+   
+    
+    
+    
+    
     
 }
+
