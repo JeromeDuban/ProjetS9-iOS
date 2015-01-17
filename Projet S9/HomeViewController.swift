@@ -10,7 +10,8 @@ import UIKit
 import Foundation
 import CoreLocation
 
-class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocationManagerDelegate, UITableViewDelegate,UITableViewDataSource {
+
+class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
@@ -18,6 +19,10 @@ class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocati
     @IBOutlet weak var endDayLabel: UILabel!
     @IBOutlet weak var conferenceSubView: UIView!
     @IBOutlet weak var noConferenceSubView: UIView!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var calendarSubView: UIView!
+    
+    var items: [String] = ["We", "Heart", "Swift"]
     
     let app:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     
@@ -29,11 +34,16 @@ class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocati
         self.getBeaconsFromAPI()
         self.getTopologyFromAPI()
         self.conferenceSubView.hidden = true
+        self.calendarSubView.hidden = true
         if app.lastBeacons?.count > 0 {
             self.updateData()
             self.conferenceSubView.hidden = false
             self.noConferenceSubView.hidden = true
+            self.calendarSubView.hidden = false
         }
+        
+        
+        //self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         navigationItem.title = "Home"
         
         
@@ -138,13 +148,25 @@ class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocati
         presentViewController(alert, animated: true, completion: nil)
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return UITableViewCell()
-    }
-    
+
+    //TableView
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+         return self.items.count;
     }
     
-    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var cell: CustomCellHomeView = self.tableView.dequeueReusableCellWithIdentifier("cellHomeView") as CustomCellHomeView
+        //cell.textLabel?.text = self.items[indexPath.row]
+                //cell.setCell( calendar.title, room: "Room n°"  , start_ts: "", end_ts: "", color: UIColor.greenColor())
+        cell.setCell("HELLO", start_ts: "START", end_ts: "END", abstract: "MY SUBJECT IS")
+        //cell.setCellBis(self.items[indexPath.row])
+        cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator;
+        
+        return cell
+    }
+
 }
+
+
+
+
