@@ -37,8 +37,9 @@ class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocati
         self.getConferencesFromAPI()
         self.getBeaconsFromAPI()
         self.getTopologyFromAPI()
-        self.conferenceSubView.hidden = true
-        self.calendarSubView.hidden = true
+        self.conferenceSubView.hidden = false
+        self.calendarSubView.hidden = false
+        self.noConferenceSubView.hidden = true
         if app.lastBeacons?.count > 0 {
             self.updateData()
             self.conferenceSubView.hidden = false
