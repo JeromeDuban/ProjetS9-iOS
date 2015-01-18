@@ -22,7 +22,9 @@ class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocati
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var calendarSubView: UIView!
     
-    var items: [String] = ["We", "Heart", "Swift"]
+    //var items: [String] = ["We", "Heart", "Swift"]
+    var talk = [Talk]()
+    var after = [Talk]();
     
     let app:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     
@@ -39,10 +41,18 @@ class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocati
             self.updateData()
             self.conferenceSubView.hidden = false
             self.noConferenceSubView.hidden = true
+            
+            self.newFindClosestDates();
+            self.tableView.reloadData();
             self.calendarSubView.hidden = false
+            
+            
+            //self.tableView.reloadData();
         }
         
-        
+
+        //let myConference: Conference = Conference.sharedInstance
+        //println(myConference.tracks?.count)
         //self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         navigationItem.title = "Home"
         
@@ -151,19 +161,105 @@ class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocati
 
     //TableView
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-         return self.items.count;
+        return 3;
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell: CustomCellHomeView = self.tableView.dequeueReusableCellWithIdentifier("cellHomeView") as CustomCellHomeView
         //cell.textLabel?.text = self.items[indexPath.row]
                 //cell.setCell( calendar.title, room: "Room n°"  , start_ts: "", end_ts: "", color: UIColor.greenColor())
-        cell.setCell("HELLO", start_ts: "START", end_ts: "END", abstract: "MY SUBJECT IS")
+        if (after.count != 0){
+            let talks = self.after[indexPath.row]
+            cell.setCell(talks.title, start_ts: getTime(talks.start_ts), end_ts: getTime(talks.end_ts), abstract: talks.abstract)
+        }
+        
+        
         //cell.setCellBis(self.items[indexPath.row])
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator;
         
         return cell
     }
+    
+    func getTime(var date: Int)-> String{
+        var respondedDate = Double(date);
+        var date = NSDate(timeIntervalSince1970: respondedDate);
+        let formater: NSDateFormatter = NSDateFormatter()
+        formater.dateFormat = "H:mm"
+        let startTime = formater.stringFromDate(date)
+        
+        return startTime;
+    }
+    
+    func newFindClosestDates(){
+        
+        let myConference: Conference = Conference.sharedInstance
+        println(myConference.tracks?.count)
+        
+        
+        var indexCount: Int = 0;
+        var indexTracks: Int = 0;
+        var indexSessions: Int = 0;
+        var indexTalks: Int = 0;
+        var indexFloors: Int = 0;
+        var indexRooms: Int = 0;
+        
+        var indexCountSection: Int = 0;
+        var indexCountTalk: Int = 0;
+        var indexCountRoom: Int = 0;
+        var indexCountTrack: Int = 0;
+        // Load the element in the tableview
+        
+        
+        if(myConference.tracks?.count != nil){
+            // Loop for tracks
+            while(indexTracks  != myConference.tracks?.count){
+                // Loop for sessions
+                while(indexSessions != myConference.tracks![indexTracks].sessions.count){
+                
+                    // Loop for talks
+                    while(indexTalks != myConference.tracks![indexTracks].sessions[indexSessions].talks.count){
+                        // Insert talks
+                        self.talk.insert(Talk(id: myConference.tracks![indexTracks].sessions[indexSessions].talks[indexTalks].id, title: myConference.tracks![indexTracks].sessions[indexSessions].talks[indexTalks].title, start_ts: myConference.tracks![indexTracks].sessions[indexSessions].talks[indexTalks].start_ts, end_ts: myConference.tracks![indexTracks].sessions[indexSessions].talks[indexTalks].end_ts, speaker:myConference.tracks![indexTracks].sessions[indexSessions].talks[indexTalks].speaker, abstract: myConference.tracks![indexTracks].sessions[indexSessions].talks[indexTalks].abstract, body: myConference.tracks![indexTracks].sessions[indexSessions].talks[indexTalks].body), atIndex: indexCount);
+
+
+
+                        indexCount += 1;
+                        indexTalks += 1;
+                    }
+                    indexSessions += 1;
+                }
+                indexTracks += 1;
+                
+            }
+        }
+        
+        talk = talk.sorted({ $0.start_ts < $1.start_ts})
+        //Test Date
+//        let responseInitialDate = Double(1421832450)
+//        var date = NSDate(timeIntervalSince1970: responseInitialDate)
+        var indexDate = 0;
+        
+        for(var indexTalks = 0; indexTalks < talk.count; indexTalks++) {
+            var tar = talk[indexTalks];
+            let date = NSDate()
+            var respondedDate = Double(tar.start_ts);
+            var dateTest = NSDate(timeIntervalSince1970: respondedDate);
+
+            if (dateTest.laterDate(date) != date){
+                self.after.insert(talk[indexTalks], atIndex: indexDate);
+                indexDate += 1;
+            }
+
+        }
+        
+        after = after.sorted({ $0.start_ts < $1.start_ts})
+        
+
+        
+        
+    }
+    
+    
 
 }
 

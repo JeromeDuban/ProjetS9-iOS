@@ -141,7 +141,7 @@ class CalendarTableViewController : BaseViewController, UITableViewDelegate,UITa
         var respondedDate = Double(date);
         var date = NSDate(timeIntervalSince1970: respondedDate);
         let formater: NSDateFormatter = NSDateFormatter()
-        formater.dateFormat = "h:mm"
+        formater.dateFormat = "H:mm"
         let startTime = formater.stringFromDate(date)
 
         return startTime;
