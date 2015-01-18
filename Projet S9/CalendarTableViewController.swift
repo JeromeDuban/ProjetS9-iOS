@@ -128,7 +128,7 @@ class CalendarTableViewController : BaseViewController, UITableViewDelegate,UITa
         let calendar = self.calendarOrder[indexPath.row]
         
         //cell.setCell( calendar.title, room: "Room n°"  , start_ts: "", end_ts: "", color: UIColor.greenColor())
-        cell.setCell(calendar.title , room: "Room n°" + getDoomId(calendar.room.toInt()!) , start_ts: getTime(calendar.start_ts), end_ts: getTime(calendar.end_ts), color: calendar.colorBar)
+        cell.setCell(calendar.title , room: "Room : " + getRoomName(calendar.room.toInt()!) , start_ts: getTime(calendar.start_ts), end_ts: getTime(calendar.end_ts), color: calendar.colorBar)
         //cell.setCellBis(self.items[indexPath.row])
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator;
         
@@ -141,7 +141,7 @@ class CalendarTableViewController : BaseViewController, UITableViewDelegate,UITa
         var respondedDate = Double(date);
         var date = NSDate(timeIntervalSince1970: respondedDate);
         let formater: NSDateFormatter = NSDateFormatter()
-        formater.dateFormat = "h:mm"
+        formater.dateFormat = "HH:mm"
         let startTime = formater.stringFromDate(date)
 
         return startTime;
@@ -172,31 +172,7 @@ class CalendarTableViewController : BaseViewController, UITableViewDelegate,UITa
         return UIColor(red: randomRed, green: randomGreen, blue: randomBlue, alpha: 1.0)
         
     }
-    
-    func getDoomId(room_id: Int) ->String{
-        var myTopology: Topology = Topology.sharedInstance
-        
-        var indexRooms: Int = 0;
-        var indexFloors: Int = 0;
-        var result: String = "";
-        if(myTopology.floors?.count != nil){
-            //Insert Rooms' name
-            while(indexFloors != myTopology.floors?.count){
-                
-                while(indexRooms != myTopology.floors![indexFloors].rooms.count){
-                    if(room_id == myTopology.floors![indexFloors].rooms[indexRooms].id){
-                        result = myTopology.floors![indexFloors].rooms[indexRooms].dom_id;
-                    }
-                    
-                    indexRooms += 1 ;
-                }
-                indexFloors += 1 ;
-            }
-            
-        }
-        return result
-    }
-    
+
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.performSegueWithIdentifier("calendarDetail", sender: tableView)
@@ -215,6 +191,29 @@ class CalendarTableViewController : BaseViewController, UITableViewDelegate,UITa
         }
     }
     
+    func getRoomName(room_id: Int) ->String{
+        var myTopology: Topology = Topology.sharedInstance
+        
+        var indexRooms: Int = 0;
+        var indexFloors: Int = 0;
+        var result: String = "";
+        if(myTopology.floors?.count != nil){
+            //Insert Rooms' name
+            while(indexFloors != myTopology.floors?.count){
+                
+                while(indexRooms != myTopology.floors![indexFloors].rooms.count){
+                    if(room_id == myTopology.floors![indexFloors].rooms[indexRooms].id){
+                        result = myTopology.floors![indexFloors].rooms[indexRooms].name;
+                    }
+                    
+                    indexRooms += 1 ;
+                }
+                indexFloors += 1 ;
+            }
+            
+        }
+        return result
+    }
 
 
 }

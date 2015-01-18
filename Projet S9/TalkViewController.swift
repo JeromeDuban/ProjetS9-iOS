@@ -33,7 +33,7 @@ class TalkViewController: UIViewController {
         scrollView.contentInset = UIEdgeInsetsMake(-50, 0, 220.0, 0)
         
         speakerLabel.text = talk?.speaker
-        roomLabel.text = getDomId(self.talk!.room.toInt()!)//"Amphi B"//talk?.room
+        roomLabel.text = getRoomName(self.talk!.room.toInt()!)//"Amphi B"//talk?.room
        
         let timeStart = talk?.start_ts
         let _intervalStart:NSTimeInterval = Double(timeStart!) //1421830800
@@ -44,7 +44,7 @@ class TalkViewController: UIViewController {
         let _intervalEnd:NSTimeInterval = Double(timeEnd!)
         let dateEnd: NSDate = NSDate(timeIntervalSince1970: Double(timeEnd!))
         let formater: NSDateFormatter = NSDateFormatter()
-        formater.dateFormat = "h:mm"
+        formater.dateFormat = "HH:mm"
         let startTime = formater.stringFromDate(dateStart)
         let endTime = formater.stringFromDate(dateEnd)
         
@@ -98,6 +98,31 @@ class TalkViewController: UIViewController {
         }
         return result
     }
+    
+    func getRoomName(room_id: Int) ->String{
+        var myTopology: Topology = Topology.sharedInstance
+        
+        var indexRooms: Int = 0;
+        var indexFloors: Int = 0;
+        var result: String = "";
+        if(myTopology.floors?.count != nil){
+            //Insert Rooms' name
+            while(indexFloors != myTopology.floors?.count){
+                
+                while(indexRooms != myTopology.floors![indexFloors].rooms.count){
+                    if(room_id == myTopology.floors![indexFloors].rooms[indexRooms].id){
+                        result = myTopology.floors![indexFloors].rooms[indexRooms].name;
+                    }
+                    
+                    indexRooms += 1 ;
+                }
+                indexFloors += 1 ;
+            }
+            
+        }
+        return result
+    }
+
 
     
 }
