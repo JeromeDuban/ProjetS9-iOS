@@ -66,8 +66,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         let title : String = notification.userInfo!["title"] as String
         let speaker : String = notification.userInfo!["speaker"] as String
         let body : String = notification.userInfo!["body"] as String
+        let room : String = notification.userInfo!["room"] as String
+        let start_ts: String = notification.userInfo!["start_ts"] as String
+        let end_ts: String = notification.userInfo!["end_ts"] as String
         
-        let myTalk:Calendar = Calendar(session: "", start_ts: 00, end_ts: 000, speaker: speaker, abstract: "", body: body, title: title, room: "1", colorBar: UIColor.brownColor())
+        let myTalk:Calendar = Calendar(session: "", start_ts: start_ts.toInt()!, end_ts: end_ts.toInt()!, speaker: speaker, abstract: "", body: body, title: title, room: room, colorBar: UIColor.brownColor())
         viewController.talk = myTalk
         viewController.isNotification = true
         
@@ -140,13 +143,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 }
 
 extension AppDelegate: CLLocationManagerDelegate {
-    func sendLocalNotificationWithMessage(message: String, playSound: Bool, talk:Talk) {
+    func sendLocalNotificationWithMessage(message: String, playSound: Bool, talk:Talk, roomId: Int) {
         let notification:UILocalNotification = UILocalNotification()
         notification.alertBody = message
         var userInfo = [String:String]()
         userInfo["title"] = talk.title
         userInfo["body"] = talk.body
         userInfo["speaker"] = talk.speaker
+        userInfo["room"] = String(roomId)
+        userInfo["start_ts"] = String(talk.start_ts)
+        userInfo["end_ts"] = String(talk.end_ts)
 
         notification.userInfo = userInfo
         
@@ -158,8 +164,10 @@ extension AppDelegate: CLLocationManagerDelegate {
                 for currentBeacon in self.lastBeacons! {
                     if beacon.major == currentBeacon.major && beacon.minor == currentBeacon.minor && beacon.proximity == CLProximity.Immediate {
                         if let roomId: Int = findRoomIdWithMinor(beacon.minor) {
-                            if let talk: Talk = findFirstTalkWithRoomId(roomId) {
-                                sendLocalNotificationWithMessage(talk.title + " - " + talk.abstract, playSound: true, talk: talk)
+                            if roomId > 0 {
+                                if let talk: Talk = findFirstTalkWithRoomId(roomId) {
+                                    sendLocalNotificationWithMessage(talk.title + " - " + talk.abstract, playSound: true, talk: talk, roomId: roomId)
+                                }
                             }
                         }
                     }
