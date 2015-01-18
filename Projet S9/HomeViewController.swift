@@ -26,6 +26,8 @@ class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocati
     var talk = [Talk]()
     var after = [Talk]();
     
+    var myColor: UIColor = UIColor();
+    
     let app:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     
     override func viewDidLoad() {
@@ -41,7 +43,8 @@ class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocati
             self.updateData()
             self.conferenceSubView.hidden = false
             self.noConferenceSubView.hidden = true
-            
+            //var myColor: UIColor = getRandomColor()
+            myColor = getRandomColor();
             self.newFindClosestDates();
             self.tableView.reloadData();
             self.calendarSubView.hidden = false
@@ -170,12 +173,12 @@ class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocati
                 //cell.setCell( calendar.title, room: "Room n°"  , start_ts: "", end_ts: "", color: UIColor.greenColor())
         if (after.count != 0){
             let talks = self.after[indexPath.row]
-            cell.setCell(talks.title, start_ts: getTime(talks.start_ts), end_ts: getTime(talks.end_ts), abstract: talks.abstract)
+            cell.setCell(talks.title, start_ts: getTime(talks.start_ts), end_ts: getTime(talks.end_ts), abstract: talks.abstract, barColor: myColor)
         }
         
         
         //cell.setCellBis(self.items[indexPath.row])
-        cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator;
+        //cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator;
         
         return cell
     }
@@ -214,8 +217,9 @@ class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocati
             // Loop for tracks
             while(indexTracks  != myConference.tracks?.count){
                 // Loop for sessions
-                while(indexSessions != myConference.tracks![indexTracks].sessions.count){
                 
+                while(indexSessions != myConference.tracks![indexTracks].sessions.count){
+                    
                     // Loop for talks
                     while(indexTalks != myConference.tracks![indexTracks].sessions[indexSessions].talks.count){
                         // Insert talks
@@ -256,6 +260,18 @@ class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocati
         
 
         
+        
+    }
+    
+    func getRandomColor() -> UIColor {
+        
+        var randomRed:CGFloat = CGFloat(drand48())
+        
+        var randomGreen:CGFloat = CGFloat(drand48())
+        
+        var randomBlue:CGFloat = CGFloat(drand48())
+        
+        return UIColor(red: randomRed, green: randomGreen, blue: randomBlue, alpha: 1.0)
         
     }
     

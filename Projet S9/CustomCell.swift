@@ -72,6 +72,7 @@ class CustomCellHomeView: UITableViewCell {
     
     @IBOutlet weak var subject: UILabel!
     
+    @IBOutlet weak var barColor: UIView!
     @IBOutlet weak var end_ts: UILabel!
     @IBOutlet weak var abstract: UILabel!
     @IBOutlet weak var start_ts: UILabel!
@@ -88,11 +89,12 @@ class CustomCellHomeView: UITableViewCell {
     }
     
     
-    func setCell(subject: String,start_ts: String, end_ts: String, abstract: String){
+    func setCell(subject: String,start_ts: String, end_ts: String, abstract: String, barColor: UIColor){
         self.subject.text   = subject;
         self.start_ts.text  = start_ts;
         self.abstract.text   = abstract;
         self.end_ts.text  = end_ts;
+        self.barColor.backgroundColor   = barColor;
         
         
     }

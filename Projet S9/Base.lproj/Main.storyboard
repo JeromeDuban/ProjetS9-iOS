@@ -131,6 +131,9 @@
                                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iuw-Ap-gLu">
+                                                            <rect key="frame" x="68" y="3" width="3" height="34"/>
+                                                        </view>
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="eNX-o9-c3H" firstAttribute="trailing" secondItem="n27-MA-Xfc" secondAttribute="trailing" id="6AP-a1-4Bq"/>
@@ -152,6 +155,7 @@
                                                 </tableViewCellContentView>
                                                 <connections>
                                                     <outlet property="abstract" destination="OiD-pd-GRn" id="wNZ-XU-hgo"/>
+                                                    <outlet property="barColor" destination="iuw-Ap-gLu" id="EPF-LN-XOD"/>
                                                     <outlet property="end_ts" destination="n27-MA-Xfc" id="p0t-x0-urr"/>
                                                     <outlet property="start_ts" destination="eNX-o9-c3H" id="sCN-rP-E2L"/>
                                                     <outlet property="subject" destination="Ly8-Lc-Xll" id="bzu-HX-9ZR"/>
