@@ -265,7 +265,7 @@ class ConferenceTableViewController : UITableViewController, UISearchBarDelegate
         self.navigationController?.setViewControllers([viewController], animated: false)
         let mapViewController: MapViewController = viewController.viewControllers.first as MapViewController
         
-        mapViewController.fillRoomWithColor(myRoom, color: UIColor.redColor())
+        mapViewController.fillRoomWithColor(myRoom.stringByReplacingOccurrencesOfString(" ", withString: ""), color: UIColor.redColor())
 
     }
     

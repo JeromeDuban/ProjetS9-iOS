@@ -22,7 +22,6 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
     var lastPosition: CGPoint = CGPoint(x: 0.0, y: 0.0)
     var previousPosition: CGPoint = CGPoint(x: 0.0, y: 0.0)
     var dotLayer: CAShapeLayer?
-    var lastDomId: String = ""
     var zoomScale: CGFloat = 1
     var domDefaultColor: UIColor = UIColor(red: 255/255, green: 222/255, blue: 0/255, alpha: 1)
     let app:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
@@ -238,13 +237,13 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
     
     
     
-    func fillRoomWithColor(dom_id:String, color:UIColor) {
-        if !self.lastDomId.isEmpty {
-            self.fillRoomWithColor(self.lastDomId, color: self.domDefaultColor)
+    func fillRoomWithColor(dom_id:String, color:UIColor, reset: Bool = true) {
+        if reset && !self.app.lastDomId.isEmpty {
+            self.fillRoomWithColor(self.app.lastDomId, color: self.domDefaultColor, reset: false)
         }
         if let domElement:SVGElement = self.svgFile.DOMDocument!.getElementById(dom_id) as? SVGElement {
             if let elementLayer:CAShapeLayer = svgFile.layerWithIdentifier(domElement.identifier?) as? CAShapeLayer {
-                self.lastDomId = dom_id
+                self.app.lastDomId = dom_id
                 elementLayer.fillColor = color.CGColor
             }
         }

@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var topologyJsonGot: Bool = false
     var mask: CALayer?
     var rootView: UIViewController?
+    var lastDomId: String = ""
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
