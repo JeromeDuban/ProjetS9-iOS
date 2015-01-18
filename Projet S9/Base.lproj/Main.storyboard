@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M3P-Xc-SyZ">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M3P-Xc-SyZ">
                                 <rect key="frame" x="125" y="82" width="350" height="127"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Du" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c0P-kU-OrY">
@@ -92,7 +92,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S8g-Sb-AuU">
-                                <rect key="frame" x="125" y="256" width="337" height="120"/>
+                                <rect key="frame" x="90" y="230" width="337" height="120"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="40" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="11H-ph-G8x">
                                         <rect key="frame" x="0.0" y="0.0" width="337" height="120"/>
@@ -172,9 +172,11 @@
                             <constraint firstAttribute="centerY" secondItem="oUi-Bb-Jb8" secondAttribute="centerY" constant="-2.5" id="1QW-VS-SIZ"/>
                             <constraint firstAttribute="centerX" secondItem="oUi-Bb-Jb8" secondAttribute="centerX" id="1zi-4j-cD5"/>
                             <constraint firstItem="M3P-Xc-SyZ" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="topMargin" constant="82" id="5Sp-lH-bY4"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="S8g-Sb-AuU" secondAttribute="bottom" constant="152" id="Agu-ZA-dqR"/>
                             <constraint firstItem="S8g-Sb-AuU" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="20" id="HKZ-Nb-ePZ"/>
                             <constraint firstAttribute="centerY" secondItem="S8g-Sb-AuU" secondAttribute="centerY" constant="-98.5" id="MtY-5z-R5e"/>
                             <constraint firstItem="M3P-Xc-SyZ" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="159" id="cUI-dg-DZp"/>
+                            <constraint firstItem="S8g-Sb-AuU" firstAttribute="bottom" secondItem="M3P-Xc-SyZ" secondAttribute="bottom" constant="141" id="eVE-bY-D8I"/>
                             <constraint firstAttribute="trailingMargin" secondItem="S8g-Sb-AuU" secondAttribute="trailing" constant="40" id="eYK-aQ-0h1"/>
                             <constraint firstAttribute="centerX" secondItem="M3P-Xc-SyZ" secondAttribute="centerX" id="qMD-HL-3lu"/>
                             <constraint firstItem="S8g-Sb-AuU" firstAttribute="top" secondItem="M3P-Xc-SyZ" secondAttribute="bottom" constant="1" id="vEY-hK-HY1"/>
@@ -182,6 +184,7 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="cUI-dg-DZp"/>
+                                <exclude reference="MtY-5z-R5e"/>
                             </mask>
                         </variation>
                     </view>
