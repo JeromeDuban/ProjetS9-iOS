@@ -92,10 +92,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S8g-Sb-AuU">
-                                <rect key="frame" x="125" y="256" width="337" height="292"/>
+                                <rect key="frame" x="125" y="256" width="337" height="120"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="40" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="11H-ph-G8x">
-                                        <rect key="frame" x="0.0" y="0.0" width="337" height="300"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="337" height="120"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellHomeView" rowHeight="40" id="AiR-DK-OpB" customClass="CustomCellHomeView" customModule="Projet_S9" customModuleProvider="target">
