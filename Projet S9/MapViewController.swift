@@ -22,6 +22,9 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
     var lastPosition: CGPoint = CGPoint(x: 0.0, y: 0.0)
     var previousPosition: CGPoint = CGPoint(x: 0.0, y: 0.0)
     var dotLayer: CAShapeLayer?
+    var lastDomId: String = ""
+    var zoomScale: CGFloat = 1
+    var domDefaultColor: UIColor = UIColor(red: 255/255, green: 222/255, blue: 0/255, alpha: 1)
     let app:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     
     override func viewDidLoad() {
@@ -48,10 +51,10 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
         
         // Debug : Display beacons on map
         let beaconLayer: CAShapeLayer = CAShapeLayer(layer: self.svgMap.layer)
-        self.makeCircleAtLocation(CGPoint(x: 330, y: 660), radius: 5, layer: beaconLayer, color: UIColor.redColor())
-        self.makeCircleAtLocation(CGPoint(x: 530, y: 660), radius: 5, layer: beaconLayer, color: UIColor.redColor())
-        self.makeCircleAtLocation(CGPoint(x: 430, y: 560), radius: 5, layer: beaconLayer, color: UIColor.redColor())
-        self.makeCircleAtLocation(CGPoint(x: 430, y: 760), radius: 5, layer: beaconLayer, color: UIColor.redColor())
+        self.makeCircleAtLocation(CGPoint(x: 451.2, y: 282.5), radius: 5, layer: beaconLayer, color: UIColor.redColor())
+        self.makeCircleAtLocation(CGPoint(x: 494.7, y: 282.5), radius: 5, layer: beaconLayer, color: UIColor.redColor())
+        self.makeCircleAtLocation(CGPoint(x: 472.95, y: 282.5), radius: 5, layer: beaconLayer, color: UIColor.redColor())
+        self.makeCircleAtLocation(CGPoint(x: 472.95, y: 297.5), radius: 5, layer: beaconLayer, color: UIColor.redColor())
         self.svgMap.layer.addSublayer(beaconLayer)
         self.svgMap.setNeedsDisplay()
         
@@ -106,7 +109,8 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
     
     func scrollViewDidEndZooming(scrollView: UIScrollView, withView view: UIView!, atScale scale: CGFloat) {
         self.svgMap.disableAutoRedrawAtHighestResolution = false
-       
+        self.zoomScale = scale
+        self.makeCircleAtLocation(self.lastPosition, radius: 20.0, layer: self.dotLayer!, color: UIColor.blueColor())
     }
     
     func scrollViewWillBeginZooming(scrollView: UIScrollView, withView view: UIView!) {
@@ -138,21 +142,15 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
             
             self.dotLayer = CAShapeLayer(layer: self.svgMap.layer)
             self.lastPosition = barycenter
-            self.makeCircleAtLocation(barycenter, radius: 10.0, layer: self.dotLayer!, color: UIColor.blueColor())
+            self.makeCircleAtLocation(barycenter, radius: 20.0, layer: self.dotLayer!, color: UIColor.blueColor())
             self.svgMap.layer.addSublayer(self.dotLayer)
             self.svgMap.setNeedsDisplay()
             
             self.isLocationCentered = true
         }
         self.dotLayer!.sublayers = nil
-        self.makeCircleAtLocation(barycenter, radius: 10.0, layer: self.dotLayer!, color: UIColor.blueColor())
-//        let newPosition: CGPoint = CGPoint(x: barycenter.x - self.lastPosition.x, y: barycenter.y - self.lastPosition.y)
-//        println("/* Debug */")
-//        println(barycenter)
-//        println(self.lastPosition)
-//        println(newPosition)
-//        println("\n\n")
-//        self.dotLayer!.position = newPosition
+        self.makeCircleAtLocation(barycenter, radius: 20.0, layer: self.dotLayer!, color: UIColor.blueColor())
+
         self.lastPosition = barycenter
         self.svgMap.setNeedsDisplay()
     }
@@ -160,6 +158,7 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
     
     
     private func findBeaconWithMajorAndMinor(major: NSNumber, minor: NSNumber) -> Beacon? {
+        
         let beacons: Beacons = Beacons.sharedInstance
         if let beacon:Beacon = beacons.array!.filter({($0.major == major) && ($0.minor == minor)}).first? {
             return beacon
@@ -170,14 +169,14 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
     
     
     func makeCircleAtLocation(location: CGPoint, radius:CGFloat, layer:CAShapeLayer, color: UIColor) {
-        let innerCirclePath: UIBezierPath = UIBezierPath(arcCenter: location, radius: 2, startAngle: 0.0, endAngle: CGFloat(M_PI*2.0), clockwise: true)
+        let innerCirclePath: UIBezierPath = UIBezierPath(arcCenter: location, radius: radius/(3*self.zoomScale), startAngle: 0.0, endAngle: CGFloat(M_PI*2.0), clockwise: true)
         let centerCircle: CAShapeLayer = CAShapeLayer()
         centerCircle.path = innerCirclePath.CGPath
-        centerCircle.fillColor = color.CGColor
+        centerCircle.fillColor = color.colorWithAlphaComponent(0.6).CGColor
         layer.addSublayer(centerCircle)
         
         
-        let outerCirclePath: UIBezierPath = UIBezierPath(arcCenter: location, radius: radius, startAngle: 0.0, endAngle: CGFloat(M_PI*2.0), clockwise: true)
+        let outerCirclePath: UIBezierPath = UIBezierPath(arcCenter: location, radius: radius/(1.5*self.zoomScale), startAngle: 0.0, endAngle: CGFloat(M_PI*2.0), clockwise: true)
         layer.path = outerCirclePath.CGPath
         layer.strokeColor = color.CGColor
         layer.fillColor = color.colorWithAlphaComponent(0.2).CGColor
@@ -240,8 +239,12 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
     
     
     func fillRoomWithColor(dom_id:String, color:UIColor) {
+        if !self.lastDomId.isEmpty {
+            self.fillRoomWithColor(self.lastDomId, color: self.domDefaultColor)
+        }
         if let domElement:SVGElement = self.svgFile.DOMDocument!.getElementById(dom_id) as? SVGElement {
             if let elementLayer:CAShapeLayer = svgFile.layerWithIdentifier(domElement.identifier?) as? CAShapeLayer {
+                self.lastDomId = dom_id
                 elementLayer.fillColor = color.CGColor
             }
         }
