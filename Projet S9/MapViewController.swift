@@ -109,7 +109,9 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
     func scrollViewDidEndZooming(scrollView: UIScrollView, withView view: UIView!, atScale scale: CGFloat) {
         self.svgMap.disableAutoRedrawAtHighestResolution = false
         self.zoomScale = scale
-        self.makeCircleAtLocation(self.lastPosition, radius: 20.0, layer: self.dotLayer!, color: UIColor.blueColor())
+        if self.dotLayer != nil {
+            self.makeCircleAtLocation(self.lastPosition, radius: 20.0, layer: self.dotLayer!, color: UIColor.blueColor())
+        }
     }
     
     func scrollViewWillBeginZooming(scrollView: UIScrollView, withView view: UIView!) {
