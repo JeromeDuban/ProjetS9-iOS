@@ -138,7 +138,7 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
         
         
         if !isLocationCentered {
-            let rect: CGRect = CGRectMake(barycenter.x - 150, barycenter.y - 150, 300, 300)
+            let rect: CGRect = CGRectMake(barycenter.x - 250, barycenter.y - 250, 500, 500)
             self.svgScrollView.zoomToRect(rect, animated: true)
             
             self.dotLayer = CAShapeLayer(layer: self.svgMap.layer)

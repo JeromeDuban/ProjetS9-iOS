@@ -43,14 +43,6 @@ class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocati
             self.updateData()
             self.conferenceSubView.hidden = false
             self.noConferenceSubView.hidden = true
-            //var myColor: UIColor = getRandomColor()
-            myColor = getRandomColor();
-            self.newFindClosestDates();
-            self.tableView.reloadData();
-            self.calendarSubView.hidden = false
-            
-            
-            //self.tableView.reloadData();
         }
         
 
@@ -92,6 +84,10 @@ class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocati
             addressLabel.text = myConference.address
             startDayLabel.text = myConference.start_day
             endDayLabel.text = myConference.end_day
+            self.calendarSubView.hidden = false
+            myColor = getRandomColor();
+            self.newFindClosestDates();
+            self.tableView.reloadData();
         }
 
     }
@@ -196,9 +192,7 @@ class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocati
     func newFindClosestDates(){
         
         let myConference: Conference = Conference.sharedInstance
-        println(myConference.tracks?.count)
-        
-        
+
         var indexCount: Int = 0;
         var indexTracks: Int = 0;
         var indexSessions: Int = 0;
