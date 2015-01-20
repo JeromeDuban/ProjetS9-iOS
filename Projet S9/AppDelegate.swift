@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var lastMajor: NSNumber?
     var conferenceJsonGot: Bool = false
     var beaconJsonGot: Bool = false
+    var upCommingTalks: Bool = false
     var sentNotification: [NSNumber] = []
     var topologyJsonGot: Bool = false
     var mask: CALayer?
@@ -201,7 +202,7 @@ extension AppDelegate: CLLocationManagerDelegate {
                 for beacon in beacons {
                     for prevBeacon in lastBeacons {
                         if beacon.major == prevBeacon.major && beacon.minor == prevBeacon.minor && beacon.proximity == CLProximity.Immediate && !contains(self.sentNotification, beacon.minor) {
-                            NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: "timerHandler:", userInfo: beacon, repeats: false)
+                            NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "timerHandler:", userInfo: beacon, repeats: false)
                             self.sentNotification.append(beacon.minor)
                         }
                     }

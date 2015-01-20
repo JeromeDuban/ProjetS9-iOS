@@ -46,7 +46,7 @@ class CalendarTableViewController : BaseViewController, UITableViewDelegate,UITa
         super.unwindSegueIdentifier = "calendarUnwindSegueToMenu"
         super.viewDidLoad()
  
-        navigationItem.title = "Calendar"
+        navigationItem.title = "Planning"
        // self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         //self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         //var nib = UINib(nibName: "CustomCell", bundle: nil);

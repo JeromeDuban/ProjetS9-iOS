@@ -49,13 +49,13 @@ class MapViewController: BaseViewController, UIScrollViewDelegate, UIGestureReco
         self.singleTapGestureRecognizer.delaysTouchesBegan = true
         
         // Debug : Display beacons on map
-        let beaconLayer: CAShapeLayer = CAShapeLayer(layer: self.svgMap.layer)
-        self.makeCircleAtLocation(CGPoint(x: 451.2, y: 282.5), radius: 5, layer: beaconLayer, color: UIColor.redColor())
-        self.makeCircleAtLocation(CGPoint(x: 494.7, y: 282.5), radius: 5, layer: beaconLayer, color: UIColor.redColor())
-        self.makeCircleAtLocation(CGPoint(x: 472.95, y: 282.5), radius: 5, layer: beaconLayer, color: UIColor.redColor())
-        self.makeCircleAtLocation(CGPoint(x: 472.95, y: 297.5), radius: 5, layer: beaconLayer, color: UIColor.redColor())
-        self.svgMap.layer.addSublayer(beaconLayer)
-        self.svgMap.setNeedsDisplay()
+//        let beaconLayer: CAShapeLayer = CAShapeLayer(layer: self.svgMap.layer)
+//        self.makeCircleAtLocation(CGPoint(x: 451.2, y: 282.5), radius: 5, layer: beaconLayer, color: UIColor.redColor())
+//        self.makeCircleAtLocation(CGPoint(x: 494.7, y: 282.5), radius: 5, layer: beaconLayer, color: UIColor.redColor())
+//        self.makeCircleAtLocation(CGPoint(x: 472.95, y: 282.5), radius: 5, layer: beaconLayer, color: UIColor.redColor())
+//        self.makeCircleAtLocation(CGPoint(x: 472.95, y: 297.5), radius: 5, layer: beaconLayer, color: UIColor.redColor())
+//        self.svgMap.layer.addSublayer(beaconLayer)
+//        self.svgMap.setNeedsDisplay()
         
 
         

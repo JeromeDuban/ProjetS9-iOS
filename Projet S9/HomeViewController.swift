@@ -43,6 +43,10 @@ class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocati
             self.updateData()
             self.conferenceSubView.hidden = false
             self.noConferenceSubView.hidden = true
+            self.calendarSubView.hidden = false
+            myColor = getRandomColor();
+            self.newFindClosestDates();
+            self.tableView.reloadData();
         }
         
 
@@ -84,10 +88,13 @@ class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocati
             addressLabel.text = myConference.address
             startDayLabel.text = myConference.start_day
             endDayLabel.text = myConference.end_day
-            self.calendarSubView.hidden = false
-            myColor = getRandomColor();
-            self.newFindClosestDates();
-            self.tableView.reloadData();
+            if self.app.upCommingTalks == false {
+                self.calendarSubView.hidden = false
+                myColor = getRandomColor();
+                self.newFindClosestDates();
+                self.tableView.reloadData();
+                self.app.upCommingTalks = true
+            }
         }
 
     }
@@ -96,7 +103,10 @@ class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocati
         let url = URLFactory.conferenceWithMajorAPI(10)
         JSONService
             .GET(url)
-            .success{json in {self.makeConference(json)} ~> { self.app.conferenceJsonGot = true;}}
+            .success{json in {self.makeConference(json)} ~> {
+                self.app.conferenceJsonGot = true
+                
+            }}
             .failure(onFailure, queue: NSOperationQueue.mainQueue())
     }
     
@@ -209,12 +219,13 @@ class HomeViewController: BaseViewController, UIBarPositioningDelegate, CLLocati
         
         if(myConference.tracks?.count != nil){
             // Loop for tracks
+            indexTracks = 0
             while(indexTracks  != myConference.tracks?.count){
                 // Loop for sessions
-                
+                indexSessions = 0
                 while(indexSessions != myConference.tracks![indexTracks].sessions.count){
-                    
                     // Loop for talks
+                    indexTalks = 0
                     while(indexTalks != myConference.tracks![indexTracks].sessions[indexSessions].talks.count){
                         // Insert talks
                         self.talk.insert(Talk(id: myConference.tracks![indexTracks].sessions[indexSessions].talks[indexTalks].id, title: myConference.tracks![indexTracks].sessions[indexSessions].talks[indexTalks].title, start_ts: myConference.tracks![indexTracks].sessions[indexSessions].talks[indexTalks].start_ts, end_ts: myConference.tracks![indexTracks].sessions[indexSessions].talks[indexTalks].end_ts, speaker:myConference.tracks![indexTracks].sessions[indexSessions].talks[indexTalks].speaker, abstract: myConference.tracks![indexTracks].sessions[indexSessions].talks[indexTalks].abstract, body: myConference.tracks![indexTracks].sessions[indexSessions].talks[indexTalks].body), atIndex: indexCount);
