@@ -11,13 +11,13 @@ Multiple beacons placed inside the building allow us to track user location (tha
 
 
 ## Documentation
-You can find our academic report [here](../blob/master/doc/Report.pdf), even if it is not really a technical documentation it describes how we implemented some of our algorithms. 
+You can find our academic report [here](/blob/master/doc/Report.pdf), even if it is not really a technical documentation it describes how we implemented some of our algorithms. 
 
 ## Licensing
-Please see the file called [LICENSE.md](../blob/master/LICENSE.md).
+Please see the file called [LICENSE.md](/blob/master/LICENSE.md).
 
 
 ## Installation
 This project was developed under Xcode 6.1.1 using Swift 1.1 therefore if you're using another version you might get errors.
 
-As the backend API was not developed, you will need to host and edit files within json folder. You also will need to edit the [URLFactory.swift](../blob/master/Projet S9/URLFactory.swift) file with the correct URL.
+As the backend API was not developed, you will need to host and edit files within json folder. You also will need to edit the [URLFactory.swift](/blob/master/Projet S9/URLFactory.swift) file with the correct URL.
